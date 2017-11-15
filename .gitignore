@@ -1,3 +1,4 @@
+!.gitignore
 metastore-db/
 spark-warehouse/
 reviewData/Booking/

@@ -1,0 +1,394 @@
+<html>
+
+<head>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+</head>
+
+<body>
+    <div id="fileSizeContainer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    <div><br><br><br><br></div>
+    <div id="totalReviewsContainer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    <div><br><br><br><br></div>
+
+    <!-- <div id="starsContainer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    <div><br><br><br><br></div> -->
+    <div id="totalHotelNumberAndAvgReviewNumberContainer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    <div><br><br><br><br></div>
+    <div id="avgScoreContainer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+    <script>
+        var citiesName = ['031_Roma', '003_Barcelona', '006_Paris', '001_Amsterdam', '008_London', 
+                            '022_Prague', '011_Edinburgh', '023_Vienna', '016_Lisbon', '025_Budapest', '017_Madrid', 
+                            '026_Warsaw', '018_Brussels', '002_Athens', '012_Dublin', '019_Munich', '029_Riga', 
+                            '021_hamburg', '028_Vilnius', '030_Tallinn', '015_Reykjavik', '020_Frankfurt', '024_Zurich', 
+                            '009_Manchester', '010_Liverpool', '027_Minsk', '007_Stockholm', '013_Copenhagen', 
+                            '005_Helsinki', '014_Oslo', '032_Kiev', '033_Bucharest', '034_Kharkiv', '035_Sofia', 
+                            '035_Cologne', '004_Berlin']
+
+        var totalReviews = [124254, 172146, 132728, 232219, 432022, 84725, 192517, 83979, 89450, 88770, 108125, 39713, 
+                            78430, 91615, 173875, 86925, 30145, 32996, 20737, 20817, 48948, 51894, 42978, 152434, 134681, 
+                            4059, 49222, 68547, 23572, 36134, 21423, 23710, 2727, 28301, 36514, 151977]
+
+        var totalHotels = [963, 861, 801, 805, 742, 734, 722, 714, 708, 692, 642, 564, 535, 508, 444, 410, 385, 378, 
+                            335, 300, 276, 251, 215, 209, 179, 176, 171, 166, 137, 133, 377, 399, 98, 389, 377, 873]
+
+        var nullStars = [20252, 17729, 9143, 17609, 26990, 12303, 20368, 7245, 13741, 15080, 10777, 5716, 6472, 7392, 
+                            12497, 4634, 3590, 2027, 3352, 2248, 6310, 2981, 2414, 12684, 15135, 621, 2857, 2825, 1842, 
+                            2037, 2215, 3637, 640, 3580, 2272, 13123]
+
+        var minReviewNumAHotel = [3, 3, 1, 3, 3, 1, 3, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 
+                                    3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+                        
+        var maxReviewNumAHotel = [2846, 1970, 1546, 3017, 11549, 1072, 4881, 1469, 1698, 1273, 1511, 1458, 2253, 2565, 
+                                    5546, 1151, 1244, 1153, 728, 633, 1402, 2949, 1460, 10318, 9253, 213, 1707, 2757, 
+                                    1070, 3816, 1259, 914, 192, 928, 802, 2579]
+        
+        var avgScore = [7.859, 7.790, 7.612, 7.495, 7.400, 
+                        7.813, 7.629, 7.684, 7.895, 7.857, 
+                        7.812, 7.744, 7.468, 7.665, 7.443, 
+                        7.473, 7.762, 7.470, 7.818, 7.697, 
+                        7.744, 7.434, 7.511, 7.165, 7.526, 
+                        7.774, 7.644, 7.398, 7.690, 7.629, 
+                        7.527, 7.832, 7.688, 7.636, 7.394, 
+                        7.676]
+
+
+        var avgReviewNumAHotel = [129.0280373832, 199.93728222999999, 165.7028714107, 288.47080745340003, 
+                                582.23989218329996, 115.4291553134, 266.64404432129999, 117.6176470588, 
+                                126.34180790960001, 128.28034682079999, 168.4190031153, 70.4131205674, 
+                                146.59813084109999, 180.344488189, 391.61036036040002, 212.01219512200001, 
+                                78.298701298699996, 87.291005291000005, 61.901492537300001, 69.390000000000001, 
+                                177.34782608699999, 206.7490039841, 199.89767441859999, 729.34928229670004, 
+                                752.40782122910002, 23.0625, 287.84795321640001, 412.93373493979999, 
+                                172.05839416059999, 271.68421052629998, 56.824933687002599, 59.423558897243097, 
+                                27.826530612244898, 72.753213367609206, 96.854111405835496, 174.08591065292001]
+        
+        var fiveStars = [23522, 31147, 20183, 34822, 59182, 15517, 31166, 14012, 17779, 17243, 19263, 7059, 11507, 
+                        14454, 24346, 12247, 5298, 4668, 3778, 3485, 8425, 7276, 6078, 18723, 20810, 748, 7681, 
+                        8257, 3620, 5200, 3317, 4584, 512, 4773, 4713, 25361]
+        
+        var fourStars = [60297, 91532, 73484, 119731, 223190, 42260, 99296, 45177, 43835, 41818, 58866, 19551, 40231, 
+                        50054, 90031, 47010, 15595, 17596, 10082, 10773, 24973, 27571, 23558, 71596, 66723, 1957, 
+                        27509, 37647, 13262, 21038, 10801, 11396, 1074, 13921, 19414, 81472]
+
+        var threeStars = [13756, 21714, 19639, 38062, 78044, 9788, 26895, 11604, 9586, 9815, 13332, 4808, 12439, 
+                            13332, 30122, 14780, 3831, 5485, 2385, 2908, 6057, 8859, 7068, 27948, 19838, 475, 7613, 
+                            13172, 3400, 5451, 3112, 2639, 299, 3748, 6249, 21161]
+        var twoStars = [5704, 8948, 8921, 19212, 40051, 4227, 13084, 5114, 4066, 4224, 5234, 2222, 6650, 5563, 
+                        15070, 7088, 1620, 2772, 1014, 1263, 2722, 4518, 3331, 18100, 10606, 213, 3208, 6061, 1298, 
+                        2142, 1622, 1249, 164, 1915, 3247, 9449]
+        var oneStars = [722, 1074, 1356, 2783, 4565, 630, 1708, 827, 442, 590, 653, 357, 1128, 819, 1809, 1166, 
+                        211, 448, 126, 140, 459, 689, 529, 3382, 1568, 45, 354, 585, 150, 266, 356, 205, 
+                        38, 364, 619, 1411]
+        var zeroStars = [1, 2, 2, 0, 0, 0, 0, 0, 1, 0, 0, 0, 3, 1, 0, 0, 0, 0, 0, 0, 2, 
+                            0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        
+        var sizeMB = [91.0, 123.9, 93.7, 169.6, 312.4, 60.6, 138.9, 60.7, 66.6, 63.8, 76.1, 28.3, 55.7, 64.2, 120.2, 
+                        60.6, 20.8, 23.2, 14.8, 15.0, 35.9, 36.6, 30.6, 110.3, 93.6, 2.9, 34.9, 48.8, 17.0, 25.1, 
+                        15.0, 17.3, 1.9, 20.0, 25.9, 110.5]
+
+        function median(numbers) {
+            // median of [3, 5, 4, 4, 1, 1, 2, 3] = 3
+            var median = 0, numsLen = numbers.length;
+            numbers.sort();
+
+            if (
+                numsLen % 2 === 0 // is even
+            ) {
+                // average of two middle numbers
+                median = (numbers[numsLen / 2 - 1] + numbers[numsLen / 2]) / 2;
+            } else { // is odd
+                // middle number only
+                median = numbers[(numsLen - 1) / 2];
+            }
+
+            return median;
+        }
+
+        function mean(numbers) {
+            // mean of [3, 5, 4, 4, 1, 1, 2, 3] is 2.875
+            var total = 0,
+                i;
+            for (i = 0; i < numbers.length; i += 1) {
+                total += numbers[i];
+            }
+            return total / numbers.length;
+        }
+
+// data visualization for file size
+        var fileSizeContainer = Highcharts.chart('fileSizeContainer', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'file size(MB) of hotel reviews text data in 35 cities'
+            },
+            subtitle: {
+                text: 'booking.com'
+            },
+            xAxis: {
+                categories: citiesName,
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'file size (MB)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0"></td>' +
+                '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'file size(MB) of reviews for 35 european cities',
+                data: sizeMB
+            }]
+        });
+
+        var avgFileSize = mean(sizeMB)
+        var medianFileSize = median(sizeMB)
+        var citiesNamePlusFileSize = citiesName.concat(["average file size(MB)", "median file size(MB)"])
+        fileSizeContainer.series[0].addPoint(avgFileSize)
+        // console.log(avgFileSize)
+        fileSizeContainer.series[0].addPoint(medianFileSize)
+        fileSizeContainer.xAxis[0].update(citiesName.concat["average file size(MB)", "median file size(MB)"])
+
+
+
+
+        
+        var totalReviewsContainer = Highcharts.chart('totalReviewsContainer', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'number of Total Reviews in 35 european cities'
+            },
+            subtitle: {
+                text: 'booking.com'
+            },
+            xAxis: {
+                categories: citiesName,
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'number of hotel reviews'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0"></td>' +
+                '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'number of total reviews',
+                data: totalReviews
+            }]
+        });
+
+        // calculate the average total review number in a city
+        var avgTotalReviewNumber = mean(totalReviews)
+        // get the median total review number(18th in ranking of total review number)
+        var medianTotalReviewNumber = median(totalReviews)
+
+        totalReviewsContainer.series[0].addPoint(avgTotalReviewNumber)
+        // totalReviewsContainer.xAxis[0].update(citiesName.push("average number of total review in a city"))
+        totalReviewsContainer.series[0].addPoint(medianTotalReviewNumber)
+        // totalReviewsContainer.xAxis[0].update(citiesName.push("median number of total review in a city"))
+
+
+// for the number of star hotels in 35 european cities in Booking
+        // Highcharts.chart('starsContainer', {
+        //     chart: {
+        //         type: 'column'
+        //     },
+        //     title: {
+        //         text: 'stars number in 35 europe cities in Booking'
+        //     },
+        //     subtitle: {
+        //         text: 'booking.com'
+        //     },
+        //     xAxis: {
+        //         categories: citiesName,
+        //         crosshair: true
+        //     },
+        //     yAxis: {
+        //         min: 0,
+        //         title: {
+        //             text: 'numbers'
+        //         }
+        //     },
+        //     tooltip: {
+        //         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        //         pointFormat: '<tr><td style="color:{series.color};padding:0"></td>' +
+        //         '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+        //         footerFormat: '</table>',
+        //         shared: true,
+        //         useHTML: true
+        //     },
+        //     plotOptions: {
+        //         column: {
+        //             pointPadding: 0.2,
+        //             borderWidth: 0
+        //         }
+        //     },
+        //     series: [{
+        //         name: 'number of 5-star hotel',
+        //         data: fiveStars
+        //     },{
+        //         name: 'number of 4-star hotel',
+        //         data: fourStars
+        //     },{
+        //         name: 'number of 3-star hotel',
+        //         data: threeStars
+        //     },{
+        //         name: 'number of 2-star hotel',
+        //         data: twoStars
+        //     },{
+        //         name: 'number of 1-star hotel ',
+        //         data: oneStars
+        //     },{
+        //         name: 'number of 0-star hotel ',
+        //         data: zeroStars
+        //     },{
+        //         name: 'number of null-star hotel',
+        //         data: nullStars
+        //     }]
+        // });
+
+// for the number of total hotel
+        var totalHotelNumberAndAvgReviewNumberContainer = Highcharts.chart('totalHotelNumberAndAvgReviewNumberContainer', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'numbers of total hotels in 35 cities & average number of hotel reviews in each city'
+            }, 
+            subtitle: {
+                text: 'www.booking.com'
+            },
+            xAxis: {
+                categories: citiesName,
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'numbers'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0"></td>' +
+                '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'the total hotels number',
+                data: totalHotels
+            },{
+                name: 'average number of reviews for a hotel',
+                data: avgReviewNumAHotel
+            }]
+        });
+
+        // calculate the average total review number in a city
+        var avgTotalHotelNumber = mean(totalHotels)
+        // get the median total review number(18th in ranking of total review number)
+        var medianTotalHotelNumber = median(totalHotels)
+
+        var avgReviewAHotelAmongCities = mean(avgReviewNumAHotel)
+        var medianAveReviewAHotelAmongcities = median(avgReviewNumAHotel)
+
+        totalHotelNumberAndAvgReviewNumberContainer.series[0].addPoint(avgTotalHotelNumber)
+        totalHotelNumberAndAvgReviewNumberContainer.series[0].addPoint(medianTotalHotelNumber)
+        
+        totalHotelNumberAndAvgReviewNumberContainer.series[1].addPoint(avgReviewAHotelAmongCities)
+        totalHotelNumberAndAvgReviewNumberContainer.series[1].addPoint(medianAveReviewAHotelAmongcities)
+
+// the average score for total hotels for all european cities
+        var avgScoreContainer = Highcharts.chart('avgScoreContainer', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'the average score for total hotels in 35 europe cities in Booking'
+            },
+            subtitle: {
+                text: 'booking.com'
+            },
+            xAxis: {
+                categories: citiesName,
+                crosshair: true
+            },
+            yAxis: {
+                min: 7,
+                title: {
+                    text: 'score'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0"></td>' +
+                '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'hotel average score in the city',
+                data: avgScore
+            }]
+        });
+        // calculate the average total review number in a city
+        var avgScoreAmongCities = mean(avgScore)
+        // get the median total review number(18th in ranking of total review number)
+        var medianAvgScoreAmongCities = median(avgScore)
+        avgScoreContainer.series[0].addPoint(avgScoreAmongCities)
+        avgScoreContainer.series[0].addPoint(medianAvgScoreAmongCities)
+        
+
+
+
+
+    </script>
+</body>
+
+</html>

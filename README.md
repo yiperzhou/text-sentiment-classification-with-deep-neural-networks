@@ -8,7 +8,7 @@ db.Amsterdam3_tripadvisor_hotels_reviews.renameCollection("amsterdamTripadvisor"
  
 ## Data Sample
 * tripadvisor review data sample  
-'''javascript
+```javascript
 {
     "_id": ObjectId("5992a7f19b1f2625f7e63d1e"),
     "title": "Outstanding",
@@ -22,9 +22,9 @@ db.Amsterdam3_tripadvisor_hotels_reviews.renameCollection("amsterdamTripadvisor"
     "score": 5,
     "date": null
 }
-'''
+```
 * booking.com review data sample  
-'''json
+```json
 {
     "_id": ObjectId("595ad0a69b1f2601aa1f2c99"),
     "title": "Amazing hotel in amazing location - definitely would stay again!",
@@ -38,4 +38,4 @@ db.Amsterdam3_tripadvisor_hotels_reviews.renameCollection("amsterdamTripadvisor"
     "date": "\nJune 26, 2016\n",
     "positive_content": "Amazing hotel full of character, large comfortable room with great facilities, really nice friendly and helpful staff, great location right in the centre of the city, dining hall was spectacular, 24 hour shop across the road"
 }
-'''
+```

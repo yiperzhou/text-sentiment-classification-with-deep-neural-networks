@@ -8,9 +8,8 @@ db.Amsterdam3_tripadvisor_hotels_reviews.renameCollection("amsterdamTripadvisor"
  
 ## Data Sample
 * tripadvisor review data sample  
-```javascript
+```json
 {
-    "_id": ObjectId("5992a7f19b1f2625f7e63d1e"),
     "title": "Outstanding",
     "url": "https://www.tripadvisor.com/ShowUserReviews-g188590-d189389-r145091651-Sofitel_Legend_The_Grand_Amsterdam-Amsterdam_North_Holland_Province.html",
     "hotelUrl": "https://www.tripadvisor.com/Hotel_Review-g188590-d189389-Reviews-Sofitel_Legend_The_Grand_Amsterdam-Amsterdam_North_Holland_Province.html",
@@ -26,7 +25,6 @@ db.Amsterdam3_tripadvisor_hotels_reviews.renameCollection("amsterdamTripadvisor"
 * booking.com review data sample  
 ```json
 {
-    "_id": ObjectId("595ad0a69b1f2601aa1f2c99"),
     "title": "Amazing hotel in amazing location - definitely would stay again!",
     "url": "https://www.booking.com/reviews/fi/hotel/seurahuone/review/39ebcbf8c6394036.html",
     "hotelUrl": "https://www.booking.com/hotel/fi/seurahuone.html",

@@ -7,7 +7,7 @@ db.Amsterdam2_tripadvisor_hotels_reviews.stats()
 db.Amsterdam3_tripadvisor_hotels_reviews.renameCollection("amsterdamTripadvisor")
  
 ## Data Sample
-* tripadvisor review data sample
+* tripadvisor review data sample  
 '''javascript
 {
     "_id": ObjectId("5992a7f19b1f2625f7e63d1e"),
@@ -23,7 +23,7 @@ db.Amsterdam3_tripadvisor_hotels_reviews.renameCollection("amsterdamTripadvisor"
     "date": null
 }
 '''
-* booking.com review data sample
+* booking.com review data sample  
 '''json
 {
     "_id": ObjectId("595ad0a69b1f2601aa1f2c99"),

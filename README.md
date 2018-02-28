@@ -8,7 +8,7 @@ db.Amsterdam3_tripadvisor_hotels_reviews.renameCollection("amsterdamTripadvisor"
  
 ## Data Sample
 * tripadvisor review data sample
-'''json
+'''javascript
 {
     "_id": ObjectId("5992a7f19b1f2625f7e63d1e"),
     "title": "Outstanding",

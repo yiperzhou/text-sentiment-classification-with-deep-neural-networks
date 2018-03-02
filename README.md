@@ -37,3 +37,15 @@ db.Amsterdam3_tripadvisor_hotels_reviews.renameCollection("amsterdamTripadvisor"
     "positive_content": "Amazing hotel full of character, large comfortable room with great facilities, really nice friendly and helpful staff, great location right in the centre of the city, dining hall was spectacular, 24 hour shop across the road"
 }
 ```
+## raw review data statistics
+### Booking.com
+
+### tripadvisor.com
+
+
+## review data statistics after removing records which contain absent or null value
+### Booking.com
+
+### Tripadvisor.com
+
+

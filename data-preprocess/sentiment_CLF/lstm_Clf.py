@@ -56,3 +56,18 @@ def cleanSentences(string):
     strip_special_chars = re.compile("[^A-Za-z0-9 ]+")
     string = string.lower().replace("<br />", " ")
     return re.sub(strip_special_chars, "", string.lower())
+
+def glove():
+    """
+    using glove pretained word2vec, with 100 dims and 400k words
+    """
+    return 0
+
+def fastTest():
+    """
+    using pre-trained 300dims word embedding fasttext
+    """
+    return 0
+
+
+

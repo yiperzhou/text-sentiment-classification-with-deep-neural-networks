@@ -1,6 +1,5 @@
 # coding: utf-8
 
-from pymongo import MongoClient
 import pandas as pd
 import numpy as np
 
@@ -17,15 +16,17 @@ from sklearn.svm import LinearSVC
 from sklearn.model_selection import train_test_split
 import nltk
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+import json
+import os
 
 
-def getCollection(collet = ""):
-    '''
-    return pandas dataframe.
-    '''
-    cursor = db[collet].find({})
-    df = pd.DataFrame(list(cursor))
-    return df
+# def getCollection(collet = ""):
+#     '''
+#     return pandas dataframe.
+#     '''
+#     cursor = db[collet].find({})
+#     df = pd.DataFrame(list(cursor))
+#     return df
 
 
 def label_sentiment_category(row):
@@ -125,12 +126,18 @@ def clf_SVM():
 
 if __name__ == "__main__":
     # connect to the db
-    client = MongoClient()
-    db = client.sentimentAnalysis
+    # client = MongoClient()
+    # db = client.sentimentAnalysis
+    filePath = "/home/yi/Desktop/csv-zusammenfuehren.de_r922bdrm.csv"
+    # with open(filePath) as datafile:dd
+    #     rawdata = json.load(datafile)
+    data = pd.read_csv(filePath)
+    
+    # data = pd.read_json(filePath)
 
-    # take Barcelona city hotel reviews as example
-    city = "barcelonaTripadvisor"
-    data = getCollection(collet = city)
+    # # take Barcelona city hotel reviews as example
+    # city = "barcelonaTripadvisor"
+    # data = getCollection(collet = city)
 
     data['sentiment'] = data.apply(lambda row: label_sentiment_category(row),axis=1)
     print("data size : ", data.shape)
@@ -144,8 +151,16 @@ if __name__ == "__main__":
     X = data["review"]
     y = data["sentiment"]
 
+
+
     assert len(X) == len(y)
     print("check the consistent size of reviews and sentiment : ", "review size : ", len(X), "sentiment size: ", len(y))
+    
+    XY = pd.DataFrame({"review": X, "sentiment":y})
+    
+    savePath = "/home/yi/Desktop/csv-zusammenfuehren.de_r922bdrm_XY.csv"
+    if not os.path.exists(savePath):
+        XY.to_csv(savePath)
 
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=None)

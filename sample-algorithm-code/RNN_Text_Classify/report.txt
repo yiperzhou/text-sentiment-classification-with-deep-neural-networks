@@ -1,0 +1,56 @@
+--------------------------------------------------------------------------------
+Processing file 'train_rnn_classify.py'
+ outputting to 'train_rnn_classify_1.0.py'
+--------------------------------------------------------------------------------
+
+'train_rnn_classify.py' Line 145
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.all_variables' to 'tf.global_variables'
+
+    Old:         saver = tf.train.Saver(tf.all_variables())
+                                        ~~~~~~~~~~~~~~~~    
+    New:         saver = tf.train.Saver(tf.global_variables())
+                                        ~~~~~~~~~~~~~~~~~~~    
+
+'train_rnn_classify.py' Line 138
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.train.SummaryWriter' to 'tf.summary.FileWriter'
+
+    Old:         dev_summary_writer =  tf.train.SummaryWriter(dev_summary_dir,session.graph)
+                                       ~~~~~~~~~~~~~~~~~~~~~~                                
+    New:         dev_summary_writer =  tf.summary.FileWriter(dev_summary_dir,session.graph)
+                                       ~~~~~~~~~~~~~~~~~~~~~                                
+
+'train_rnn_classify.py' Line 75
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.scalar_summary' to 'tf.summary.scalar'
+
+    Old:     dev_summary = tf.scalar_summary('dev_accuracy',accuracy)
+                           ~~~~~~~~~~~~~~~~~                          
+    New:     dev_summary = tf.summary.scalar('dev_accuracy',accuracy)
+                           ~~~~~~~~~~~~~~~~~                          
+
+'train_rnn_classify.py' Line 148
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.initialize_all_variables' to 'tf.global_variables_initializer'
+
+    Old:         tf.initialize_all_variables().run()
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~         
+    New:         tf.global_variables_initializer().run()
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~         
+
+'train_rnn_classify.py' Line 134
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.train.SummaryWriter' to 'tf.summary.FileWriter'
+
+    Old:         train_summary_writer =  tf.train.SummaryWriter(train_summary_dir,session.graph)
+                                         ~~~~~~~~~~~~~~~~~~~~~~                                  
+    New:         train_summary_writer =  tf.summary.FileWriter(train_summary_dir,session.graph)
+                                         ~~~~~~~~~~~~~~~~~~~~~                                  
+
+

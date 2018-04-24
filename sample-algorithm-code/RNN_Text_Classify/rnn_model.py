@@ -1,6 +1,7 @@
 
 import tensorflow as tf
 import numpy as np
+import pandas as pd
 
 class RNN_Model(object):
 
@@ -64,16 +65,27 @@ class RNN_Model(object):
             softmax_b = tf.get_variable("softmax_b",[class_num],dtype=tf.float32)
             self.logits = tf.matmul(out_put,softmax_w)+softmax_b
 
+
         with tf.name_scope("loss"):
             self.loss = tf.nn.sparse_softmax_cross_entropy_with_logits(logits=self.logits+1e-10,labels=self.target)
             self.cost = tf.reduce_mean(self.loss)
 
         with tf.name_scope("accuracy"):
             self.prediction = tf.argmax(self.logits,1)
-            correct_prediction = tf.equal(self.prediction,self.target)
-            self.correct_num=tf.reduce_sum(tf.cast(correct_prediction,tf.float32))
-            self.accuracy = tf.reduce_mean(tf.cast(correct_prediction,tf.float32),name="accuracy")
-
+            squares = tf.map_fn(lambda x: x * x, self.prediction)
+            try:
+                print("-------------------------------------", squares)
+            except:
+                pass
+            # [self.prediction], self.target, self.
+            # tf.Print(self.prediction, [self.prediction])
+            # sess.run(tf.Print(self.prediction, [self.prediction]))
+            # print(self.prediction)
+            self.correct_prediction = tf.equal(self.prediction,self.target)
+            self.correct_num=tf.reduce_sum(tf.cast(self.correct_prediction,tf.float32))
+            self.accuracy = tf.reduce_mean(tf.cast(self.correct_prediction,tf.float32),name="accuracy")
+        # add summary
+        # correct_prediction_summary = tf.summary.histogram("prediction_detail", self.prediction )
         #add summary
         loss_summary = tf.summary.scalar("loss",self.cost)
         #add summary

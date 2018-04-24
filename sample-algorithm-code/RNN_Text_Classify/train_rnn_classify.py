@@ -5,7 +5,8 @@ import time
 import datetime
 from rnn_model import RNN_Model
 import data_helper
-
+import pandas as pd
+from sklearn import metrics
 
 flags =tf.app.flags
 FLAGS = flags.FLAGS
@@ -25,7 +26,7 @@ flags.DEFINE_integer('checkpoint_num',1000,'epoch num of checkpoint')
 flags.DEFINE_float('init_scale',0.1,'init scale')
 flags.DEFINE_integer('class_num',2,'class num')
 flags.DEFINE_float('keep_prob',0.5,'dropout rate')
-flags.DEFINE_integer('num_epoch',20,'num epoch')
+flags.DEFINE_integer('num_epoch',1,'num epoch')
 flags.DEFINE_integer('max_decay_epoch',30,'num epoch')
 flags.DEFINE_integer('max_grad_norm',5,'max_grad_norm')
 flags.DEFINE_string('out_dir',os.path.abspath(os.path.join(os.path.curdir,"runs")),'output directory')
@@ -55,10 +56,13 @@ def evaluate(model,session,data,global_steps=None,summary_writer=None):
 
 
     correct_num=0
+    predict_result = list()
     total_num=len(data[0])
     for step, (x,y,mask_x) in enumerate(data_helper.batch_iter(data,batch_size=FLAGS.batch_size)):
 
          fetches = model.correct_num
+        #  predict_detail = model.prediction
+        #  predict = list()
          feed_dict={}
          feed_dict[model.input_data]=x
          feed_dict[model.target]=y
@@ -69,15 +73,23 @@ def evaluate(model,session,data,global_steps=None,summary_writer=None):
             feed_dict[c]=state[i].c
             feed_dict[h]=state[i].h
          count=session.run(fetches,feed_dict)
+        #  predict = session.run()
+        #  session.run(model.logits)
+        #  session.run(tf.Print(model.correct_prediction))
          correct_num+=count
-
+         predict_result.append(session.run(model.prediction, feed_dict))
+        
+    print("total num:", total_num)
+    print("total predict num:", len(predict_result))
     accuracy=float(correct_num)/total_num
     dev_summary = tf.summary.scalar('dev_accuracy',accuracy)
+
     dev_summary = session.run(dev_summary)
+    # dev_predict_detail = tf.summary.scalar('dev_predict_detail', predict_detail)
     if summary_writer:
         summary_writer.add_summary(dev_summary,global_steps)
         summary_writer.flush()
-    return accuracy
+    return accuracy, predict_result
 
 def run_epoch(model,session,data,global_steps,valid_model,valid_data,train_summary_writer,valid_summary_writer=None):
     for step, (x,y,mask_x) in enumerate(data_helper.batch_iter(data,batch_size=FLAGS.batch_size)):
@@ -95,7 +107,7 @@ def run_epoch(model,session,data,global_steps,valid_model,valid_data,train_summa
         cost,accuracy,_,summary = session.run(fetches,feed_dict)
         train_summary_writer.add_summary(summary,global_steps)
         train_summary_writer.flush()
-        valid_accuracy=evaluate(valid_model,session,valid_data,global_steps,valid_summary_writer)
+        valid_accuracy, predictResult =evaluate(valid_model,session,valid_data,global_steps,valid_summary_writer)
         if(global_steps%100==0):
             print("the %i step, train cost is: %f and the train accuracy is %f and the valid accuracy is %f"%(global_steps,cost,accuracy,valid_accuracy))
         global_steps+=1
@@ -162,8 +174,45 @@ def train_step():
         print("the train is finished")
         end_time=int(time.time())
         print("training takes %d seconds already\n"%(end_time-begin_time))
-        test_accuracy=evaluate(test_model,session,test_data)
+        test_accuracy, test_predict_result=evaluate(test_model,session,test_data)
+        test_predict_result = np.concatenate(test_predict_result).ravel()
         print("the test data accuracy is %f"%test_accuracy)
+
+        print(len(test_predict_result))
+        # Print and plot the confusion matrix
+        print("LSTM confusion matrix: ")
+        cm_LSTM = metrics.confusion_matrix(test_data[1][:1792], test_predict_result)
+        print(cm_LSTM)
+        
+
+        print("LSTM metrics report: ")
+        print(metrics.classification_report(test_data[1][:1792], test_predict_result, target_names=None))
+        
+        
+
+
+
+
+        # print("test prediction result: ", test_predict_result)
+
+        # load the original test text review
+        text_test_file = "/home/yi/sentimentAnalysis/data-preprocess/sentiment_CLF/test_tripadvisor_5cities.csv"
+        text_testDF = pd.read_csv(text_test_file)
+        
+        # open the previous wrong classification csv file
+        # wrong_classification_csv = pd.read_csv("/home/yi/sentimentAnalysis/data-preprocess/sentiment_CLF/wrong_clf_reviews.csv")
+        wrong_clf_reviews_list = list()
+        for i in range(len(test_predict_result)):
+            if test_data[1][i] != test_predict_result[i]:
+                # just check, the review is exact same review
+                if text_testDF.iloc[i]["sentiment"] == test_data[1][i]:
+                    # wrong_classification_csv.append({"predlabel":test_predict_result[i], "trueLabel":test_data[1][i], "indexLocat":i, "review":text_testDF.iloc[i]["review"], "classification":"LSTM"},  ignore_index=True)
+                    wrong_clf_reviews_list.append([test_predict_result[i], test_data[1][i], i, text_testDF.iloc[i]["review"], "LSTM"])
+            else:
+                pass
+
+        wrong_clf_reviews = pd.DataFrame(wrong_clf_reviews_list, columns=["predlabel", "trueLabel", "indexLocat", "review", "classification"])
+        wrong_clf_reviews.to_csv("wrong_clf_reviews_LSTM.csv")
         print("program end!")
 
 

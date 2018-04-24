@@ -129,21 +129,33 @@ def loadFasttext(filename, emb_size):
     return 0
 
 
-def get_uni_words(textData):
+def get_uni_words(trainReviews, testReviews):
     """
     get unique words for text dataset
     """
-    reviewsList = list()
+    trainReviewsList = list()
+    testReviewsList = list()
     reviewsSet = set() 
-    for i in range(len(textData)):
+    for i in range(len(trainReviews)):
         try:
-            token_review = nltk.word_tokenize(textData[i])
+            token_review = nltk.word_tokenize(trainReviews[i])
 
-            reviewsList.append(token_review)
+            trainReviewsList.append(token_review)
             reviewsSet |= set(token_review)
-        except print(textData[i]):
+        except print(trainReviews[i]):
             return 0
-    return reviewsList, reviewsSet
+
+    for i in range(len(testReviews)):
+        try:
+            token_review = nltk.word_tokenize(testReviews[i])
+
+            testReviewsList.append(token_review)
+            reviewsSet |= set(token_review)
+        except print(testReviewsList[i]):
+            return 0
+
+
+    return trainReviewsList, testReviewsList, reviewsSet
     
 
 def build_LSTM():
@@ -152,12 +164,21 @@ def build_LSTM():
     """
     
 
-def reviews_index(reviewsData, labels, wordsSet):
-    labels = list(labels)
-    wordsList = list(wordsSet)
-    reviews_index = list()
+def reviews_index(train_reviewsList, test_reviewsList, y_train, y_test, wordsSet):
+    
 
-    for review in reviewsData:
+    print(len(train_reviewsList), len(y_train))
+    print(len(test_reviewsList), len(y_test))
+
+    wordsList = list(wordsSet)
+
+    train_labels = list(y_train)
+    test_labels = list(y_test)
+
+    train_reviews_index = list()
+    test_reviews_index = list()
+
+    for review in train_reviewsList:
         sent_index = []
         for word in review:
             try:
@@ -166,30 +187,36 @@ def reviews_index(reviewsData, labels, wordsSet):
                 # if word not in wordsSet, then uses 1 as its subtution
                 index = 1
             sent_index.append(index)
-        reviews_index.append(sent_index)
-    if len(labels) == len(reviews_index):
-        data_size = len(labels)
-        train_size = int(0.9 * data_size)
-        
-        train_set_x = reviews_index[:train_size]
-        train_set_y = labels[:train_size]
+        train_reviews_index.append(sent_index)
 
-        test_set_x = reviews_index[train_size:]
-        test_set_y = labels[train_size:]
+    for review in test_reviewsList:
+        sent_index = []
+        for word in review:
+            try:
+                index = wordsList.index(word)
+            except ValueError:
+                # if word not in wordsSet, then uses 1 as its subtution
+                index = 1
+            sent_index.append(index)
+        test_reviews_index.append(sent_index)
 
-        train_set = train_set_x, train_set_y
-        test_set = test_set_x, test_set_y
+    
+    if len(train_labels) == len(train_reviews_index):
+        if len(test_labels) == len(test_reviews_index):
+            
+            train_set = train_reviews_index, train_labels
+            test_set = test_reviews_index, test_labels
 
-        with open("/home/yi/Desktop/file.pickle", "wb") as f:
-            pkl.dump((train_set,test_set), f)
-        f.close()
+            with open("/home/yi/Desktop/tripadvisor_5cities.pickle", "wb") as f:
+                pkl.dump((train_set,test_set), f)
+            f.close()
 
-        # DF = pd.DataFrame({0:reviews_index, 1:Y})
-        # DF.to_pickle("/home/yi/csv-zusammenfuehren.de_r922bdrm_XY.pkl")
-        print("pickle done")
-        return 0
+            # DF = pd.DataFrame({0:reviews_index, 1:Y})
+            # DF.to_pickle("/home/yi/csv-zusammenfuehren.de_r922bdrm_XY.pkl")
+            print("pickle done")
+            return 0
     else:
-        print("length Y: ", len(Y), "length X: ", len(reviews_index))
+        print("length error")
         return 0
 
 
@@ -197,22 +224,33 @@ def reviews_index(reviewsData, labels, wordsSet):
 if __name__ == "__main__":
 
     filePath = "/home/yi/Desktop/csv-zusammenfuehren.de_r922bdrm_XY.csv"
+    train_file_path = "/home/yi/sentimentAnalysis/data-preprocess/sentiment_CLF/train_tripadvisor_5cities.csv"
+    test_file_path = "/home/yi/sentimentAnalysis/data-preprocess/sentiment_CLF/test_tripadvisor_5cities.csv"
     # with open(filePath) as datafile:
     #     rawdata = json.load(datafile)
     data = pd.read_csv(filePath)
     X = data["review"]
     Y = data["sentiment"]
 
+    train_df = pd.read_csv(train_file_path)
+    X_train = train_df["review"]
+    y_train = train_df["sentiment"]
+
+    test_df = pd.read_csv(test_file_path)
+    X_test = test_df["review"]
+    y_test = test_df["sentiment"]
+
+
     assert len(X) == len(Y)
     print("check the consistent size of reviews and sentiment : ", "review size : ", len(X), "sentiment size: ", len(Y))
 
-    X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=None)
+    # X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=None)
 
-    reviewsList, reviewsSet = get_uni_words(X.tolist())
+    train_reviewsList, test_reviewsList, reviewsSet = get_uni_words(list(X_train), list(X_test))
 
 
     # get word index for these reviews
-    reviews_index(reviewsList, Y, reviewsSet)
+    reviews_index(train_reviewsList, test_reviewsList, y_train, y_test, reviewsSet)
     
     #表示最长的句子长度max_document_length
     max_document_length = max([len(review) for review in reviewsList])

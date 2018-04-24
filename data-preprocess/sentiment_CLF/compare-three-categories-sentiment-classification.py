@@ -18,47 +18,8 @@ import nltk
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import json
 import os
+import pandas as pd
 
-
-# def getCollection(collet = ""):
-#     '''
-#     return pandas dataframe.
-#     '''
-#     cursor = db[collet].find({})
-#     df = pd.DataFrame(list(cursor))
-#     return df
-
-
-def label_sentiment_category(row):
-    """
-    split reviews into two categories, pos, labled by "1", neg, labeled by "0"
-    [0, 1, 2] is neg, [4,5] is pos, 
-    [3] is neutral, it needs to be deleted since we only do two-class classification
-    """
-    if row["score"] in [0, 1, 2]:
-        return 0
-    if row["score"] in [3]:
-        return -1
-    if row["score"] in [4, 5]:
-        return 1
-
-def clean_punc_and_marks(row):
-    """
-    remove punctuation, including ???????
-    """
-    words = nltk.word_tokenize(row["review"])
-
-    words=[word.lower() for word in words if word.isalpha()]
-    words = words[:250]
-    return " ".join(words)
-
-def cleanSentences(string):
-    """
-    removes punctuation, parentheses, question marks, etc., and leaves only alphanumeric characters
-    """
-    strip_special_chars = re.compile("[^A-Za-z0-9 ]+")
-    string = string.lower().replace("<br />", " ")
-    return re.sub(strip_special_chars, "", string.lower())
 
 def clf_VADER():
     """
@@ -108,62 +69,34 @@ def clf_SVM():
                     grid_search.cv_results_['mean_test_score'][i],
                     grid_search.cv_results_['std_test_score'][i]))
 
-    # TASK: Predict the outcome on the testing set and store it in a variable
-    # named y_predicted
     y_pred = grid_search.predict(X_test)
-
-    # Print the classification report
-    # print(metrics.classification_report(y_test, y_predicted, target_names=None))
     elapse = time.time() - start
-    # print("elapsed time: ", round(elapsed_time, 2), " seconds")
-    # Print and plot the confusion matrix
-    # cm = metrics.confusion_matrix(y_test, y_predicted)
-    # print(cm)
-    # plt.matshow(cm)
-    # plt.show()
     return y_pred, elapse
 
 
 if __name__ == "__main__":
-    # connect to the db
-    # client = MongoClient()
-    # db = client.sentimentAnalysis
-    filePath = "/home/yi/Desktop/csv-zusammenfuehren.de_r922bdrm.csv"
-    # with open(filePath) as datafile:dd
-    #     rawdata = json.load(datafile)
-    data = pd.read_csv(filePath)
     
-    # data = pd.read_json(filePath)
-
-    # # take Barcelona city hotel reviews as example
-    # city = "barcelonaTripadvisor"
-    # data = getCollection(collet = city)
-
-    data['sentiment'] = data.apply(lambda row: label_sentiment_category(row),axis=1)
-    print("data size : ", data.shape)
-
-    # remove row where sentiment is neutral
-    data = data[data.sentiment != -1]
-
-    print("data shape after remove neutral reviews : ", data.shape)
-    data['review'] = data.apply(lambda row: clean_punc_and_marks(row),axis=1)
-
+    filePath = "/home/yi/sentimentAnalysis/data-preprocess/data/tripadvisor_5cities.csv"
+    data = pd.read_csv(filePath)
     X = data["review"]
     y = data["sentiment"]
-
-
-
+    
     assert len(X) == len(y)
     print("check the consistent size of reviews and sentiment : ", "review size : ", len(X), "sentiment size: ", len(y))
-    
-    XY = pd.DataFrame({"review": X, "sentiment":y})
-    
-    savePath = "/home/yi/Desktop/csv-zusammenfuehren.de_r922bdrm_XY.csv"
-    if not os.path.exists(savePath):
-        XY.to_csv(savePath)
-
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=None)
+    train_pf = pd.DataFrame()
+    train_pf["review"] = X_train
+    train_pf["sentiment"] = y_train
+
+    test_df = pd.DataFrame()
+    test_df["review"] = X_test
+    test_df["sentiment"] = y_test
+    if not os.path.exists("train_tripadvisor_5cities.csv"):
+        train_pf.to_csv("train_tripadvisor_5cities.csv")
+    if not os.path.exists("test_tripadvisor_5cities.csv"):
+        test_df.to_csv("test_tripadvisor_5cities.csv")
+
 
     print(" X train shape for train data : ", X_train.shape)
     print("=================================================================================")
@@ -172,6 +105,25 @@ if __name__ == "__main__":
     # first test on VADER system
     y_pred_VADER, time_VADER = clf_VADER()
     print("VADER elapsed time: ", round(time_VADER, 2), " s")
+    
+
+
+    # find these reviews which are wrongly classified
+    X_test = list(X_test)
+    y_test = list(y_test)
+    # wrong_clf_reviews_VADER = dict()
+    
+    wrong_clf_reviews_list = list()
+    print("test size length: ", len(y_test))
+
+    assert len(y_test) == len(y_pred_VADER)
+
+    for i in range(len(y_pred_VADER)):
+        if y_pred_VADER[i] != y_test[i]:
+            wrong_clf_reviews_list.append([y_pred_VADER[i], y_test[i], i, X_test[i], "VADER"])
+        else:
+            pass
+
     # Print and plot the confusion matrix
     cm_VADER = metrics.confusion_matrix(y_test, y_pred_VADER)
     
@@ -179,23 +131,26 @@ if __name__ == "__main__":
     print(metrics.classification_report(y_test, y_pred_VADER, target_names=None))
     print("VADER confusion matrix: ")
     print(cm_VADER)
-    # plt.title("VADER sentiment classifcation")
-    # plt.matshow(cm_VADER)
-    # plt.show()
 
     # second test on SVM
     y_pred_SVM, time_SVM = clf_SVM()
     print("SVM elapsed time : ", round(time_SVM, 2), " s")
+
+    assert len(y_pred_SVM) == len(y_test)
+    # wrong_clf_reviews_SVM = dict()
+    for i in range(len(y_pred_SVM)):
+        if y_pred_SVM[i] != y_test[i]:
+            wrong_clf_reviews_list.append([y_pred_SVM[i], y_test[i], i, X_test[i], "SVM"])
+        else:
+            pass
+
     # Print and plot the confusion matrix
     cm_SVM = metrics.confusion_matrix(y_test, y_pred_SVM)
     print("SVM metrics report: ")
     print(metrics.classification_report(y_test, y_pred_SVM, target_names=None))
     print("SVM confusion matrix: ")
     print(cm_SVM)
-    # add title info
-    # plt.title("SVM sentiment classification")
-    # plt.matshow(cm_SVM)
 
-    # plt.show()
+    wrong_clf_reviews = pd.DataFrame(wrong_clf_reviews_list, columns=["predlabel", "trueLabel", "indexLocat", "review", "classification"])
 
-    
+    wrong_clf_reviews.to_csv("wrong_clf_reviews.csv")

@@ -9,7 +9,7 @@ import _pickle as pkl
 # import cPickle as pickle
 
 #file path
-dataset_path1='/home/yi/sentimentAnalysis/sample-algorithm-code/LSTM-Sentiment-Analysis/RNN_Text_Classify/data/file.pickle'
+dataset_path1='/home/yi/sentimentAnalysis/sample-algorithm-code/RNN_Text_Classify/data/tripadvisor_5cities.pickle'
 dataset_path="/home/yi/sentimentAnalysis/sample-algorithm-code/LSTM-Sentiment-Analysis/RNN_Text_Classify/data/subj0.pkl"
 
 def set_dataset_path(path):
@@ -67,6 +67,7 @@ def load_data(max_len,batch_size,n_words=20000,valid_portion=0.1,sort_by_len=Tru
         return [[1 if w >= n_words else w for w in sen] for sen in x]
 
     test_set_x, test_set_y = test_set
+    print("test sample size: ", len(test_set_y))
     valid_set_x, valid_set_y = valid_set
     train_set_x, train_set_y = train_set
 

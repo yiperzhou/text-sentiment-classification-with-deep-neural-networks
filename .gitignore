@@ -9,3 +9,5 @@ reviewData/Tripadvisor/
 !reviewData/Tripadvisor/005_Helsinki_Tripadvisor.json
 reviewData/tripadvisorFromOthers/
 reviewData/twitter-airline-sentiment/
+.vscode/
+.idea/

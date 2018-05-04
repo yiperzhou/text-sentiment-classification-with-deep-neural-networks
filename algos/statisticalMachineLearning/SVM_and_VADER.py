@@ -76,15 +76,20 @@ def clf_SVM():
 
 if __name__ == "__main__":
     
-    filePath = "/home/yi/sentimentAnalysis/data-preprocess/data/tripadvisor_5cities.csv"
-    data = pd.read_csv(filePath)
-    X = data["review"]
-    y = data["sentiment"]
+    train_filePath = "/home/yi/sentimentAnalysis/data/csv/train_tripadvisor_5cities.csv"
+    train_data = pd.read_csv(train_filePath)
+    X_train = train_data["review"]
+    y_train = train_data["sentiment"]
     
     assert len(X) == len(y)
     print("check the consistent size of reviews and sentiment : ", "review size : ", len(X), "sentiment size: ", len(y))
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=None)
+    test_filePath = "/home/yi/sentimentAnalysis/data/csv/test_tripadvisor_5cities.csv"
+    test_data = pd.read_csv(test_filePath)
+    X_test = test_data["review"]
+    y_test = test_data["sentiment"]
+
+    # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=None)
     train_pf = pd.DataFrame()
     train_pf["review"] = X_train
     train_pf["sentiment"] = y_train
@@ -92,10 +97,10 @@ if __name__ == "__main__":
     test_df = pd.DataFrame()
     test_df["review"] = X_test
     test_df["sentiment"] = y_test
-    if not os.path.exists("train_tripadvisor_5cities.csv"):
-        train_pf.to_csv("train_tripadvisor_5cities.csv")
-    if not os.path.exists("test_tripadvisor_5cities.csv"):
-        test_df.to_csv("test_tripadvisor_5cities.csv")
+    # if not os.path.exists("train_tripadvisor_5cities.csv"):
+    #     train_pf.to_csv("train_tripadvisor_5cities.csv")
+    # if not os.path.exists("test_tripadvisor_5cities.csv"):
+    #     test_df.to_csv("test_tripadvisor_5cities.csv")
 
 
     print(" X train shape for train data : ", X_train.shape)

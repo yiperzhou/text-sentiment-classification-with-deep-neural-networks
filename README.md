@@ -48,4 +48,30 @@ db.Amsterdam3_tripadvisor_hotels_reviews.renameCollection("amsterdamTripadvisor"
 
 ### Tripadvisor.com
 
+# Experiment Environment
+ubuntu 16.10  
+keras version: '2.1.6'  
+(backend) tensorflow version: 1.7.0 with GPU version  
+CUDA version: 9.0.176  
+cudnn version: 7.1  
+python 3.5  
 
+# algos
+## VADER
+VADER Sentiment Analysis. VADER (Valence Aware Dictionary and sEntiment Reasoner) is a lexicon and 
+rule-based sentiment analysis tool that is specifically attuned to sentiments expressed in social media, 
+and works well on texts from other domains.
+https://github.com/cjhutto/vaderSentiment
+
+## SVM, LR
+reference paper: Thumbs up? Sentiment Classification using Machine Learning
+Techniques, link, https://arxiv.org/pdf/cs/0205070.pdf
+
+## RNN with LSTM, CNN
+LSTM  
+tensorflow实现基于LSTM的文本分类方法, 博客链接， https://blog.csdn.net/u010223750/article/details/53334313,
+源码： https://github.com/luchi007/RNN_Text_Classify  
+
+CNN  
+Implementing a CNN for Text Classification in TensorFlow, http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/  
+code, https://github.com/dennybritz/cnn-text-classification-tf 

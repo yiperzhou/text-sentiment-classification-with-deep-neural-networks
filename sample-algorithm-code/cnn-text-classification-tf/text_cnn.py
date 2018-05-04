@@ -10,7 +10,7 @@ class TextCNN(object):
     def __init__(
       self, sequence_length, num_classes, vocab_size,
       embedding_size, filter_sizes, num_filters, l2_reg_lambda=0.0):
-
+        # 这里的filter_size是指什么意思
         # Placeholders for input, output and dropout
         self.input_x = tf.placeholder(tf.int32, [None, sequence_length], name="input_x")
         self.input_y = tf.placeholder(tf.float32, [None, num_classes], name="input_y")
@@ -19,12 +19,15 @@ class TextCNN(object):
         # Keeping track of l2 regularization loss (optional)
         l2_loss = tf.constant(0.0)
 
+
         # Embedding layer
         with tf.device('/cpu:0'), tf.name_scope("embedding"):
             self.W = tf.Variable(
                 tf.random_uniform([vocab_size, embedding_size], -1.0, 1.0),
                 name="W")
+            # 这里的每个词向量都是随机初始化的， 没有用到pretrain的word embedding
             self.embedded_chars = tf.nn.embedding_lookup(self.W, self.input_x)
+            # 这句话的意思是?？
             self.embedded_chars_expanded = tf.expand_dims(self.embedded_chars, -1)
 
         # Create a convolution + maxpool layer for each filter size
@@ -33,12 +36,14 @@ class TextCNN(object):
             with tf.name_scope("conv-maxpool-%s" % filter_size):
                 # Convolution Layer
                 filter_shape = [filter_size, embedding_size, 1, num_filters]
+                # 初始化权重，使用正太分布
                 W = tf.Variable(tf.truncated_normal(filter_shape, stddev=0.1), name="W")
+                # 这里的b其实就是bias， num_filters就是neurons的在这层中的个数
                 b = tf.Variable(tf.constant(0.1, shape=[num_filters]), name="b")
                 conv = tf.nn.conv2d(
                     self.embedded_chars_expanded,
                     W,
-                    strides=[1, 1, 1, 1],
+                    strides=[1, 1, 1, 1],#注意这里的strides是一个4维数组
                     padding="VALID",
                     name="conv")
                 # Apply nonlinearity

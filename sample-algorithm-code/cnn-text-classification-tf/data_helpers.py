@@ -2,7 +2,7 @@ import numpy as np
 import re
 import itertools
 from collections import Counter
-
+import sys
 
 def clean_str(string):
     """
@@ -38,11 +38,32 @@ def load_data_and_labels(positive_data_file, negative_data_file):
     # Split by words
     x_text = positive_examples + negative_examples
     x_text = [clean_str(sent) for sent in x_text]
+    # x_text[0]还是一个句子，并没有把sentence分成words
     # Generate labels
+    # 因为这里需要将一个值，比如1或者0， 变成[0, 1],或者[1, 0]
+    # [0, 1]代表正面评论，也就是1; [1,0]代表负面评论,也就是0
     positive_labels = [[0, 1] for _ in positive_examples]
     negative_labels = [[1, 0] for _ in negative_examples]
     y = np.concatenate([positive_labels, negative_labels], 0)
     return [x_text, y]
+
+def load_data(filePath):
+    import pandas as pd
+    data = pd.read_csv(filePath)
+
+    train_set_x, train_set_y = data["review"], data["sentiment"]
+    y = list()
+    for yi in train_set_y:
+        if yi == 1:
+            y.append([0, 1])
+        elif yi == 0:
+            y.append([1, 0])
+        else:
+            print("data label preprocessing error.")
+            sys.exit(0)
+    train_set_x = list(train_set_x)
+    y = np.asarray(y)
+    return [train_set_x, y]
 
 
 def batch_iter(data, batch_size, num_epochs, shuffle=True):

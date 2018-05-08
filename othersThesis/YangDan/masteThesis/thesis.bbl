@@ -1,0 +1,265 @@
+\begin{thebibliography}{10}
+
+\bibitem{dantone2014body}
+Matthias Dantone, Juergen Gall, Christian Leistner, and Luc Van~Gool.
+\newblock Body parts dependent joint regressors for human pose estimation in
+  still images.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  36(11):2131--2143, 2014.
+
+\bibitem{foytik2013two}
+Jacob Foytik and Vijayan~K Asari.
+\newblock A two-layer framework for piecewise linear manifold-based head pose
+  estimation.
+\newblock {\em International journal of computer vision}, 101(2):270--287,
+  2013.
+
+\bibitem{geng2014cvpr}
+Xin Geng and Yu~Xia.
+\newblock Head pose estimation based on multivariate label distribution.
+\newblock In {\em CVPR}, 2014.
+
+\bibitem{hara2014growing}
+Kota Hara and Rama Chellappa.
+\newblock Growing regression forests by classification: Applications to object
+  pose estimation.
+\newblock In {\em Computer Vision--ECCV 2014}, pages 552--567. Springer, 2014.
+
+\bibitem{HeiChe:2015}
+Heikki Huttunen, Ke~Chen, Abhishek Thakur, Artus Krohn-Grimberghe, Oguzhan
+  Gencoglu, Xingyang Ni, Mohammed Al-Musawi, Lei Xu, and Hendrik~Jacob
+  Van~Veen.
+\newblock Computer vision for head pose estimation: Review of a competition.
+\newblock In {\em Scandinavian Conference on Image Analysis}, pages 65--75.
+  Springer, 2015.
+
+\bibitem{nillson2014transaction}
+Johan Nilsson, Jonas Fredriksson, and Anders~CE Odblom.
+\newblock Reliable vehicle pose estimation using vision and a single-track
+  model.
+\newblock {\em IEEE Transaction on Intelligent Transportation Systems},
+  15(6):2630 -- 2643, 2014.
+
+\bibitem{seppa2008transaction}
+Angel~Domingo Sappa, Fadi Dornaika, Daniel Ponsa, David Ger{\'o}nimo, and
+  Antonio L{\'o}pez.
+\newblock An efficient approach to onboard stereo vision system pose
+  estimation.
+\newblock {\em IEEE Transaction on Intelligent Transportation Systems},
+  9(3):476 -- 490, 2008.
+
+\bibitem{Hongsheng2015transaction}
+Hongsheng He, Zhenzhou Shao, and Jindong Tan.
+\newblock Recognition of car makes and models from a single traffic-camera
+  image.
+\newblock {\em IEEE Transaction on Intelligent Transportation Systems},
+  16(6):3182 -- 3192, 2015.
+
+\bibitem{Chi-Chen2008transaction}
+Chi-Chen~Raxle Wang and Jenn-Jier~James Lien.
+\newblock Automatic vehicle detection using local features—a statistical
+  approach.
+\newblock {\em IEEE Transaction on Intelligent Transportation Systems}, 9(1):83
+  -- 96, 2008.
+
+\bibitem{tongtong2016transaction}
+Tongtong Chen, Ruili Wang, Bin Dai, Daxue Liu, and Jinze Song.
+\newblock Likelihood-field-model-based dynamic vehicle detection and tracking
+  for self-driving.
+\newblock {\em IEEE Transaction on Intelligent Transportation Systems},
+  pp(99):1 -- 17, 2016.
+
+\bibitem{shunguang2009transaction}
+Shunguang Wu, Stephen Decker, Peng Chang, Theodore Camus, and Jayan Eledath.
+\newblock Collision sensing by stereo vision and radar sensor fusion.
+\newblock {\em IEEE Transaction on Intelligent Transportation Systems},
+  10(4):606 -- 614, 2009.
+
+\bibitem{ozuysal2009pose}
+Mustafa Ozuysal, Vincent Lepetit, and Pascal Fua.
+\newblock Pose estimation for category specific multiview object localization.
+\newblock In {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, pages 778--785. IEEE, 2009.
+
+\bibitem{torki2011regression}
+Marwan Torki and Ahmed Elgammal.
+\newblock Regression from local features for viewpoint and pose estimation.
+\newblock In {\em IEEE International Conference on Computer Vision (ICCV)},
+  pages 2603--2610. IEEE, 2011.
+
+\bibitem{fenzi2013class}
+Michele Fenzi, Laura Leal-Taix{\'e}, Bodo Rosenhahn, and J{\"o}rn Ostermann.
+\newblock Class generative models based on feature regression for pose
+  estimation of object categories.
+\newblock In {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, pages 755--762. IEEE, 2013.
+
+\bibitem{cronin2008undertaking}
+Patricia Cronin, Frances Ryan, and Michael Coughlan.
+\newblock Undertaking a literature review: a step-by-step approach.
+\newblock {\em British journal of nursing}, 17(1):38, 2008.
+
+\bibitem{elio2011computing}
+Renee Elio, Jim Hoover, Ioanis Nikolaidis, Mohammad Salavatipour, Lorna
+  Stewart, and Ken Wong.
+\newblock About computing science research methodology, 2011.
+
+\bibitem{glasner2011viewpoint}
+Daniel Glasner, Meirav Galun, Sharon Alpert, Ronen Basri, and Gregory
+  Shakhnarovich.
+\newblock Viewpoint-aware object detection and pose estimation.
+\newblock In {\em 2011 International Conference on Computer Vision}, pages
+  1275--1282. IEEE, 2011.
+
+\bibitem{guo08icpr}
+Guodong Guo, Yun Fu, C.R. Dyer, and T.S. Huang.
+\newblock Head pose estimation: Classification or regression?
+\newblock In {\em Pattern Recognition, 2008. ICPR 2008. 19th International
+  Conference on}, pages 1--4, Dec 2008.
+
+\bibitem{cortes1995support}
+Corinna Cortes and Vladimir Vapnik.
+\newblock Support-vector networks.
+\newblock {\em Machine learning}, 20(3):273--297, 1995.
+
+\bibitem{breiman2001random}
+Leo Breiman.
+\newblock Random forests.
+\newblock {\em Machine learning}, 45(1):5--32, 2001.
+
+\bibitem{bosch2007image}
+Anna Bosch, Andrew Zisserman, and Xavier Munoz.
+\newblock Image classification using random forests and ferns.
+\newblock In {\em 2007 IEEE 11th International Conference on Computer Vision},
+  pages 1--8. IEEE, 2007.
+
+\bibitem{sun2012conditional}
+Min Sun, Pushmeet Kohli, and Jamie Shotton.
+\newblock Conditional regression forests for human pose estimation.
+\newblock In {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, pages 3394--3401. IEEE, 2012.
+
+\bibitem{dantone2012real}
+Matthias Dantone, Juergen Gall, Gabriele Fanelli, and Luc Van~Gool.
+\newblock Real-time facial feature detection using conditional regression
+  forests.
+\newblock In {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, pages 2578--2585. IEEE, 2012.
+
+\bibitem{fanelli2011real}
+Gabriele Fanelli, Thibaut Weise, Juergen Gall, and Luc Van~Gool.
+\newblock Real time head pose estimation from consumer depth cameras.
+\newblock In {\em PR}. 2011.
+
+\bibitem{loh2011classification}
+Wei-Yin Loh.
+\newblock Classification and regression trees.
+\newblock {\em Wiley Interdisciplinary Reviews: Data Mining and Knowledge
+  Discovery}, 1(1):14--23, 2011.
+
+\bibitem{dalal2005histograms}
+Navneet Dalal and Bill Triggs.
+\newblock Histograms of oriented gradients for human detection.
+\newblock In {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, volume~1, pages 886--893. IEEE, 2005.
+
+\bibitem{ding2016articulated}
+Meng Ding and Guoliang Fan.
+\newblock Articulated and generalized gaussian kernel correlation for human
+  pose estimation.
+\newblock {\em IEEE Transactions on Image Processing}, 25(2):776--789, 2016.
+
+\bibitem{kong2015head}
+Seong~G Kong and Ralph~Oyini Mbouna.
+\newblock Head pose estimation from a 2d face image using 3d face morphing with
+  depth parameters.
+\newblock {\em IEEE Transactions on Image Processing}, 24(6):1801--1808, 2015.
+
+\bibitem{chang2011libsvm}
+Chih-Chung Chang and Chih-Jen Lin.
+\newblock Libsvm: a library for support vector machines.
+\newblock {\em ACM Transactions on Intelligent Systems and Technology (TIST)},
+  2(3):27, 2011.
+
+\bibitem{chen2016pedestrian}
+Ke~Chen and Zhaoxiang Zhang.
+\newblock Pedestrian counting with back-propagated information and target drift
+  remedy.
+\newblock {\em IEEE Transactions on Systems, Man, and Cybernetics: Systems},
+  2016.
+
+\bibitem{kashyap1977bayesian}
+Rangasami~Laksminarayana Kashyap.
+\newblock A bayesian comparison of different classes of dynamic models using
+  empirical data.
+\newblock {\em IEEE Transactions on Automatic Control}, 22(5):715--727, 1977.
+
+\bibitem{schwarz1978estimating}
+Gideon Schwarz et~al.
+\newblock Estimating the dimension of a model.
+\newblock {\em The annals of statistics}, 6(2):461--464, 1978.
+
+\bibitem{rosipal2002kernel}
+Roman Rosipal and Leonard~J Trejo.
+\newblock Kernel partial least squares regression in reproducing kernel hilbert
+  space.
+\newblock {\em The Journal of Machine Learning Research}, 2:97--123, 2002.
+
+\bibitem{liu2015age}
+Kuan-Hsien Liu, Shuicheng Yan, and C-C~Jay Kuo.
+\newblock Age estimation via grouping and decision fusion.
+\newblock {\em IEEE Transactions on Information Forensics and Security},
+  10(11):2408--2423, 2015.
+
+\bibitem{zelnik2004self}
+Lihi Zelnik-Manor and Pietro Perona.
+\newblock Self-tuning spectral clustering.
+\newblock In {\em Advances in neural information processing systems}, pages
+  1601--1608, 2004.
+
+\bibitem{fanelli_IJCV}
+Gabriele Fanelli, Matthias Dantone, Juergen Gall, Andrea Fossati, and Luc
+  Van~Gool.
+\newblock Random forests for real time 3d face analysis.
+\newblock {\em International Journal of Computer Vision}, 101(3):437--458,
+  2013.
+
+\bibitem{huang2010head}
+Chen Huang, Xiaoqing Ding, and Chi Fang.
+\newblock Head pose estimation based on random forests for multiclass
+  classification.
+\newblock In {\em 20th International Conference on Pattern Recognition (ICPR)},
+  pages 934--937. IEEE, 2010.
+
+\bibitem{demaris1995tutorial}
+Alfred DeMaris.
+\newblock A tutorial in logistic regression.
+\newblock {\em Journal of Marriage and the Family}, pages 956--968, 1995.
+
+\bibitem{chen2011human}
+Ke~Chen, Shaogang Gong, and Tao Xiang.
+\newblock Human pose estimation using structural support vector machines.
+\newblock In {\em 2011 IEEE International Conference on Computer Vision
+  Workshops (ICCV Workshops)}, pages 846--851. IEEE, 2011.
+
+\bibitem{orozco2009head}
+Javier Orozco, Shaogang Gong, and Tao Xiang.
+\newblock Head pose classification in crowded scenes.
+\newblock In {\em Proceedings of the British Machine Vision Conference (BMVC)},
+  volume~1, page~3, 2009.
+
+\bibitem{munoz2012multi}
+Rafael Mu{\~n}oz-Salinas, Enrique Yeguas-Bolivar, Alessandro Saffiotti, and
+  R~Medina-Carnicer.
+\newblock Multi-camera head pose estimation.
+\newblock {\em Machine Vision and Applications}, 23(3):479--490, 2012.
+
+\bibitem{dan2017hssr}
+Dan Yang, Yanlin Qian, Ke~Chen, Eleni Berki, and Joni-Kristian
+  K\"am\"ar\"ainen.
+\newblock Hierarchical sliding slice regression for vehicle viewing angle
+  estimation.
+\newblock {\em IEEE Transaction on Intelligent Transportation Systems},
+  accepted with changes.
+
+\end{thebibliography}

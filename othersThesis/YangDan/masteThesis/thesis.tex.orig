@@ -1,0 +1,1098 @@
+% !TeX spellcheck = en_GB
+% $Name:  $
+% $Id: thesis.tex,v 1.18 2010/10/08 13:39:40 paalanen Exp $
+
+
+% The history of this template:
+% - unknown, original version
+% - Jarmo "trewas" Ilonen, masters thesis, 2003
+% - Pekka "PQ" Paalanen, information processing project, 2004,
+%     hints about graphicx and making PDF from Pasi Valminen
+% - Pekka "PQ" Paalanen, Master's thesis, 2006
+% - upgraded to pdflatex and 1.8.2010 thesis guidelines, 2010
+% - changed to TUT format by Joni, 2013
+
+% useful links:
+% http://www.ctan.org/tex-archive/help/Catalogue/entries/grfguide.html
+% http://www.tug.org/applications/hyperref/
+
+
+\documentclass{tutmscthesis}[2010/09/22]
+%\documentclass[draft]{tutmscthesis}   % leave figures blank, faster
+%\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english,finnish]{babel}
+\usepackage{subfig,color,bm}
+\usepackage{graphicx}
+%\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{times}
+%\usepackage[latin9]{inputenc}
+\usepackage{setspace}
+\usepackage{verbatim}
+\usepackage[intlimits]{amsmath}
+\usepackage{booktabs} % nice tables
+% Ensure figure captions are below and table captions are above the content.
+\usepackage{float}
+\floatstyle{plain}\restylefloat{figure}
+\floatstyle{plaintop}\restylefloat{table}
+
+\usepackage[pdfborder={0 0 0}]{hyperref}
+%\graphicspath{ {resources/} }
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\numberwithin{equation}{section}
+\numberwithin{table}{section}
+\numberwithin{figure}{section}
+\usepackage{color} %  for co-author comments
+\newcommand\newnotecommand[3]{%
+  \newcommand#1[1]{{\color{#3}\footnote{{\color{#3}#2:} ##1}}}}
+\newnotecommand\joni{Joni}{red}
+\newnotecommand\cory{Cory}{green}
+\usepackage{bm}
+\renewcommand{\vec}[1]{\bm{#1}}
+\newcommand{\mat}[1]{\bm{#1}}
+
+%\usepackage[chapter]{algorithm}
+
+%           Hyperref rationale - or just pain in the butt
+%
+% Load 'float' package first, because that will fix problems with 'algorithm'
+% package interacting with hyperref.
+%
+% Hyperref must be the last package loaded, except...
+% Load 'algorithm' AFTER hyperref, otherwise \theHalgorithm is
+% undefined control sequence error appears.
+%
+% The TeXLive 2008 version of 'algorithmic' is buggy with hyperref.
+% Use this bundled, special, hand-fixed version of algorithmic.sty
+% instead. It is identified by version 2006/12/15.
+
+
+\graphicspath{{resources/}}                % Graphics search path
+
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+\newcommand{\matr}[1]{\boldsymbol{#1}}
+\newcommand{\diag}[1]{\mathrm{diag}(#1)}
+\newcommand{\iprod}[1]{\left\langle #1 \right\rangle}
+\newcommand{\me}{\mathrm{e}}
+\newcommand{\mi}{\mathrm{i}}
+\newcommand{\md}{\mathrm{d}}
+\newcommand{\sse}{{}} %\mathrm{SSE}}
+\newcommand{\trace}{\mathrm{Tr}\:}
+\newcommand{\frp}[2]{{}^\mathrm{#1}\vect{#2}}
+\newcommand{\frs}[3]{{}^\mathrm{#1}#2_\mathrm{#3}}
+\newcommand{\frv}[3]{{}^\mathrm{#1}\vect{#2}_\mathrm{#3}}
+\newcommand{\frm}[3]{{}^\mathrm{#1}\matr{#2}_\mathrm{#3}}
+\newcommand{\colvec}[2]{\genfrac{[}{]}{0pt}{1}{#1}{#2}}
+\newcommand{\relphantom}[1]{\mathrel{\phantom{#1}}}
+\newcommand{\argmin}{\operatornamewithlimits{argmin}}
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+\def\onedot{. }
+\def\eg{\emph{e.g}\onedot} \def\Eg{\emph{E.g}\onedot}
+\def\ie{\emph{i.e}\onedot} \def\Ie{\emph{I.e}\onedot}
+\def\cf{\emph{c.f}\onedot} \def\Cf{\emph{C.f}\onedot}
+\def\etc{\emph{etc}\onedot} \def\vs{\emph{vs}\onedot}
+\def\wrt{w.r.t\onedot} \def\dof{d.o.f\onedot}
+\def\etal{\emph{et al}\onedot}
+
+
+% Thesis information
+\title{Circular Label Encoding for Car Pose Estimation}
+%\titlefin{Tasopintojen reaaliaikainen kuvantaminen ja mosaiikkaus}
+\author{Dan Yang}
+
+\Major{Master's Degree Program in Information Technology}
+\Majorfin{Major: Pervasive Systems}
+
+\Council{Computing and Electrical Engineering Faculty Council}
+
+\CouncilDate{6th May 2015}
+
+\Keywords{incremental learning, deep neural networks, computer vision, machine learning}
+
+
+% For a single supervisor, \Supervisor{N.N.}
+% For multiple supervisors, \Supervisors{N.N.\\ K.K.}, that is,
+% use \\ to separate names.
+% the same with \Examiner{} or \Examiners{}
+\Supervisor{Ke Chen Ph.D}
+%\Examiners{Professor Joni-Kristian K\"am\"ar\"ainen\\Professor Irek Defee}
+\Examiners{Dr. Ke Chen\\Prof. Joni-Kristian K\"am\"ar\"ainen}
+\Examinera{Dr. Ke Chen, Prof. Joni-Kristian K\"am\"ar\"ainen}
+
+% date of topic accepted in the council
+%\AcceptDate{January 1\textsuperscript{st}, 1999}
+% date of signature
+%\SignDate{July 3\textsuperscript{rd}}
+% Year in abstract pages
+\Year{June 2016}
+
+% Thesis statistics: figure, table and appendix counts, for abstracts
+%\addtostats{, 64 figures, 1 table, and 2 appendices}
+\addtostats{, 5 Appendix pages}
+
+\pagenumbering{Roman}
+\pagestyle{headings}
+\begin{document}
+\selectlanguage{english}
+
+\pagenumbering{roman} 
+\setcounter{page}{0}
+
+\maketitle
+\newpage
+
+\begin{abstract}
+
+
+
+\end{abstract}
+
+
+\begin{preface}
+
+%This Master's thesis work has been conducted in the Computer Vision Group at the Department of Signal Processing in Tampere University of Technology.
+%
+%First of all, I would like to express my gratitude to my supervisor, Professor Joni-Kristian K\"am\"ar\"ainen, for giving me a precious opportunity to work on this trendy topic which matches my interest. His patient guidance, encouragement and support throughout my study and research.
+%
+%I am specially grateful to Dr. Ke Chen who gives me quite a lot of invaluable advices to my research and good suggestions for materials to read.
+%
+%I also wish to thank our Computer Vision Group members who have supported me during my research. Everyone is nice and friendly. I really enjoy being in the group. 
+%
+%Finally, I would like to thank my family for their understanding and support during my study in Finland.
+%
+%
+%Tampere, June 1st, 2015
+\end{preface}
+
+
+% These name-definitions must be after Babel langugage change
+% commands, as they redefine these.
+\renewcommand\refname{REFERENCES}
+\renewcommand\contentsname{CONTENTS}
+
+\pagestyle{masters}
+\newpage
+
+\tableofcontents
+
+
+
+\renewcommand\listfigurename{List of Figures}  % Set English name (otherwise bilingual babel might break this)
+\listoffigures                                 % Optional: create the list of figures
+\markboth{}{}                                  % no headers
+
+\renewcommand\listtablename{List of Tables}    % Set English name (otherwise bilingual babel might break this)
+\listoftables                                  % Optional: create the list of tables
+\markboth{}{} 
+
+\section*{ABBREVIATIONS AND SYMBOLS}
+
+%\begin{tabular}{l l}
+%\textbf{ANN} & Artificial Neural Network\\
+%\textbf{AwA} & Animals with Attributes\\
+%\textbf{BP} & Back-Propagation\\
+%\textbf{BPTT} & Back-Propagation Through Time\\
+%\textbf{CNN} & Convolutional Neural Network\\
+%\textbf{DBF} & Deep Belief Network\\
+%\textbf{DNN} & Deep Neural Network\\
+%\textbf{DRNN} & Deep Recurrent Neural Network\\
+%\textbf{EKF} & Extended Kalman Filtering\\
+%\textbf{ILSVRC} & ImageNet Large Scale Visual Recognition Challenge\\
+%\textbf{MLP} & Multilayer Perceptron\\
+%\textbf{RBM} & Restricted Boltzmann Machines\\
+%\textbf{RNN} & Recurrent Neural Network\\
+%\textbf{RTRL} & Real-Time Recurrent Learning\\
+%\end{tabular}
+%
+%\begin{tabular}{l l}
+%$\alpha$ & the momentum constant\\
+%$\delta_j(n)$ & the local gradient of $j^{th}$ node in iteration $n$\\
+%$\Delta w_{ij}$ & the weight correction\\
+%$\eta$ & the learning rate\\
+%$\varphi$ & the activation function\\
+%$b^{(h)}_j$ & the bias of $j^{th}$ node in $h$ layer\\
+%$\vec{b}$ & the vector of the bias\\
+%$DNN_8$ & the DNN used in $I_8$\\
+%$\vec{h}$ & the set of hidden nodes\\
+%$h_i$ & the $i^{th}$ hidden node\\
+%$I_8$ & the dataset of $8\times 8$ images\\
+%$I_{16s}$ & the dataset of $16\times 16$ sample images\\
+%$\matr{K_2}$ & a $2\times 2$ filter matrix\\
+%$m$ & the number of input signals\\
+%$M_8$ & the trained model for $I_8$ using $DNN_8$\\
+%$M_{16t}$ & the transformed model for $I_{16}$ to fine-tuning\\
+%$m^{n-1}_i$ & the $i^{th}$ input feature map\\
+%$m^n_j$ & the $j^{th}$ output feature map\\
+%$n$ & the number of iteration\\
+%$p$ & the number of output nodes\\
+%$q$ & the number of hidden nodes\\
+%$t$ & time\\
+%$\vec{t}$ & the set of target output\\
+%$v$ & the induced local field of neuron\\
+%$w^{(h)}_{ij}$ & the weight of $j^{th}$ node connected to $i^{th}$ node in $h$ layer\\
+%$\matr{W}$ & the matrix of weights\\
+%$x_i$ & the $i^{th}$ input\\
+%$\vec{x}$ & the vector of input\\
+%$y_i$ & the $i^{th}$ output\\
+%$\vec{y}$ & the vector of output\\
+%$\matr{Y}$ & the matrix of output\\
+%$z^{-1}$ & unit-delay\\
+%\end{tabular}
+
+
+
+
+% space between paragraphs
+\setlength{\parskip}{3ex}
+
+\newpage 
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\section{INTRODUCTION}\label{sec:introduction}
+
+
+
+\subsection{Motivation}
+
+%Pose estimation problem is a hot topic
+Pose estimation which attempts to predict the viewing direction of a target object in a given image is a hot topic in computer vision field. Target objects can be rather general including still lives, living beings and body parts (\eg head pose) while the estimating methods are usually specific for objects due to the nature of different classes. In order to improve accuracy for certain objects in pose estimation a great deal of research work to formulate robust estimating model has been done. Such a problem can be considered as a classification problem if the label space is viewed as some discrete integers or as a regression problem if the continuous output is pursued. In this thesis we are aiming to solve the pose estimation problem for the target object car. The pose (or known as 'viewing angle') of a car which normally means the front direction can be described as a rotation - the output space is a continuous circular (from $0^\text{o}$ to $360^\text{o}$) as shown in Figure \ref{Fig:carpose}. Considering of that we believe this problem should be indeed a regression problem.
+
+
+
+%Car pose estimation solves practical problem
+Car pose estimation is closely related with autonomous driving systems since the viewing angles of surrounding vehicles of an autonomous driving car imply its possible past and future paths. Therefore the estimating methods are required to be reliable, efficient and robust. It is challenging to estimate pose with typical available sensors such as radars or laser range finders which work effectively in estimating distance of obstacles. Therefore vision sensors in the terms of onboard front, side and back cameras, provide rich image information for viewing angle estimation, and the research on vehicle pose estimation is aiming for building a robust model which is used to directly predict the viewing angles from obtained images. A number of applications utilising estimated vehicle viewpoint have been proposed in the field of intelligent transportation~\cite{nillson2014transaction,seppa2008transaction,Hongsheng2015transaction,Chi-Chen2008transaction,tongtong2016transaction,shunguang2009transaction}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.6\linewidth]{car_pose.png}
+\caption{The car pose should be estimated as the front direction ($270^\text{o}$) in the circular output space.}
+\label{Fig:carpose} %\vspace{-0.5cm}
+\end{figure}
+
+
+% Paragraph3: what is others' algorithms? advantages and disadvantages
+The car viewing point problem has been proposed in the literature during recent few years. It is originally cast as a classification problem \cite{ozuysal2009pose}, where the $360^\text{o}$ pose space is quantised into a number of bins and a multi-class classifier is trained to learn the mapping from imagery feature space to the discrete angle range classes. However, the main limitation of the classification approach is that the class labels are explicitly made independent which omits the natural latent continuously-changing correlation across pose class labels. For example, the closer the pose class labels of a pair of images are, the more visually similar these two images are and, therefore, learning of the classes benefits from examples in both classes. In the light of this, it is more meaningful to cast car pose estimation as a continuous regression problem~\cite{torki2011regression,fenzi2013class,hara2014growing}.
+In visual regression the goal is to learn a mapping from the imagery
+feature space to a continuous real-valued output space of viewing angles. The existing regression methods for vehicle viewpoint direction incorporate manifold locality into either explicit feature
+representation~\cite{torki2011regression,fenzi2013class} or
+implicit regression model training~\cite{hara2014growing}. However,
+these methods omit the special characteristics of the problem due to
+the repetitive visual structure of vehicles and circular output space.   
+
+\subsection{Objectives}
+In the thesis work we consider the car pose estimation problem as a regression problem. In regression frameworks for pose estimation, a mapping is learned from low-level training data to continuous label space. The input space used in training is typically the high-dimensional image feature space and the output space is low-dimensional which normally only represents the value of direction of given image. This input-output relationship leads computing complexity in linear regression learning. Therefore non-linear regression is more preferable than others in solving image feature regression problems. Among several non-linear regression frameworks, Regression Forests(RF) \cite{breiman2001random} has shown great efficiency in pose estimation \cite{fanelli_CVPR11, sun2012conditional}. Kota \cite{hara2014growing} proposed a K-clusters Regression Forests (KRF) framework equipped with a more flexible multi-branch node splitting algorithm instead of the standard binary splitting method. The performance for car pose estimation of this framework has been experimentally proved to be the state-of-the-art in his work. The theoretical principles both behind RF and KRF will be explored in this thesis work, and the advancement of KRF will be verified in experiments since we employed it as our baseline method. Based on theoretical background given by KRF we propose two innovative ideas to improve accuracy for regression learning for car pose estimation: 
+  
+\begin{itemize}
+\item Some visible parts of a car in a image indicate important information about pose such as logos, lights and wheels. Manually labelling these selected visible parts and adding such information as part of image features. Regressor learned from such combined image feature can be  more reliable since more structural information about car is gained.  
+\item Inspired by the recent hierarchical methods in visual regression \cite{dantone2014body, dantone2012real, foytik2013two, liu2015age} we came up with a coarse-to-fine manner: pre-classifier allow local correlations in a circular label space to be captured, and local regressor helps to exploit consistent imagery features in regression. Moreover, overlapping target group concept is employed in pre-classification to remove the effect of hard boundary and guarantee robustness since each true angle is not near the boundary in more than one target group. 
+\end{itemize}
+
+The two ideas will finally respectively contribute into two new regression frameworks: Part-Aware Regression(PAR) and Hierarchical Sliding Slice Regression(HSSR) both of which are verified on the benchmarking dataset EPFL. 
+
+
+\subsection{Structure of the Thesis}
+
+The rest of the thesis is organised as follows. In section \ref{sec:literatures}, theoretical background of car pose estimation problem is explained in different aspects including the definition of the problem, current challenges and literatures of related works. Section \ref{sec:KRF} is an theoretical exploration to our baseline method K-clusters Regression Forest. Section \ref{sec:visibleparts} and \ref{sec:HRRS} detail methodologies of our two new frameworks, PAR and HSSR, and experimental verification to support our ideas will also be given in this section. Plenty of charts and tables are used to visualise the comparison of achieved results with state-of-the art. A final conclusion of the thesis work and future lines of research are shown in Section \ref{sec:conclusion}. 
+
+\section{LITERATURE REVIEW}
+\label{sec:literatures}
+
+
+\subsection{Car Pose Estimation}
+Car pose estimation is aimed at training a estimating model to predict the front direction of a car in a given image. Robust and accurate methods for estimating pose is required in real-time applications since in the field of intelligent transportation and visual surveillance, vehicle viewing angle estimation plays an important role in the success on vehicle recognition and tracking, but is difficult to perform with typical vehicle onboard sensors such as radar and laser rangefinder which perform effectively in distance estimating. Combining framework \cite{nillson2014transaction} that use both in-vehicle sensor data and visual information can be an approach to obtain reliable results. Recent development of onboard car camera systems allow vision based monitoring and detection which are essential for autonomous driving. Onboard stereo vision system provides rich information about the detecting car and background information \cite{seppa2008transaction}. We scale our research problem in learning robust car pose estimating methods on imagery feature. 
+
+As most existing methods we treat car pose estimation as that of 2D pattern recognition because  those methods \cite{} based on explicit 3D class representation are limited to discrete viewpoints.
+Most of the pose estimating approaches proposed so far can be split into three groups: those that formulate  
+The performance of car pose estimating models has been dramatically improved in last few years. Many research works \cite{ozuysal2009pose, torki2011regression, fenzi2013class, hara2014growing} was taken on the  benchmarking dataset, EPFL multiview car dataset, which was first introduced in \cite{ozuysal2009pose}. 
+
+
+\subsection{Challenges}
+Car pose estimation remains active and yet challenging due to certain general and problem specific characteristics (Figure~\ref{Fig:intro}). The visual dissimilarity between different car types can be significant, and image distortions, such as illustration and perspective changes, make the problem challenging.  
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.98\linewidth]{cars.png}
+\caption{Illustrative examples: the top for visual variation of different models for the unique viewing angle; the bottom for visual similarity across viewing angles. }
+\label{Fig:intro} %\vspace{-0.5cm}
+\end{figure}
+
+Considering the continuously-changing nature of the viewing angle from $0^\text{o}$ to $360^\text{o}$,
+viewpoint estimation is usually formulated into a visual
+regression problem.  In simply terms, given visual observations from images
+or video frames and corresponding vehicle viewpoints as inputs and
+outputs respectively, a regression function is trained and then
+applied to estimate poses in test images. Successful regression function strongly relies on good feeding features, however in computer vision the input space is typically high-dimensional which causes complexity in the mapping relation. Except the computational complexity, there are many challenges remained due to the problem specific characteristics.
+
+The visual dissimilarity between different
+car types and models can be significant, and
+imaging distortions, such as illumination and perspective changes, make the
+problem challenging. Another challenge is
+that visual differences between
+similar viewing angles can be subtle (see the middle two rows of
+Figure \ref{Fig:intro}) as compared to differences between two
+car models. Moreover, there is axial symmetry in similarity,
+for example between
+the front and back views and the left and right side views (shown in the bottom row of Figure \ref{Fig:intro}) which
+represents the maximal difference in the output space ($-180^\circ$
+vs $+180^\circ$) and make the problem highly non-linear.
+The above challenges make the global regression approaches
+fail and, therefore,  a number of special circular regression methods
+have been proposed to achieve more robust performance and to address the 
+inconsistent feature-pose relationship in estimating vehicle
+viewpoint~\cite{torki2011regression,ozuysal2009pose,fenzi2013class,hara2014growing}.
+
+
+
+Moreover, vehicle viewpoint estimation still suffers from a problem-specific challenge -- \textit{a global circular target space}, which is periodic from $0^\text{o}$ to $360^\text{o}$, \eg the distance between $15^\text{o}$ and $345^\text{o}$ should be shorter than that between $15^\text{o}$ and $60^\text{o}$. 
+
+\subsection{State-Of-The-Art Algorithms}
+
+Such a problem is originally cast as a classification problem \cite{ozuysal2009pose}, which quantized $360^\text{o}$ pose space into 
+a number of bins and learn a multi-class classifier mapping from imagery feature representation to pose classes. However, the limitation of classification based frameworks is that the class labels are independent, which omits the latent correlation across pose class labels. For example, the closer pose class labels of a pair of images are, the more visual similarity these two images share with. 
+
+
+In the light of this, car pose estimation, inherently a regression problem \cite{torki2011regression, fenzi2013class, hara2014growing}, where continuous real-value output is pursued, is more favourable. 
+
+
+\subsection{Regression Learning}
+<<<<<<< mine
+We consider the image regression problem where the task is to predict a given image with a continuous value describing its visual content: the goal is to learn from a labeled training set a function $f: \mathcal{X} \rightarrow \mathcal{Y}$ which maps an input $\vec{x}$ in the images $\mathcal{X}$ to an output $y$ in the continuous label space $\vec{y}$.  The simplest regression model is a linear combination of input variables:
+\begin{equation}
+f(\vec{x}, \vec{w}) = w_0+w_1x_1+ ... w_Dx_D
+\end{equation}
+where $\vec{x} = (x_1, ... , x_D)^\mathrm{T}$
+=======
+
+We consider the image regression problem where the task is to predict a given image with a continuous value describing its visual content: the goal is to learn from a labeled training set a function $f: \mathcal{X} \rightarrow \mathcal{Y}$ which maps an input $\vec{x}$ in the images $\mathcal{X}$ to an output $y$ in the continuous label space $\vec{y}$.
+>>>>>>> theirs
+
+
+%Regression mapping is learned from low-level features to continuous label space \cite{HeiChe:2015}. Considering in computer vision problems highly dimensional imagery feature representation is normally adopted as the input which leads to complex feature-label relationship. As a result non-linear regression methods, such as regression tree or regression forest, are increasingly employed in solving car pose estimation problem in last few years. Hybrid method that combines both classification and regression is employed to pursued more robust model. In the human age estimation \cite{guo08icpr}, they learned a SVR regression model for global estimation and SVM classifiers for locally adjustment. 
+
+%The existing regression frameworks for vehicle viewpoint direction estimation mainly concerned on incorporate manifold locality into either explicit feature representation \cite{torki2011regression,fenzi2013class} or implicit regression model training \cite{hara2014growing}.
+%Encouraged by the aforementioned observation, our framework is designed to represent global circular label space with a number of local linear pieces, which can thus simplify to model nonlinear viewing angle changes in terms of linear transforms.
+
+
+\subsection{Public Benchmarks}
+
+The verifying experiments are performed on EPFL multi-view car benchmark dataset which consists of 20 pose-labelled image sequences of 20 car types and has 2299 images of cars in total rotating in various directions. Example images from the dataset are shown in Figure \ref{fig:example}.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\linewidth]{example.png}
+\caption{Examples from the EPFL Multi-view Car Dataset.}
+\label{fig:example}
+\end{figure}
+We use this dataset because it provides images that were sampled densely in the circular pose space - there is one image approximately every 3-4 degrees, and given by detected bounding box. However, there are some challenges in this dataset: 
+
+\subsection{Summary}
+
+
+\section{Regression Methods}\label{sec:KRF}
+\subsection{Regression Forest}
+We consider the image regression problem where the task is to predict a given image with a continuous value describing its visual content: the goal is to learn from a labeled training set a function $f: \mathcal{X} \rightarrow \mathcal{Y}$ which maps an input $\vec{x}$ in the images $\mathcal{X}$ to an output $y$ in the continuous label space $\vec{y}$. 
+\subsection{K-cluster Regression Forest}
+\subsection{Experiments Verification}
+\subsection{Summary}
+
+
+
+\section{Car Pose Estimation with Visible Semantic Parts}\label{sec:visibleparts}
+\subsection{Introduction}
+Learning a regression mapping function from imagery feature space to label space is a typical way in visual regression learning \cite{}. An unavoidable shortcoming of this kind of pose estimation methods is that computing complexity leads to  reduction of estimating accuracy since normally the features are high-dimensional while the label space is low-dimensional. Feature quality is definitely important in regression learning and many factors impose influences on it such as changing illuminating conditions.  Histogram of Oriented Gradients (HOG) \cite{dalal2005histograms} is the feature descriptor used in this thesis work, and it works effectively in object detection for HOG feature giving discriminative information about the form of the object to be detected even under difficult illumination. As shown in the right side visualised HOG feature of Figure \ref{fig:hog} the edge information of the given car (left side) is clearly illustrated.
+Except illumination some very symmetrically shaped cars also cause flipping errors ($\approx 180^\text{o}$) . It is mentioned in the experimental verification of Section \ref{sec:KRF} that KRF performs weakly in some sequences of the benchmarking dataset simply because of misleading appearances of cars. In order to address this problem, higher knowledge of the appearance can be exploited by employing visible semantic parts of cars which implicitly indicate viewing angles, \eg license number board.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.8\linewidth]{hog.png}
+\caption{Visulised HOG feature: }
+\label{fig:hog} 
+\end{figure}
+
+
+Car pose can be distinguished based on a number of parts of car, for example, there are complete back license number, logo and two back lights present in sight but no circular wheels as shown in left side of Figure \ref{fig:parts_pose} then it can be confirmed that this car front is pointing forward. In another occasion illustrated in the right side of Figure \ref{fig:parts_pose} that only right lights, two right wheels and right mirror are shown, a car is toward straightly right. All the different occasions can be concluded as that similar combination of parts indicates similar viewing angle. In this section we proposed a novel framework Part-Aware Regression (PAR) which uses visible semantic parts of cars as important feature in training regression mapping.    Selected pose-sensitive parts need to be manually labelled for all the images in dataset. There are two steps in training stage: (1)classifiers which are used to predict the probabilities of occurrence of selected parts were trained independently; (2) regressor are trained by using the combination of probabilities of selected parts and imagery features. Given a new testing image, imagery feature are first feed into classifiers to obtain the occurrence probabilities of each selected parts and then the probabilities combined with imagery features are used to pose estimation with trained regressor. This framework achieved better performance applied on the public EPFL multi-view car benchmark dataset due to employing the probabilities of pose-sensitive parts into the feature in training regressor rather than using bare imagery feature. 
+
+The novel contribution of our work includes:
+\begin{itemize}
+\item Introduction the probabilities of visible semantic parts into imagery feature as a priori which provides richer information about the viewing angle of the car in a given image.
+\item We experimentally evaluated the proposed framework and report better performance over state-of-the-art.
+\end{itemize}
+
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.8\linewidth]{parts_pose.png}
+\caption{.}
+\label{fig:parts_pose} 
+\end{figure}
+
+\subsection{Pipeline}
+
+$\vec{x} \in \mathbb{R}^{p}$ represents $p$-dimensional imagery feature space and ${y} \in \mathbb{R}$ is the scalar-valued viewing angle.
+The input and output training pairs for the proposed regression framework consist of  $\{\vec{x}_{i}, y_{i}\}^N,~i=1, 2, \ldots,N$, where $N$ denotes the number of training samples.Our novel part is shown in Figure~\ref{fig:parts}: instead of directly using imagery feature of the training image,  we add human visible knowledge in feature by manually labelling 16 visible semantic parts (highlighted in the white car of Figure~\ref{fig:parts}) which will play a role in pose estimation. The whole pipeline of training consists of 3 steps:
+
+\begin{itemize}
+\item In first step, 16 classifiers using, \eg Support Vector Machine \cite{cortes1995support} are trained for labelled parts. Classifier is trained independently for each part by using samples with the part labelled in image as positive examples and the remaining as negative examples.
+
+\item In the second step, feed imagery features of training samples to the trained classifiers to predict the probabilities of 16 parts showing in each sample. Probabilities are combined with imagery feature as new feature and the feature space is extended as $\vec{x'} \in \mathbb{R}^{p+16}$. 
+
+\item In the third step, learn a regression mapping from new feature to label space ${y} \in \mathbb{R}$ using K-clusters Regression Forests method.
+
+
+\end{itemize}
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\linewidth]{visible_parts.png}
+\caption{16 parts were manually labelled for all the image in dataset and SVM classifiers were trained independently for 16 parts of car: (1) front license number; (2) back license number; (3) front logo; (5) front left light; (6) front right light; (7) back left light; (8) back right light; (9) front left wheel; (10) front right wheel; (11) back left wheel; (12) back right wheel; (13) left mirror; (14) right mirror; (15) left door(s); (16) right door(s). When the HOG feature is feed to the classifiers probabilities of the 16 parts will be predicted. As shown in the right side, there are 5 parts are predicted to be highly probable with higher than $0.95$ for the parts labelled with red numbers: (10) front right wheel, (12) back right wheel and (14) right mirror. }
+\label{fig:parts} 
+\end{figure}
+In the testing stage, the probabilities of 16 parts of a given image are first predicted by using classifiers and then add these probabilities to the imagery feature. The combined new feature is feed to the regressor to obtain the real valued angle. In our framework, the regression stage can be formulated as: 
+\begin{displaymath}
+f: \vec{x} \underset{f_1}{\rightarrow} \bar{\vec{x}} \underset{f_2}{\rightarrow} y, \enspace \vec{x} \in \mathbb{R}^p,~y \in \mathbb{R} 
+\end{displaymath} 
+Before traditional single regression mapping $f_2$ (Section \ref{sec:PAR}) the original imagery feature $\vec{x}$ is feed to classifier $f_1$  (Section \ref{sec:visible_parts}) to obtain probabilities of visible semantic parts which are used to extend original imagery feature $\vec{x}$ to $\bar{\vec{x}}$. 
+
+
+
+
+\subsection{Visible Semantic Parts Prediction}
+\label{sec:visible_parts}
+
+Visible semantic parts of a car can be a useful source of prior information which imply its viewing angle but they are expensive to obtain. Although reliability is a problem in human labelling, in this case  it can be ignored because we use neither the location of the visible parts nor the joint relation among the parts, but only the occurrence of them -- if the part is shown in a given image the label for the part is labelled as positive, else negative. The selected visible parts are the fixing parts for all types of cars that allows us manually label them on the whole EPFL dataset. 
+
+Given the training pairs $\{\vec{x}_{i}, y_{i}\}^N$,
+$i=1, 2, \ldots, N$, and the visible semantic parts
+$\mathcal{P} = \{\mathcal{P}_1, \mathcal{P}_2, \ldots, \mathcal{P}_J\}$
+with $J$ denoting the total number of labelled parts. 
+
+
+
+
+\subsection{Part-Aware Regression}
+\label{sec:PAR}
+
+
+\subsection{Experiments}
+
+
+\begin{table*}[t]
+\caption{\label{tab.state-of-the-arts} Comparative evaluation of the state-of-the-art methods with the EPFL Multi-View Car dataset.}
+\centering
+\resizebox{0.8\linewidth}{!}{
+\begin{tabular}{lrrrrrr}
+\toprule
+& \multicolumn{3}{c}{{\em even split}} &\multicolumn{3}{c}{{\em leave-one-sequence-out}}\\
+{\em Methods}   
+                                & mae ($90\%$)    & mae ($95\%$)     &mae ($100\%$)     &  mae ($90\%$)    & mae ($95\%$)     &mae ($100\%$) \\
+\midrule
+Ozuysal \etal \cite{ozuysal2009pose} &-- & -- & 46.48$^\text{o}$ & -- & -- & --\\
+Torki \etal \cite{torki2011regression} &19.40$^\text{o}$ & 26.70$^\text{o}$ & 33.98$^\text{o}$ & 23.13$^\text{o}$ & 26.85$^\text{o}$ & 34.90$^\text{o}$\\
+Fenzi \etal \cite{fenzi2013class} &14.51$^\text{o}$ & 22.83$^\text{o}$ & 31.27$^\text{o}$ & 14.41$^\text{o}$ & 22.72$^\text{o}$ & 31.16$^\text{o}$ \\
+KPLS \cite{hara2014growing} & 16.86$^\text{o}$ & 21.20$^\text{o}$ & 27.65$^\text{o}$ & -- & -- & --\\
+SVR \cite{hara2014growing} & 17.38$^\text{o}$ & 22.70$^\text{o}$ & 29.14$^\text{o}$ & -- & -- & --\\
+BRF \cite{hara2014growing} &23.97$^\text{o}$ & 30.95$^\text{o}$ & 38.13$^\text{o}$ & -- & -- & --\\
+KRF \cite{hara2014growing} & 8.32$^\text{o}$ & 16.76$^\text{o}$ & 24.80$^\text{o}$ & 11.16$^\text{o}$ & 14.99$^\text{o}$ & 20.18$^\text{o}$ \\
+AKRF \cite{hara2014growing} & 7.73$^\text{o}$ & 16.18$^\text{o}$ & 24.24$^\text{o}$ & 15.74$^\text{o}$ & 21.50$^\text{o}$ & 27.42$^\text{o}$ \\
+PAR &\textbf{5.48$^\text{o}$} & \textbf{14.00$^\text{o}$} & \textbf{22.20$^\text{o}$} &\textbf{8.97$^\text{o}$} &\textbf{11.74$^\text{o}$} &\textbf{15.72$^\text{o}$}  \\
+\bottomrule
+\end{tabular}}
+\end{table*}
+
+\subsection{Summary}
+ 
+
+\section{Hierarchical Sliding Slice Regression}\label{sec:HRRS}
+\subsection{Introduction}
+The vehicle viewpoint estimation needs to model the
+problem-specific output space, \textit{a global circular target space},
+which is periodic from $0^\text{o}$ to $360^\text{o}$, \eg the
+distance between $15^\text{o}$ and $345^\text{o}$ should be shorter
+than that between $15^\text{o}$ and $60^\text{o}$. As compared to the
+related research work, we model the output
+space even more advanced by adopting a coarse-to-fine approach
+inspired by a number of hierarchical regression frameworks successfully
+used in non-circular regression
+problems~\cite{dantone2014body,dantone2012real,foytik2013two,liu2015age}.
+In particular, we assume
+that the global circular target space consists of a number
+of adjacent localised target groups (slices), which represent
+much stronger local correlation across neighbouring viewing angle targets
+as compared to weaker and inconsistent correlation of the full
+output space.  
+The intuitive concept can be explained by the polygon approximation of
+the value of $\pi$, which incrementally approximates a circle via a
+number of linear lines.  
+As a result, the whole circular target space is made up of a number of
+linear localised subspaces as illustrated in Figure~\ref{fig:concept}.
+To the end of improving robustness, our design of local target groups
+borrows the concept of classic sliding windows to construct a
+number of overlapped sliding slices.
+Compared to hard group boundaries, the proposed sliding slice
+algorithm improves the robustness owing to the introduction and
+optimisation of the size and stickness of the sliding pieces which
+become important method parameters that are optimised by cross-validation.
+
+
+
+This section concerns on designing a novel two-layer regression framework, namely Hierarchical Sliding Slice Regression(HSSR), which consists of coarse classifiers to determine the belonging target group and the target group optimised fine regressors to estimate viewing angles. For training each classifier, all samples within and outside a slice(the target group) are set to be positive and negative examples respectively, while only the samples belonging to the target piece are  utilised to train its specific regressor. It is noteworthy that owing to the overlap defined by the \textit{slice step} parameters the target spaces also overlap. Given a new testing image, imagery features are first fed into trained classifiers to determine the coarse target group and then fine viewing angle is estimated with the trained regressor specific to the target group. Because of the introduction of the sliding-window concept into the hierarchical structure to both capture local target correlation and also improve the robustness against hard group boundaries, the proposed framework consistently achieves better performance in the experimental evaluation on the public EPFL multi-view Car benchmark dataset.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.8\linewidth]{intuition.png}
+\caption{Intuitive concept of the proposed HSSR.}
+\label{fig:concept} 
+\end{figure}
+
+
+
+
+The novel contribution of our work are three-fold:
+\begin{itemize}
+\item Inspired by the concept of polygon approximation and hierarchical decision making, a hard coarse decision classifier is proposed as the first stage of visual regression for vehicle viewing angle estimation - nonlinear global circular pose changes are modelled via a number of piece-wise overlapped linear models that model pose locally.
+\item A second stage fine regressor of visual imagery features is trained omitting boundaries between the hard 'pose slices' by a sliding-slice approach that avoids treating samples near hard boundaries as extreme cases - in the next slice the same samples are near the centre line. This improves regression accuracy and robustness as compared to the hard boundaries.
+\item We provide an extensive experimental evaluation on the public benchmark(EPFL Multi-View Car Dataset) and report superior performance over state-of-the-art.
+\end{itemize}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.98\linewidth]{figure.png}
+\caption{Our approach for estimating car pose hierarchically by first coarse grouping via classification and then fine estimation via regression.}
+\label{Fig:pipeline} %\vspace{-0.5cm}
+\end{figure}
+%
+%The whole pipeline of our framework which is composed by two components(classifiers and regressors) is shown in Figure2. %
+
+\subsection{Pipeline}
+Given $p$-dimensional imagery feature representation
+$\vec{x} \in \mathbb{R}^{p}$ and a
+scalar-valued viewing angle ${y} \in \mathbb{R}$,  
+the input and output training pairs for the proposed two-stage hierarchical
+regression consist of $\{\vec{x}_{i}, y_{i}\}^N,~i=1, 2, \ldots,N$,
+where $N$ denotes the number of training samples.
+As shown in Figure~\ref{Fig:pipeline}, the whole pipeline of the
+proposed approach consists of two steps which are 1) a set of
+coarse classifiers and 2) corresponding fine regressors.  
+\begin{itemize}
+\item In the first step, the whole (circular) label space is quantised into a
+  number of circular overlapping slices, and we train a
+  strong classifier using, e.g., Support Vector Machine~\cite{cortes1995support},
+  for each slice by using samples
+  within the viewing angle subspace (slice) as positive examples and the
+  remaining as negative examples.
+\item In the second step, fine regressors for each slice group are trained.
+  The sliding slice subspaces help to better
+  exploit output label correlations than the hard boundaries.
+\end{itemize}
+In the testing phase, an unseen image is  first classified into a
+coarse angle group (slice generation in Section~\ref{sec:circular_slice}), and then a
+corresponding regressor
+is used to provide a real-valued angle estimate.
+In our framework, the traditional single stage regression,
+\begin{displaymath}
+f: \vec{x} \rightarrow y, \enspace \vec{x} \in \mathbb{R}^p,~y \in \mathbb{R} 
+\end{displaymath}
+is replaced with a two-step regression
+\begin{displaymath}
+f: \vec{x} \underset{f_1}{\rightarrow} \bar{\vec{y}} \underset{f_2}{\rightarrow} y
+\end{displaymath}
+where $\bar{\vec{y}}$ defines the coarse angle space (slice) and
+instead of the single mapping $f$ we need to construct two
+mappings $f_1$ and $f_2$, where $f_1$ is the coarse classifier
+(Section~\ref{sec:coarse_classifier}) and $f_2$ a fine regressor
+(Section~\ref{sec:regressor}). Note that $f_2$ depends on
+$\bar{\vec{y}}$ and its input is $\vec{x}$, i.e. it operates on
+the original feature space $f_2 = f_2(\vec{x}; \bar{\vec{y}})$.
+\subsection{Circular Slice Construction}
+\label{sec:circular_slice}
+For learning a robust regressor for continuous value estimation, a
+number of coarse-to-fine hierarchical regression approaches have been
+proposed~\cite{dantone2014body,dantone2012real,foytik2013two,liu2015age}.  
+The results from either coarse regressors~\cite{dantone2014body} or
+coarse classifiers~\cite{dantone2012real,foytik2013two,liu2015age} have
+positive effect on the fine regressor performance.  
+Similarly, in our approach, the choice of constructing coarse angle groups
+is important to robustify our two-stage regression.
+On one hand, if the coarse slices are too fine and
+dense, examples become too ambiguous and classifier performance
+degrades.
+On the other hand, if the slices are too sparse, learning
+a good regressor becomes more difficult due to inconsistency in
+examples. Clearly, the slice size is an
+essential parameter for successful regression. However, the traditional
+approach is to use non-overlapping slices that uniformly span the
+output space. In this work, we adopt the sliding window approach and
+allow overlap of the slices by defining another parameter,
+{\em slice step}, that defines the amount of overlap
+(see Figure~\ref{Fig:pipeline}). Basically, this has
+only positive effect on the performance and the only disadvantage
+is that more computation(e.g., more pre-classifiers in the
+one-vs-all SVM setting) is needed.
+
+In the light of this, we devise strategies to determine and construct
+the coarse angle groups, slices, and their overlap, slice step, which
+are experimentally studied in Section~\ref{sec:experiments}. There are two parameters
+to be defined: the slice step and the slice size. 
+We define the slice step value as proportional to the
+slice size, e.g.,
+$\left\{1/4\times, 1/2\times, 3/4\times, 1\times\right\}$ where
+$1\times$ produces non-overlapping slices.
+The slice size
+has a strong effect on the success of regression and therefore
+it should be optimally selected over a set of
+suitable values, e.g.,
+$\left\{45^\circ, 90^\circ, 180^\circ\right\}$. 
+We experimentally study the effects of these parameters
+in the experimental part of our work (Tables~\ref{tab.overlapping} and \ref{tab.size}). It is noteworthy, that despite the
+fact that for simplicity we use uniform sampling over the circular
+space in this work, also non-uniform slice sizes and slice steps
+could be used to better cope with non-uniform data distributions.
+This could be achieved, for example, using spectral clustering
+on feature similarity space~\cite{zelnik2004self} or traditional
+vector quantization in the output space, but these are out of
+the scope in this work.
+\subsection{Coarse Classifier}
+\label{sec:coarse_classifier}
+Given the training pairs $\{\vec{x}_{i}, y_{i}\}^N$,
+$i=1, 2, \ldots, N$, and the coarse angle groups (circular
+overlapping slices)
+$\mathcal{G} = \{\mathcal{G}_1, \mathcal{G}_2, \ldots, \mathcal{G}_J\}$
+with $J$ denoting the total number of slices. The first step
+of our hierarchical regression is to estimate the correct angle
+group $\bar{\mathcal{G}}$ using a supervised trained classifier.
+For this purpose, we introduce a new set of binary output variables consisting of
+$\bar{y}_i^j$ which is $1$ if the specific sample $\vec{x}_i$
+belongs to the group $\mathcal{G}_j$ and $0$ otherwise:
+\begin{equation}
+\bar{y}_i^j =  \left\{ \begin{array}{ll}
+1 & \textrm{if $y_i \in \mathcal{G}_j $}\\
+0 & \textrm{otherwise}\\
+\end{array} \right. \enspace .
+\end{equation}
+$j=1, \ldots, J$ classifiers are trained with all training samples
+$\{\vec{x}_i,\bar{y}_i^j\}^N_{i=1}$. We adopt the highly successful
+Support Vector Machine (SVM) classifier. In the experiments
+we adopt RBF-kernel SVM using libSVM \cite{chang2011libsvm}.
+The SVM target function for our case is
+\begin{equation}
+\begin{split}
+  \min_{\vec{w},b,\vec{\xi}}&~~\frac{1}{2}\| \vec{w} \|^2+C\sum_i^N \xi_i\\
+  &\hbox{s.t. } \bar{y}_i^j(\vec{w}\cdot \Phi(\vec{x}_i)-b) \geqslant 1 - \xi_i ,\\
+  &      ~~~~~~\xi_i \geqslant 0 \enspace,
+\end{split}\label{eq:svm}
+\end{equation}
+where $\vec{w}$ and $b$ are the weight vector and bias to be optimised,
+and $\vec{\xi}$ consists of slack
+variables. $K(\vec{x}_w,\vec{x}_h)=\Phi(\vec{x}_w)\Phi(\vec{x}_h)$ is
+the kernel function to project low-dimensional input $\vec{x}$ to a
+high-dimensional kernel space. Trade-off parameter $C$ is used to
+balance the regularised term and loss term, which needs data-specific
+tuning such as n-fold cross-validation. 
+The object function and inequality constraints of Support Vector
+Machine, a convex optimisation problem, can be transformed into an
+equality-constrained dual problem with Lagrange multipliers. Based on
+the Karush-Kuhn-Tucker Conditions \cite{cortes1995support}, the
+gradient of object function in the dual problem of SVM is enforced to
+zero, which can thus obtain the optimised $\vec{w}$ and $b$. More
+details are given in \cite{chang2011libsvm}. 
+
+It is worth mentioning here that coarse classifiers are not limited to
+SVM, other classifier such as random forests \cite{fanelli_IJCV,
+  huang2010head} and Logistic regression \cite{demaris1995tutorial}
+can also be employed. We adopt SVM in our framework because of its
+benchmarking role in pattern recognition and stable performance in a
+number of relevant tasks \cite{ozuysal2009pose, chen2011human,
+  orozco2009head, munoz2012multi}. 
+\subsection{Fine Slice-Specific Regressor}
+\label{sec:regressor}
+After coarse group classification, fine regressor for each angle group
+$\mathcal{G}_j,j=1,2,\cdots J$ is trained to learn regression functions
+$f_j(\vec{x})$ that minimise the loss function $L(f_j(\vec{x}_k),y_k)$
+$\forall \left<\vec{x}_k,y_k\right> \mid y_k \in \mathcal{G}_j$ between the prediction
+$f_j(\vec{x}_k)$ and $y_k$.
+In mathematics, the object function for the $j$th regressor with the
+sum of squared loss can be written as  
+\begin{equation}
+\min ~~\sum_{i=1}^N \|f(\vec{x}_k)-y_k\|_2^2,\label{eqn:obj}
+\end{equation}
+where $\|\cdot\|_2$ denote the Euclidean norm.
+Regression forest~\cite{breiman2001random} is a popular regression
+method with high computational efficiency and robustness. It learns
+an ensemble of decorrelated regression trees by randomly selecting the
+training samples and features.
+In the training stage, each tree is grown independently with  binary
+splitting strategy adopted in each node, \ie each node can have two
+child nodes. To cope with the limitation of the standard binary
+splitting method leading to less efficient tree model in
+reducing the empirical loss, K-clusters Regression Forests (KRF)
+\cite{hara2014growing} employ a more flexible splitting method that
+can allow each node to have more than two child nodes. 
+Motivated by the strong performance of the K-clusters regression
+forest in vehicle viewpoint estimation in~\cite{hara2014growing}, we
+adopt the following loss function for the $j$th regressor as:
+\begin{equation}
+L(f_j(\vec{x}_k),y_k) = 1 - \cos(y_k-f_j(\vec{x}_k))\in [0,2]
+\end{equation} 
+for training fine regressors in the second step of our framework. 
+Each node of K-clustering regression forests partitions
+the output space into $K$ clusters
+$\mathcal{T} = \{\mathcal{T}_1,\mathcal{T}_2,\cdots,\mathcal{T}_K\}$,  
+and the cluster labels are used to divide the input space
+into $K$ disjoint subspaces
+$\mathcal{R} = \{\mathcal{R}_1, \mathcal{R}_2,\cdots,\mathcal{R}_K\}$.  
+It is worth mentioning here, clusters in $\mathcal{T}$ are determined
+without considering the input space. %\joni{Starting here to the end of this section the notation is rather difficult to follow, make sure its correct!}
+Let us assume that $\mathcal{T}^* = \{\mathcal{T}_1^*,
+\mathcal{T}_2^*, \cdots, \mathcal{T}_K^*\}$ are the optimised clusters
+and  $\mathcal{A} = \{\mathcal{A}_1, \mathcal{A}_2, \cdots,
+\mathcal{A}_K\}$ denoting a set of constant estimates associated with
+each subspace, object function in (\ref{eqn:obj}) can thus be written
+as  
+\begin{equation}
+\mathcal{T}^* = \argmin_{\mathcal{T}} ~~\sum_{k=1}^K\sum_{i\in \mathcal{T}_k} 1 - \cos(y_i^j-\mathcal{A}_k),\label{eqn:obj_circular}
+\end{equation}
+where $\mathcal{T}_k=\{i: 1- \cos(y_i^j-\mathcal{A}_k)\leqslant 1- \cos(y_i^j-\mathcal{A}_l), \forall 1\leqslant l \leqslant K \}$. 
+Given $\mathcal{T}^*$, the problem is cast as a multi-class
+classification problem, \ie partitioning $K$ disjoint input subspace
+$\mathcal{R} = \{\mathcal{R}_1, \mathcal{R}_2,\cdots, \mathcal{R}_K\}$
+to preserve $\mathcal{T}$ can be equivalent to training samples
+$\vec{x}$ and their class labels $\{1,2,\cdots, K\}$. As mentioned
+before, Support Vector Machines is generally adopted for benchmarking
+classification.  
+For higher efficiency, we use linear kernel in (\ref{eq:svm}). 
+Since determining the parameters of $K$, the size of clusters adopted
+in each node splitting, the straightforward choice is to tune via
+n-fold cross-validation. Alternatively, in  \cite{hara2014growing},
+adaptive determination of the flexible number of child nodes for each
+node, namely Adaptive K-clusters Regression Forests (AKRF) was
+proposed by measuring Bayesian Information Criterion (BIC)
+\cite{kashyap1977bayesian,schwarz1978estimating} to select the size of
+clusters $K$. 
+\subsection{Experiments}
+\begin{table*}[t]
+\caption{\label{tab.state-of-the-arts} Comparative evaluation of the state-of-the-art methods with the EPFL Multi-View Car dataset.}
+\centering
+\resizebox{0.8\linewidth}{!}{
+\begin{tabular}{lrrrrrr}
+\toprule
+& \multicolumn{3}{c}{{\em even split}} &\multicolumn{3}{c}{{\em leave-one-sequence-out}}\\
+{\em Methods}   
+                                & mae ($90\%$)    & mae ($95\%$)     &mae ($100\%$)     &  mae ($90\%$)    & mae ($95\%$)     &mae ($100\%$) \\
+\midrule
+Ozuysal \etal \cite{ozuysal2009pose} &-- & -- & 46.48$^\text{o}$ & -- & -- & --\\
+Torki \etal \cite{torki2011regression} &19.40$^\text{o}$ & 26.70$^\text{o}$ & 33.98$^\text{o}$ & 23.13$^\text{o}$ & 26.85$^\text{o}$ & 34.90$^\text{o}$\\
+Fenzi \etal \cite{fenzi2013class} &14.51$^\text{o}$ & 22.83$^\text{o}$ & 31.27$^\text{o}$ & 14.41$^\text{o}$ & 22.72$^\text{o}$ & 31.16$^\text{o}$ \\
+KPLS \cite{hara2014growing} & 16.86$^\text{o}$ & 21.20$^\text{o}$ & 27.65$^\text{o}$ & -- & -- & --\\
+SVR \cite{hara2014growing} & 17.38$^\text{o}$ & 22.70$^\text{o}$ & 29.14$^\text{o}$ & -- & -- & --\\
+BRF \cite{hara2014growing} &23.97$^\text{o}$ & 30.95$^\text{o}$ & 38.13$^\text{o}$ & -- & -- & --\\
+KRF \cite{hara2014growing} & 8.32$^\text{o}$ & 16.76$^\text{o}$ & 24.80$^\text{o}$ & 11.16$^\text{o}$ & 14.99$^\text{o}$ & 20.18$^\text{o}$ \\
+AKRF \cite{hara2014growing} & 7.73$^\text{o}$ & 16.18$^\text{o}$ & 24.24$^\text{o}$ & 15.74$^\text{o}$ & 21.50$^\text{o}$ & 27.42$^\text{o}$ \\
+HSSR (ours) &\textbf{3.88$^\text{o}$} & \textbf{11.98$^\text{o}$} & \textbf{20.30$^\text{o}$} &\textbf{8.31$^\text{o}$} &\textbf{10.90$^\text{o}$} &\textbf{14.24$^\text{o}$}  \\
+\bottomrule
+\end{tabular}}
+\end{table*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.6\linewidth]{figure2}
+\caption{Comparison of HSSR (ours), KRF and AKRF on mae (100\%) for each sequence (leave-one-sequence-out).}\label{Figure1} 
+\end{figure*}
+%
+\begin{figure*}[t]
+\centering
+\subfloat[even split]{
+\includegraphics[width=0.4\linewidth]{cumulative.png}
+}~~~~
+\subfloat[leave-one-sequence-out]{
+\includegraphics[width=0.4\linewidth]{cumulative2.png}
+}
+\caption{Comparative cumulative scores. The higher the better.}
+\label{Fig:cum}
+\end{figure*}
+
+\begin{table*}[th]
+\caption{\label{tab.overlapping} Evaluation on the circular slice step size proportional to the $45^\circ$ slice size.}
+\centering
+\resizebox{0.8\linewidth}{!}{
+\begin{tabular}{lrrrrrr}
+\toprule
+& \multicolumn{3}{c}{{\em even split}} &\multicolumn{3}{c}{{\em leave-one-sequence-out}}\\
+{\em Slice step}   
+                                & mae ($90\%$)    & mae ($95\%$)     &mae ($100\%$)    &  mae ($90\%$)    & mae ($95\%$)     &mae ($100\%$)\\
+\midrule
+%CKRF$_{non-overlapping}$ &$6.87^\text{o}$ & $15.66^\text{o}$ & $23.81^\text{o}$ & $7.88^\text{o}$ & $16.63^\text{o}$ & $24.73^\text{o}$  \\ \hline
+%CKRF$_{overlapping}$ &$7.44^\text{o}$ & $16.25^\text{o}$ & $24.37^\text{o}$ & $5.47^\text{o}$ & $14.33^\text{o}$ & $22.55^\text{o}$  \\
+%SW &7.48$^\text{o}$ & 16.27$^\text{o}$ & 24.39$^\text{o}$ & 10.19$^\text{o}$ & 13.37$^\text{o}$ & 17.14$^\text{o}$  \\ \hline
+$1\times$ slice &\text{8.04$^\text{o}$} &\text{16.78$^\text{o}$} &\text{24.88$^\text{o}$} &{10.75$^\text{o}$} &{13.54$^\text{o}$} &{17.34$^\text{o}$} \\
+$3/4\times$ &\text{4.30$^\text{o}$} &\text{12.69$^\text{o}$} &\text{20.98$^\text{o}$} &\text{10.21$^\text{o}$} &\text{12.65$^\text{o}$} &\text{16.14$^\text{o}$} \\
+$1/2\times$ &\text{4.11$^\text{o}$} &\text{ 12.14$^\text{o}$} & \text{20.45$^\text{o}$} &{8.98$^\text{o}$} &{11.60$^\text{o}$} & {15.52$^\text{o}$ }\\
+$1/4\times$ &\text{4.97$^\text{o}$} &\text{13.74$^\text{o}$} &\text{21.98$^\text{o}$} &\text{8.81$^\text{o}$} &\text{11.10$^\text{o}$} &\text{14.63$^\text{o}$} \\
+Combination &\textbf{3.88$^\text{o}$} &\textbf{11.98$^\text{o}$} &\textbf{20.30$^\text{o}$} &\textbf{8.31$^\text{o}$} &\textbf{10.90$^\text{o}$} &\textbf{14.24$^\text{o}$} \\ 
+\bottomrule
+\end{tabular}}
+\end{table*}
+
+\begin{table*}[th]
+  \caption{Evaluation on the circular slice size. }
+\centering
+\resizebox{0.8\linewidth}{!}{
+\begin{tabular}{lrrr rrr}
+\toprule
+& \multicolumn{3}{c}{{\em even split}} &\multicolumn{3}{c}{{\em leave-one-sequence-out}}\\
+{\em Slice size}   
+& mae ($90\%$)    & mae ($95\%$)     & mae ($100\%$)    &  mae ($90\%$)    & mae ($95\%$)     & mae ($100\%$)\\
+\midrule
+180$^\circ$ &4.51$^\text{o}$ & 12.66$^\text{o}$ & 20.93$^\text{o}$ & {9.65$^\text{o}$} &{12.36$^\text{o}$} & {16.90$^\text{o}$ } \\
+~90$^\circ$ &5.12$^\text{o}$ & 14.00$^\text{o}$ & 22.24$^\text{o}$ & {9.24$^\text{o}$} &{11.83$^\text{o}$} & {16.21$^\text{o}$ } \\
+~45$^\circ$ &\text{4.11$^\text{o}$} &\text{ 12.14$^\text{o}$} & \text{20.45$^\text{o}$} &\text{8.98$^\text{o}$} &\text{11.60$^\text{o}$} 
+&\text{15.52$^\text{o}$}~ \\
+\bottomrule
+\end{tabular}}\label{tab.size} 
+\end{table*}
+
+\vspace{0.1cm} \noindent {\bf Comparison with State-Of-The-Arts --}
+The results in Table \ref{tab.state-of-the-arts} verify that our method
+significantly outperforms all state-of-the-art methods with at least
+$16.25\%$ marginal in reducing mae and $25.96\%$ and $49.81\%$
+in reducing $95\%$ mae and $90\%$ mae, respectively, using the
+even split setting. Similar performance improvement is observed
+for the leave-one-sequence-out setting.
+Figure~\ref{Figure1} illustrates the results for each sequence
+separately and compares to our direct competitors KRF and AKRF.  
+Evidently, the proposed method performs better in most of the
+sequences. 
+By exploiting target locality, our method can mitigate the suffering
+from the flipping errors ($\approx 180^\circ$, \eg the sequences 3, 15
+and 16). By adopting the cumulative scores introduced in Geng \etal
+\cite{geng2007automatic}, we visualise the results generated by our
+method (HSSR) and the other state-of-the-arts methods in Figure~\ref{Fig:cum}. It is shown that the HSSR approach significantly improves the accuracy
+with both splitting methods.  
+
+
+
+\vspace{\medskipamount} \noindent {\bf Slice Construction -- }
+%\vspace{0.1cm} \noindent {\bf Overlapped vs. Non-overlapped Manifold --}
+Given a fixed slice size of $45^\circ$,
+Table~\ref{tab.overlapping} compares varying slice step values.
+The results indicate that the combination of all different step sizes performs best.
+Besides the combination strategy, the best results for even splitting were achieved using
+the $1/2\times$ slice step (half overlap) while for
+the leave-one-sequence-out setting the $1/4\times$ step
+performed the best (three quarters overlap).
+Evidently, all overlapping strategies (\ie $3/4\times$, $1/2\times$, $1/4\times$, and combination) show higher accuracy than the non-overlapping slice spacing which verifies our sliding slice strategy.
+
+
+
+\vspace{\medskipamount} \noindent {\bf Evaluation on Varying Size of Sliding Window -- }
+We also evaluated different size of the slices by half slice step in our method and
+the results are shown in Table~\ref{tab.size}. Among
+them, $45^\circ$ achieved the best results. Notably, HSSR is
+superior to state-of-the-art with all slice sizes (cf.
+Table~\ref{tab.state-of-the-arts}).
+
+%\begin{equation}
+%\text{BIC} = -2\ln \mathcal{Z}(\{y_i^j\}_{i=1}^N) + 2K \ln N,
+%\end{equation}
+%where 
+%\begin{equation*}
+%\begin{split}
+%\mathcal{Z}(\{y_i^j\}_{i=1}^N) = & -N\ln(2\pi I_0(k)) + k \sum_{k=1}^K \sum_{i\in \mathcal{T}_k} \cos(y_i^j-\mathcal{A}_k)\\
+%&+\sum_{k=1}^K |\mathcal{T}_k|\ln|\mathcal{T}_k| -N\ln N.
+%\end{split}
+%\end{equation*}
+
+\subsection{Summary}
+We proposed a two-step, coarse-to-fine, hierarchical approach for visual regression where one-vs-all SVM classifiers are used to find coarse regression groups and group-specific regressors are used to provide an accurate estimate. Our application was vehicle viewing angle estimation where axial symmetry brings additional challenges for regression. In this case, we formed the groups as circular overlapping slices and demonstrated how this approach leads to state-of-the-art accuracy on a public benchmark dataset. In our future work, we will extend the novel approach to other similar circular visual regression problems and study the effect of non-uniform slices and to further improve the approach.
+\section{CONCLUSION}\label{sec:conclusion}
+
+Try to complete a journal submission here by the end of may
+
+
+
+
+
+
+
+\clearpage
+
+% Bibliography
+%
+%% This must be here, not in preamble, if you want it to work
+\addcontentsline{toc}{section}{REFERENCES}
+\bibliography{resources/HeadPose}
+%\bibliography{thesis}
+
+%\clearpage
+%\def\appA{APPENDIX A. An Example of Network Configuration File for $DNN_8$}
+%\section*{\appA} 
+%\addcontentsline{toc}{section}{\appA}
+%\begin{verbatim}
+%name: "CaffeNet"
+%layers {
+%  name: "data"
+%  type: DATA
+%  top: "data"
+%  top: "label"
+%  data_param {
+%    source: "path/to/training/set"
+%    backend: LMDB
+%    batch_size: 256
+%  }
+%  transform_param {
+%    mean_file: "path/to/meanfile"
+%    mirror: false
+%  }
+%  include: { phase: TRAIN }
+%}
+%layers {
+%  name: "data"
+%  type: DATA
+%  top: "data"
+%  top: "label"
+%  data_param {
+%    source: "path/to/validation/set"
+%    backend: LMDB
+%    batch_size: 50
+%  }
+%  transform_param {
+%    mean_file: "path/to/meanfile"
+%    mirror: false
+%  }
+%  include: { phase: TEST }
+%}
+%layers {
+%  name: "conv1"
+%  type: CONVOLUTION
+%  bottom: "data"
+%  top: "conv1"
+%  blobs_lr: 1
+%  blobs_lr: 2
+%  weight_decay: 1
+%  weight_decay: 0
+%  convolution_param {
+%    num_output: 12 # the number of filters
+%    kernel_size: 2 # the size of filters
+%    stride: 1
+%    weight_filler {
+%      type: "gaussian"
+%      std: 0.01
+%    }
+%    bias_filler {
+%      type: "constant"
+%      value: 0
+%    }
+%  }
+%}
+%layers {
+%  name: "relu1"
+%  type: RELU
+%  bottom: "conv1"
+%  top: "conv1"
+%}
+%layers {
+%  name: "norm1"
+%  type: LRN
+%  bottom: "conv1"
+%  top: "norm1"
+%  lrn_param {
+%    local_size: 5
+%    alpha: 0.0001
+%    beta: 0.75
+%  }
+%}
+%layers {
+%  name: "fc6"
+%  type: INNER_PRODUCT
+%  bottom: "norm1"
+%  top: "fc6"
+%  blobs_lr: 1
+%  blobs_lr: 2
+%  weight_decay: 1
+%  weight_decay: 0
+%  inner_product_param {
+%    num_output: 512
+%    weight_filler {
+%      type: "gaussian"
+%      std: 0.005
+%    }
+%    bias_filler {
+%      type: "constant"
+%      value: 1
+%    }
+%  }
+%}
+%layers {
+%  name: "relu6"
+%  type: RELU
+%  bottom: "fc6"
+%  top: "fc6"
+%}
+%layers {
+%  name: "drop6"
+%  type: DROPOUT
+%  bottom: "fc6"
+%  top: "fc6"
+%  dropout_param {
+%    dropout_ratio: 0.5
+%  }
+%layers {
+%  name: "fc8"
+%  type: INNER_PRODUCT
+%  bottom: "fc6"
+%  top: "fc8"
+%  blobs_lr: 1
+%  blobs_lr: 2
+%  weight_decay: 1
+%  weight_decay: 0
+%  inner_product_param {
+%    num_output: 1000
+%    weight_filler {
+%      type: "gaussian"
+%      std: 0.01
+%    }
+%    bias_filler {
+%      type: "constant"
+%      value: 0
+%    }
+%  }
+%}
+%layers {
+%  name: "accuracy"
+%  type: ACCURACY
+%  bottom: "fc8"
+%  bottom: "label"
+%  top: "accuracy"
+%  include: { phase: TEST }
+%}
+%layers {
+%  name: "loss"
+%  type: SOFTMAX_LOSS
+%  bottom: "fc8"
+%  bottom: "label"
+%  top: "loss"
+%}
+%\end{verbatim}
+%
+%
+%\clearpage
+%\def\appB{APPENDIX B. An Example of Network Solver File}
+%\section*{\appB} 
+%\addcontentsline{toc}{section}{\appB}
+%\begin{verbatim}
+%net: "path/to/network/configuration/file"
+%test_iter: 1000
+%test_interval: 1000
+%base_lr: 0.01
+%lr_policy: "step"
+%gamma: 0.1
+%stepsize: 50000
+%display: 20
+%max_iter: 120000
+%momentum: 0.9
+%weight_decay: 0.0005
+%snapshot: 10000
+%snapshot_prefix: "path/to/save/snapshot/file"
+%solver_mode: GPU
+%\end{verbatim}
+
+\end{document}

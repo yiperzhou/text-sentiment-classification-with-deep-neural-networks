@@ -1,0 +1,908 @@
+@article{demaris1995tutorial,
+  title={A tutorial in logistic regression},
+  author={DeMaris, Alfred},
+  journal={Journal of Marriage and the Family},
+  pages={956--968},
+  year={1995},
+  publisher={JSTOR}
+}
+
+@article{cortes1995support,
+  title={Support-vector networks},
+  author={Cortes, Corinna and Vapnik, Vladimir},
+  journal={Machine learning},
+  volume={20},
+  number={3},
+  pages={273--297},
+  year={1995},
+  publisher={Springer}
+}
+
+@article{smola2004tutorial,
+  title={A tutorial on support vector regression},
+  author={Smola, Alex J and Sch{\"o}lkopf, Bernhard},
+  journal={Statistics and computing},
+  volume={14},
+  number={3},
+  pages={199--222},
+  year={2004},
+  publisher={Springer}
+}
+
+@article{schwarz1978estimating,
+  title={Estimating the dimension of a model},
+  author={Schwarz, Gideon and others},
+  journal={The annals of statistics},
+  volume={6},
+  number={2},
+  pages={461--464},
+  year={1978},
+  publisher={Institute of Mathematical Statistics}
+}
+
+@article{kashyap1977bayesian,
+  title={A Bayesian comparison of different classes of dynamic models using empirical data},
+  author={Kashyap, Rangasami Laksminarayana},
+  journal={IEEE Transactions on Automatic Control},
+  volume={22},
+  number={5},
+  pages={715--727},
+  year={1977},
+  publisher={IEEE}
+}
+
+@inproceedings{dantone2012real,
+  title={Real-time facial feature detection using conditional regression forests},
+  author={Dantone, Matthias and Gall, Juergen and Fanelli, Gabriele and Van Gool, Luc},
+  booktitle={IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages={2578--2585},
+  year={2012},
+  organization={IEEE}
+}
+
+@article{liu2015age,
+  title={Age estimation via grouping and decision fusion},
+  author={Liu, Kuan-Hsien and Yan, Shuicheng and Kuo, C-C Jay},
+  journal={IEEE Transactions on Information Forensics and Security},
+  volume={10},
+  number={11},
+  pages={2408--2423},
+  year={2015},
+  publisher={IEEE}
+}
+
+@article{dantone2014body,
+  title={Body parts dependent joint regressors for human pose estimation in still images},
+  author={Dantone, Matthias and Gall, Juergen and Leistner, Christian and Van Gool, Luc},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  volume={36},
+  number={11},
+  pages={2131--2143},
+  year={2014},
+  publisher={IEEE}
+}
+
+@inproceedings{fenzi2013class,
+  title={Class generative models based on feature regression for pose estimation of object categories},
+  author={Fenzi, Michele and Leal-Taix{\'e}, Laura and Rosenhahn, Bodo and Ostermann, J{\"o}rn},
+  booktitle={IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages={755--762},
+  year={2013},
+  organization={IEEE}
+}
+
+@inproceedings{torki2011regression,
+  title={Regression from local features for viewpoint and pose estimation},
+  author={Torki, Marwan and Elgammal, Ahmed},
+  booktitle={IEEE International Conference on Computer Vision (ICCV)},
+  pages={2603--2610},
+  year={2011},
+  organization = {IEEE}
+}
+
+@inproceedings{ozuysal2009pose,
+  title={Pose estimation for category specific multiview object localization},
+  author={Ozuysal, Mustafa and Lepetit, Vincent and Fua, Pascal},
+  booktitle={IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages={778--785},
+  year={2009},
+  organization = {IEEE}
+}
+
+@article{rosipal2002kernel,
+  title={Kernel partial least squares regression in reproducing kernel hilbert space},
+  author={Rosipal, Roman and Trejo, Leonard J},
+  journal={The Journal of Machine Learning Research},
+  volume={2},
+  pages={97--123},
+  year={2002},
+  publisher={JMLR}
+}
+
+@article{wold1975soft,
+  title={Soft modeling by latent variables: the nonlinear iterative partial least squares approach},
+  author={Wold, Herman},
+  journal={Perspectives in probability and statistics, papers in honour of MS Bartlett},
+  year={1975},
+}
+
+@article{de1993simpls,
+  title={SIMPLS: an alternative approach to partial least squares regression},
+  author={De Jong, Sijmen},
+  journal={Chemometrics and Intelligent Laboratory Systems},
+   year={1993},
+}
+
+@inproceedings{schwartz2009human,
+  title={Human detection using partial least squares analysis},
+  author={Schwartz, William Robson and Kembhavi, Aniruddha and Harwood, David and Davis, Larry S},
+  booktitle={ICCV},
+  year={2009},
+}
+
+@inproceedings{guo2011simultaneous,
+  title={Simultaneous dimensionality reduction and human age estimation via kernel partial least squares regression},
+  author={Guo, Guodong and Mu, Guowang},
+  booktitle={CVPR},
+  year={2011},
+}
+
+@incollection{loy2013crowd,
+  title={Crowd counting and profiling: Methodology and evaluation},
+  author={Loy, Chen Change and Chen, Ke and Gong, Shaogang and Xiang, Tao},
+  booktitle={Modeling, Simulation and Visual Analysis of Crowds},
+  pages={347--382},
+  year={2013},
+}
+
+@article{geladi1986partial_tutorial,
+  title={Partial least-squares regression: a tutorial},
+  author={Geladi, Paul and Kowalski, Bruce R},
+  journal={Analytica chimica acta},
+  year={1986},
+}
+
+@article{smola2004tutorial,
+  title={A tutorial on support vector regression},
+  author={Smola, Alex J and Sch{\"o}lkopf, Bernhard},
+  journal={Statistics and computing},
+  year={2004},
+
+}
+
+@article{breiman2001random,
+  title={Random forests},
+  author={Breiman, Leo},
+  journal={Machine learning},
+  volume={45},
+  number={1},
+  pages={5--32},
+  year={2001},
+  publisher={Springer}
+}
+
+@inproceedings{yang2012face,
+  title={Face pose estimation with combined 2D and 3D HOG features},
+  author={Yang, Jiaolong and Liang, Wei and Jia, Yunde},
+  booktitle={Pattern Recognition (ICPR), 2012 21st International Conference on},
+  pages={2492--2495},
+  year={2012},
+  organization={IEEE}
+}
+
+@INPROCEEDINGS{HeiChe:2015,
+  author = {H. Huttunen and K. Chen and A. Thakur and A. Krohn-Grimberghe and O. Gencoglu and X. Ni and M. Al-Musawi and L. Xu and H. Jacob van Veen},
+  title = {Computer Vision for Head Pose Estimation: Review of a Competition},
+  booktitle = {SCIA},
+  year = {2015},
+}
+
+@inproceedings{parikh2011relative,
+  title={Relative attributes},
+  author={Parikh, Devi and Grauman, Kristen},
+  booktitle={ICCV},
+  year={2011},
+}
+
+
+@inproceedings{bo2009structured,
+  title={Structured output-associative regression},
+  author={Bo, Liefeng and Sminchisescu, Cristian},
+  booktitle={IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages={2403--2410},
+  year={2009},
+  organization={IEEE}
+}
+
+@incollection{blaschko2008learning,
+  title={Learning to localize objects with structured output regression},
+  author={Blaschko, Matthew B and Lampert, Christoph H},
+  booktitle={ECCV},
+  year={2008},
+}
+
+
+
+@inproceedings{ionescu2009structural,
+  title={Structural SVM for visual localization and continuous state estimation},
+  author={Ionescu, Catalin and Bo, Liefeng and Sminchisescu, Cristian},
+  booktitle={ICCV},
+   year={2009},
+ }
+
+@inproceedings{chen2013cumulative,
+  title={Cumulative attribute space for age and crowd density estimation},
+  author={Chen, Ke and Gong, Shaogang and Xiang, Tao and Loy, Chen Change},
+  booktitle={IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages={2467--2474},
+  year={2013},
+}
+
+@inproceedings{dantone2013human,
+  title={Human pose estimation using body parts dependent joint regressors},
+  author={Dantone, Matthias and Gall, Juergen and Leistner, Christian and Van Gool, Luc},
+  booktitle={IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year={2013},
+}
+
+@inproceedings{sun2012conditional,
+  title={Conditional regression forests for human pose estimation},
+  author={Sun, Min and Kohli, Pushmeet and Shotton, Jamie},
+  booktitle={IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages={3394--3401},
+  year={2012},
+  organization={IEEE}
+}
+
+@inproceedings{bissacco2007fast,
+  title={Fast human pose estimation using appearance and motion via multi-dimensional boosting regression},
+  author={Bissacco, Alessandro and Yang, Ming-Hsuan and Soatto, Stefano},
+  booktitle={IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages={1--8},
+  year={2007},
+  organization={IEEE}
+}
+
+@inproceedings{agarwal20043d,
+  title={3D human pose from silhouettes by relevance vector regression},
+  author={Agarwal, Ankur and Triggs, Bill},
+  booktitle={IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  volume={2},
+  pages={II--882},
+  year={2004},
+  organization={IEEE}
+}
+
+@article{shotton2013real,
+  title={Real-time human pose recognition in parts from single depth images},
+  author={Shotton, Jamie and Sharp, Toby and Kipman, Alex and Fitzgibbon, Andrew and Finocchio, Mark and Blake, Andrew and Cook, Mat and Moore, Richard},
+  journal={Communications of the ACM},
+   volume={56},
+  number={1},
+  pages={116--124},
+  year={2013},
+  publisher={ACM}
+}
+
+@incollection{yang2013face,
+  title={Face parts localization using structured-output regression forests},
+  author={Yang, Heng and Patras, Ioannis},
+  booktitle={ACCV},
+  year={2013},
+}
+
+@incollection{cootes2012robust,
+  title={Robust and accurate shape model fitting using random forest regression voting},
+  author={Cootes, Tim F and Ionita, Mircea C and Lindner, Claudia and Sauer, Patrick},
+  booktitle={ECCV},
+  year={2012},
+}
+
+@inproceedings{yang2013privileged,
+  title={Privileged information-based conditional regression forest for facial feature detection},
+  author={Yang, Heng and Patras, Ioannis},
+  booktitle={FG},
+  year={2013},
+}
+
+@inproceedings{yang2013sieving,
+  title={Sieving regression forest votes for facial feature detection in the wild},
+  author={Yang, Heng and Patras, Ioannis},
+  booktitle={ICCV},
+  year={2013},
+}
+
+@inproceedings{valstar2010facial,
+  title={Facial point detection using boosted regression and graph models},
+  author={Valstar, Michel and Martinez, Brais and Binefa, Xavier and Pantic, Maja},
+  booktitle={IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages={2729--2736},
+  year={2010},
+  organization={IEEE}
+ }
+
+@inproceedings{dantone2012real,
+  title={Real-time facial feature detection using conditional regression forests},
+  author={Dantone, Matthias and Gall, Juergen and Fanelli, Gabriele and Van Gool, Luc},
+  booktitle={IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},,
+  pages={2729--2736},
+  year={2010},
+  organization={IEEE}
+}
+
+@inproceedings{zhu2012face,
+  title={Face detection, pose estimation, and landmark localization in the wild},
+  author={Zhu, Xiangxin and Ramanan, Deva},
+  booktitle={IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages={2879--2886},
+  year={2012},
+  organization={IEEE}
+}
+
+@inproceedings{martinez2012gaze,
+  title={Gaze estimation using local features and non-linear regression},
+  author={Martinez, Francis and Carbone, Andrea and Pissaloux, Edwige},
+  booktitle={ICIP},
+  year={2012},
+}
+
+@inproceedings{lu2011head,
+  title={A Head Pose-free Approach for Appearance-based Gaze Estimation.},
+  author={Lu, Feng and Okabe, Takahiro and Sugano, Yusuke and Sato, Yoichi},
+  booktitle={BMVC},
+  year={2011}
+}
+
+@inproceedings{lu2011inferring,
+  title={Inferring human gaze from appearance via adaptive linear regression},
+  author={Lu, Feng and Sugano, Yusuke and Okabe, Takahiro and Sato, Yoichi},
+  booktitle={ICCV},
+  year={2011},
+}
+
+@inproceedings{zhu2006nonlinear,
+  title={Nonlinear eye gaze mapping function estimation via support vector regression},
+  author={Zhu, Zhiwei and Ji, Qiang and Bennett, Kristin P},
+  booktitle={ICPR},
+  year={2006},
+}
+
+@inproceedings{sugano2014learning,
+  title={Learning-by-Synthesis for Appearance-based 3D Gaze Estimation},
+  author={Sugano, Yusuke and Matsushita, Yasuyuki and Sato, Yoichi},
+  booktitle={CVPR},
+  year={2014},
+}
+
+@inproceedings{yang2012face,
+  title={Face pose estimation with combined 2D and 3D HOG features},
+  author={Yang, Jiaolong and Liang, Wei and Jia, Yunde},
+  booktitle={Pattern Recognition (ICPR), 2012 21st International Conference on},
+  pages={2492--2495},
+  year={2012},
+  organization={IEEE}
+}
+
+@article{fanelli_IJCV,
+  author = {Fanelli, Gabriele and Dantone, Matthias and Gall, Juergen and Fossati, Andrea and Van Gool, Luc},
+  title = {Random Forests for Real Time 3D Face Analysis},
+  journal={International Journal of Computer Vision},
+  volume={101},
+  number={3},
+  pages={437--458},
+  year={2013},
+  publisher={Springer}
+ }
+
+@inproceedings{schulterICCV2013alternating,
+  title={Alternating regression forests for object detection and pose estimation},
+  author={Schulter, Samuel and Leistner, Christian and Wohlhart, Paul and Roth, Peter M and Bischof, Horst},
+  booktitle={ICCV},
+  year={2013},
+}
+
+@inproceedings{schulter2013alternating,
+  title={Alternating decision forests},
+  author={Schulter, Samuel and Wohlhart, Paul and Leistner, Christian and Saffari, Amir and Roth, Peter M and Bischof, Horst},
+  booktitle={CVPR},
+  year={2013},
+}
+
+@incollection{fanelli2011real,
+  title={Real time head pose estimation from consumer depth cameras},
+  author={Fanelli, Gabriele and Weise, Thibaut and Gall, Juergen and Van Gool, Luc},
+  booktitle={PR},
+  year={2011},
+}
+
+@inproceedings{fenzi2013class,
+  title={Class generative models based on feature regression for pose estimation of object categories},
+  author={Fenzi, Michele and Leal-Taix{\'e}, Laura and Rosenhahn, Bodo and Ostermann, J{\"o}rn},
+  booktitle={CVPR},
+  year={2013},
+ }
+
+@article{foytik2013two,
+  title={A two-layer framework for piecewise linear manifold-based head pose estimation},
+  author={Foytik, Jacob and Asari, Vijayan K},
+  journal={International journal of computer vision},
+  volume={101},
+  number={2},
+  pages={270--287},
+  year={2013},
+  publisher={Springer}
+}
+
+@inproceedings{li2007query,
+  title={Query driven localized linear discriminant models for head pose estimation},
+  author={Li, Zhu and Fu, Yun and Yuan, Junsong and Huang, Thomas S and Wu, Ying},
+  booktitle={ICME},
+  year={2007},
+ }
+
+@incollection{voit2007neural,
+  title={Neural network-based head pose estimation and multi-view fusion},
+  author={Voit, Michael and Nickel, Kai and Stiefelhagen, Rainer},
+  booktitle={Multimodal technologies for perception of humans},
+  year={2007},
+}
+
+@incollection{tu2007evaluation,
+  title={Evaluation of head pose estimation for studio data},
+  author={Tu, Jilin and Fu, Yun and Hu, Yuxiao and Huang, Thomas},
+  booktitle={Multimodal Technologies for Perception of Humans},
+  year={2007},
+}
+
+@inproceedings{stiefelhagen2004estimating,
+  title={Estimating head pose with neural networks-results on the pointing04 icpr workshop evaluation data},
+  author={Stiefelhagen, Rainer},
+  booktitle={ICPR Workshop},
+  year={2004}
+}
+
+@inproceedings{schulter2013alternating,
+  title={Alternating Regression Forests for Object Detection and Pose Estimation},
+  author={Schulter, Samuel and Leistner, Christian and Wohlhart, Paul and Roth, Peter M and Bischof, Horst},
+  booktitle={Computer Vision (ICCV), 2013 IEEE International Conference on},
+  pages={417--424},
+  year={2013},
+  organization={IEEE}
+}
+
+@InProceedings{fanelli_CVPR11,
+  author = {Fanelli, Gabriele and Gall, Juergen and Van Gool, Luc},
+  title = {Real Time Head Pose Estimation with Random Regression Forests},
+  booktitle = {CVPR},
+  year = {2011},
+}
+
+@incollection{tu2007evaluation,
+  title={Evaluation of head pose estimation for studio data},
+  author={Tu, Jilin and Fu, Yun and Hu, Yuxiao and Huang, Thomas},
+  booktitle={Multimodal Technologies for Perception of Humans},
+  pages={281--290},
+  year={2007},
+}
+
+@inproceedings{haj2012partial,
+  title={On partial least squares in head pose estimation: How to simultaneously deal with misalignment},
+  author={Haj, Murad Al and Gonzalez, Jordi and Davis, Larry S},
+  booktitle={CVPR},
+  year={2012},
+  organization={IEEE}
+}
+
+@article{foytik2013two,
+  title={A two-layer framework for piecewise linear manifold-based head pose estimation},
+  author={Foytik, Jacob and Asari, Vijayan K},
+  journal={International journal of computer vision},
+  volume={101},
+  number={2},
+  pages={270--287},
+  year={2013},
+  publisher={Springer}
+}
+
+@InProceedings{hara2014growing,
+  title={Growing regression forests by classification: Applications to object pose estimation},
+  author={Hara, Kota and Chellappa, Rama},
+  booktitle={Computer Vision--ECCV 2014},
+  pages={552--567},
+  year={2014},
+  publisher={Springer}
+}
+
+@article{fu2013automatic,
+  title={Automatic calibration method for driver's head orientation in natural driving environment},
+  author={Fu, Xianping and Guan, Xiao and Peli, Eli and Liu, Hongbo and Luo, Gang},
+  journal={Intelligent Transportation Systems, IEEE Transactions on},
+  volume={14},
+  number={1},
+  pages={303--312},
+  year={2013},
+  publisher={IEEE}
+}
+
+@InProceedings{eth_biwi_00908,
+  author = {M. Dantone and J. Gall and G. Fanelli and L. Van Gool},
+  title = {Real-time Facial Feature Detection using Conditional Regression Forests },
+  booktitle = {Computer Vision and Pattern Recognition (CVPR), 2012 IEEE Conference on},
+  year = {2012},
+  keywords = {facial feature detection, conditional random forest}
+}
+
+
+@INPROCEEDINGS{geng2014cvpr, 
+author={Xin Geng and Yu Xia}, 
+booktitle={CVPR}, 
+title={Head Pose Estimation Based on Multivariate Label Distribution}, 
+year={2014}, 
+}
+
+@INPROCEEDINGS{yan08cvpr, 
+author={Shuicheng Yan and Xi Zhou and Ming Liu and Hasegawa-Johnson, M. and Huang, T.S.}, 
+booktitle={Computer Vision and Pattern Recognition, 2008. CVPR 2008. IEEE Conference on}, 
+title={Regression from patch-kernel}, 
+year={2008}, 
+month={June}, 
+pages={1-8}, 
+keywords={Gaussian processes;maximum likelihood estimation;pose estimation;regression analysis;synchronisation;CHIL head pose database;Gaussian mixture models;Kullback-Leibler divergence;YAMAHA aging database;head pose estimation;human age;inter-modality similarity synchronization;kernel regression;maximum a posteriori adaptation;patch-based regression framework;Aging;Estimation error;Face;Feature extraction;Head;Humans;Image databases;Kernel;Performance evaluation;Spatial databases}, 
+doi={10.1109/CVPR.2008.4587405}, 
+ISSN={1063-6919},}
+
+@INPROCEEDINGS{guo08icpr, 
+author={Guodong Guo and Yun Fu and Dyer, C.R. and Huang, T.S.}, 
+booktitle={Pattern Recognition, 2008. ICPR 2008. 19th International Conference on}, 
+title={Head pose estimation: Classification or regression?}, 
+year={2008}, 
+month={Dec}, 
+pages={1-4}, 
+keywords={image classification;pose estimation;regression analysis;head pose estimation;regression method;representative classification;Application software;Computer science;Databases;Face recognition;Humans;Magnetic heads;Robustness;Support vector machine classification;Support vector machines;Training data}, 
+doi={10.1109/ICPR.2008.4761081}, 
+ISSN={1051-4651},}
+
+@inproceedings{huang2010head,
+  title={Head pose estimation based on random forests for multiclass classification},
+  author={Huang, Chen and Ding, Xiaoqing and Fang, Chi},
+  booktitle={20th International Conference on Pattern Recognition (ICPR)},
+  pages={934--937},
+  year={2010},
+  organization={IEEE}
+}
+
+@article{murphy2009head,
+  title={Head pose estimation in computer vision: A survey},
+  author={Murphy-Chutorian, Erik and Trivedi, Mohan M},
+  journal={TPAMI},
+  year={2009},
+}
+
+@inproceedings{chen2011human,
+  title={Human pose estimation using structural support vector machines},
+  author={Chen, Ke and Gong, Shaogang and Xiang, Tao},
+  booktitle={2011 IEEE International Conference on Computer Vision Workshops (ICCV Workshops)},
+  pages={846--851},
+  year={2011},
+  organization={IEEE},
+}
+
+@inproceedings{dalal2005histograms,
+  title={Histograms of oriented gradients for human detection},
+  author={Dalal, Navneet and Triggs, Bill},
+  booktitle={IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  volume={1},
+  pages={886--893},
+  year={2005},
+  organization={IEEE}
+}
+
+@inproceedings{gourier2004estimating,
+  title={Estimating face orientation from robust detection of salient facial structures},
+  author={Gourier, Nicolas and Hall, Daniela and Crowley, James L},
+  booktitle={FG Net Workshop},
+  year={2004},
+}
+
+@article{wolpert1992stacked,
+  title={Stacked generalization},
+  author={Wolpert, David H},
+  journal={Neural networks},
+  volume={5},
+  number={2},
+  pages={241--259},
+  year={1992},
+  publisher={Elsevier}
+}
+
+@article{scikit-learn,
+ title={Scikit-learn: Machine Learning in {P}ython},
+ author={Pedregosa, F. and Varoquaux, G. and Gramfort, A. and Michel, V.
+         and Thirion, B. and Grisel, O. and Blondel, M. and Prettenhofer, P.
+         and Weiss, R. and Dubourg, V. and Vanderplas, J. and Passos, A. and
+         Cournapeau, D. and Brucher, M. and Perrot, M. and Duchesnay, E.},
+ journal={Journal of Machine Learning Research},
+ volume={12},
+ pages={2825--2830},
+ year={2011}
+}
+
+@article{pylearn2,
+    author = {Goodfellow, Ian J. and Warde-Farley, David and Lamblin, Pascal and Dumoulin, Vincent and Mirza, Mehdi and Pascanu, Razvan and Bergstra, James and Bastien, Fr{\'{e}}d{\'{e}}ric and Bengio, Yoshua},
+     title = {Pylearn2: a machine learning research library},
+   journal = {arXiv preprint arXiv:1308.4214},
+      year = {2013},
+       url = {http://arxiv.org/abs/1308.4214},
+  abstract = {Pylearn2 is a machine learning research library. This does not just mean that it is a collection of machine learning algorithms that share a common API; it means that it has been designed for flexibility and extensibility in order to facilitate research projects that involve new or unusual use cases. In this paper we give a brief history of the library, an overview of its basic philosophy, a summary of the library's architecture, and a description of how the Pylearn2 community functions socially.}
+}
+
+@article{zhang2013review, 
+author={Min-Ling Zhang and Zhi-Hua Zhou}, 
+journal={Knowledge and Data Engineering, IEEE Transactions on}, 
+title={A Review on Multi-Label Learning Algorithms}, 
+year={2014}, 
+month={Aug}, 
+volume={26}, 
+number={8}, 
+pages={1819-1837}, 
+keywords={learning (artificial intelligence);evaluation metrics;formal definition;instance learning;learning settings;machine learning paradigm;multilabel learning algorithms;Algorithm design and analysis;Correlation;Machine learning algorithms;Semantics;Supervised learning;Training;Vectors;Artificial Intelligence;Computing Methodologies;Data mining;Database Applications;Database Management;Information Technology and Systems;Learning;Multi-label learning;algorithm adaptation;label correlations;problem transformation}, 
+doi={10.1109/TKDE.2013.39}, 
+ISSN={1041-4347},}
+
+@inproceedings{krizhevsky2012imagenet,
+  title={Imagenet classification with deep convolutional neural networks},
+  author={Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E},
+  booktitle={Advances in neural information processing systems},
+  pages={1097--1105},
+  year={2012}
+}
+
+@inproceedings{kimoto1990stock,
+  title={Stock market prediction system with modular neural networks},
+  author={Kimoto, Takashi and Asakawa, Kazuo and Yoda, Morio and Takeoka, Masakazu},
+  booktitle={Neural Networks, 1990., 1990 IJCNN International Joint Conference on},
+  pages={1--6},
+  year={1990},
+  organization={IEEE}
+}
+
+@article{hinton2012deep,
+  title={Deep neural networks for acoustic modeling in speech recognition: The shared views of four research groups},
+  author={Hinton, Geoffrey and Deng, Li and Yu, Dong and Dahl, George E and Mohamed, Abdel-rahman and Jaitly, Navdeep and Senior, Andrew and Vanhoucke, Vincent and Nguyen, Patrick and Sainath, Tara N and others},
+  journal={Signal Processing Magazine, IEEE},
+  volume={29},
+  number={6},
+  pages={82--97},
+  year={2012},
+  publisher={IEEE}
+}
+
+@article{baxt1995application,
+  title={Application of artificial neural networks to clinical medicine},
+  author={Baxt, William G},
+  journal={The lancet},
+  volume={346},
+  number={8983},
+  pages={1135--1138},
+  year={1995},
+  publisher={Elsevier}
+}
+
+@article{narendra1990identification,
+  title={Identification and control of dynamical systems using neural networks},
+  author={Narendra, Kumpati S and Parthasarathy, Kannan},
+  journal={Neural Networks, IEEE Transactions on},
+  volume={1},
+  number={1},
+  pages={4--27},
+  year={1990},
+  publisher={IEEE}
+}
+
+@article{zhang2006multilabel,
+  title={Multilabel neural networks with applications to functional genomics and text categorization},
+  author={Zhang, Min-Ling and Zhou, Zhi-Hua},
+  journal={Knowledge and Data Engineering, IEEE Transactions on},
+  volume={18},
+  number={10},
+  pages={1338--1351},
+  year={2006},
+  publisher={IEEE}
+}
+
+@incollection{grodzicki2008improved,
+year={2008},
+isbn={978-3-540-87699-1},
+booktitle={Parallel Problem Solving from Nature – PPSN X},
+volume={5199},
+series={Lecture Notes in Computer Science},
+editor={Rudolph, Günter and Jansen, Thomas and Lucas, Simon and Poloni, Carlo and Beume, Nicola},
+doi={10.1007/978-3-540-87700-4_41},
+title={Improved Multilabel Classification with Neural Networks},
+url={http://dx.doi.org/10.1007/978-3-540-87700-4_41},
+publisher={Springer Berlin Heidelberg},
+keywords={multilabel; learning system; neural network; backpropagation; bioinformatics; functional genomics},
+author={Grodzicki, Rafał and Mańdziuk, Jacek and Wang, Lipo},
+pages={409-416},
+language={English}
+}
+
+@inproceedings{taigman2014deepface,
+  title={Deepface: Closing the gap to human-level performance in face verification},
+  author={Taigman, Yaniv and Yang, Ming and Ranzato, Marc'Aurelio and Wolf, Lior},
+  booktitle={2014 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages={1701--1708},
+  year={2014},
+  organization={IEEE}
+}
+
+@TechReport{LFWTech,
+  author =       {Gary B. Huang and Manu Ramesh and Tamara Berg and 
+                  Erik Learned-Miller},
+  title =        {Labeled Faces in the Wild: A Database for Studying 
+                  Face Recognition in Unconstrained Environments},
+  institution =  {University of Massachusetts, Amherst},
+  year =         2007,
+  number =       {07-49},
+  month =        {October}}
+  
+@inproceedings{wolf2011face,
+  title={Face recognition in unconstrained videos with matched background similarity},
+  author={Wolf, Lior and Hassner, Tal and Maoz, Itay},
+  booktitle={Computer Vision and Pattern Recognition (CVPR), 2011 IEEE Conference on},
+  pages={529--534},
+  year={2011},
+  organization={IEEE}
+}
+
+@article{felzenszwalb2010object,
+  title={Object detection with discriminatively trained part-based models},
+  author={Felzenszwalb, Pedro F and Girshick, Ross B and McAllester, David and Ramanan, Deva},
+  journal={Pattern Analysis and Machine Intelligence, IEEE Transactions on},
+  volume={32},
+  number={9},
+  pages={1627--1645},
+  year={2010},
+  publisher={IEEE}
+}
+
+@book{scholkopf2001learning,
+  title={Learning with kernels: support vector machines, regularization, optimization, and beyond},
+  author={Scholkopf, Bernhard and Smola, Alexander J},
+  year={2001},
+  publisher={MIT press}
+}
+
+
+
+
+@article{chang2011libsvm,
+  title={LIBSVM: a library for support vector machines},
+  author={Chang, Chih-Chung and Lin, Chih-Jen},
+  journal={ACM Transactions on Intelligent Systems and Technology (TIST)},
+  volume={2},
+  number={3},
+  pages={27},
+  year={2011},
+  publisher={ACM}
+}
+
+@article{scikit-learn,
+ title={Scikit-learn: Machine Learning in {P}ython},
+ author={Pedregosa, F. and Varoquaux, G. and Gramfort, A. and Michel, V.
+         and Thirion, B. and Grisel, O. and Blondel, M. and Prettenhofer, P.
+         and Weiss, R. and Dubourg, V. and Vanderplas, J. and Passos, A. and
+         Cournapeau, D. and Brucher, M. and Perrot, M. and Duchesnay, E.},
+ journal={Journal of Machine Learning Research},
+ volume={12},
+ pages={2825--2830},
+ year={2011}
+}
+
+@article{lecun1998gradient,
+  title={Gradient-based learning applied to document recognition},
+  author={LeCun, Yann and Bottou, L{\'e}on and Bengio, Yoshua and Haffner, Patrick},
+  journal={Proceedings of the IEEE},
+  volume={86},
+  number={11},
+  pages={2278--2324},
+  year={1998},
+  publisher={IEEE}
+}
+@article{nillson2014transaction,
+  title={Reliable Vehicle Pose Estimation Using Vision and a Single-Track Model},
+  author={Nilsson, Johan and Fredriksson, Jonas and Odblom, Anders CE},
+  journal={IEEE Transaction on Intelligent Transportation Systems},
+  volume={15},
+  number={6},
+  pages={2630 -- 2643},
+  year={2014},
+  publisher={IEEE}
+}
+@article{seppa2008transaction,
+  title={An Efficient Approach to Onboard Stereo Vision System Pose Estimation},
+  author={Sappa, Angel Domingo and Dornaika, Fadi and Ponsa, Daniel and Ger{\'o}nimo, David and L{\'o}pez, Antonio},
+  journal={IEEE Transaction on Intelligent Transportation Systems},
+  volume={9},
+  number={3},
+  pages={476 -- 490},
+  year={2008},
+  publisher={IEEE}
+}
+@article{Hongsheng2015transaction,
+  title={Recognition of Car Makes and Models From a Single Traffic-Camera Image},
+  author={He, Hongsheng and Shao, Zhenzhou and Tan, Jindong},
+  journal={IEEE Transaction on Intelligent Transportation Systems},
+  volume={16},
+  number={6},
+  pages={3182 -- 3192},
+  year={2015},
+  publisher={IEEE}
+}
+@article{Chi-Chen2008transaction,
+  title={Automatic Vehicle Detection Using Local Features—A Statistical Approach},
+  author={Wang, Chi-Chen Raxle and Lien, Jenn-Jier James},
+  journal={IEEE Transaction on Intelligent Transportation Systems},
+  volume={9},
+  number={1},
+  pages={83 -- 96},
+  year={2008},
+  publisher={IEEE}
+}
+@article{tongtong2016transaction,
+  title={Likelihood-Field-Model-Based Dynamic Vehicle Detection and Tracking for Self-Driving},
+  author={Chen, Tongtong and Wang, Ruili and Dai, Bin and Liu, Daxue and Song, Jinze},
+  journal={IEEE Transaction on Intelligent Transportation Systems},
+  volume={pp},
+  number={99},
+  pages={1 -- 17},
+  year={2016},
+  publisher={IEEE}
+}
+@article{shunguang2009transaction,
+  title={Collision Sensing by Stereo Vision and Radar Sensor Fusion},
+   author={Wu, Shunguang and Decker, Stephen and Chang, Peng and Camus, Theodore and Eledath, Jayan},
+  journal={IEEE Transaction on Intelligent Transportation Systems},
+  volume={10},
+  number={4},
+  pages={606 -- 614},
+  year={2009},
+  publisher={IEEE}
+}
+
+@inproceedings{zelnik2004self,
+  title={Self-tuning spectral clustering},
+  author={Zelnik-Manor, Lihi and Perona, Pietro},
+  booktitle={Advances in neural information processing systems},
+  pages={1601--1608},
+  year={2004}
+}
+@inproceedings{orozco2009head,
+  title={Head Pose Classification in Crowded Scenes},
+  author={Orozco, Javier and Gong, Shaogang and Xiang, Tao},
+  booktitle={Proceedings of the British Machine Vision Conference (BMVC)},
+  volume={1},
+  pages={3},
+  year={2009}
+}
+@article{munoz2012multi,
+  title={Multi-camera head pose estimation},
+  author={Mu{\~n}oz-Salinas, Rafael and Yeguas-Bolivar, Enrique and Saffiotti, Alessandro and Medina-Carnicer, R},
+  journal={Machine Vision and Applications},
+  volume={23},
+  number={3},
+  pages={479--490},
+  year={2012},
+  publisher={Springer}
+}
+
+@inproceedings{glasner2011viewpoint,
+  title={Viewpoint-aware object detection and pose estimation},
+  author={Glasner, Daniel and Galun, Meirav and Alpert, Sharon and Basri, Ronen and Shakhnarovich, Gregory},
+  booktitle={2011 International Conference on Computer Vision},
+  pages={1275--1282},
+  year={2011},
+  organization={IEEE}
+}
+
+

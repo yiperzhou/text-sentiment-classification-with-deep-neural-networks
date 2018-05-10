@@ -1,0 +1,3 @@
+Total number of test examples: 1796
+Accuracy: 0.975501
+Saving evaluation to ./runs/1525961290/checkpoints/../cnn_prediction.csv

@@ -9,18 +9,22 @@ db.Amsterdam3_tripadvisor_hotels_reviews.renameCollection("amsterdamTripadvisor"
 ## Data Sample
 * tripadvisor review data sample  
 ```json
+
 {
-    "title": "Outstanding",
-    "url": "https://www.tripadvisor.com/ShowUserReviews-g188590-d189389-r145091651-Sofitel_Legend_The_Grand_Amsterdam-Amsterdam_North_Holland_Province.html",
-    "hotelUrl": "https://www.tripadvisor.com/Hotel_Review-g188590-d189389-Reviews-Sofitel_Legend_The_Grand_Amsterdam-Amsterdam_North_Holland_Province.html",
-    "review": "I rate this hotel as the best I've stayed in. It occupies a beautiful, historic building sandwiched between two canals in the heart of old 'Dam. It's at the bottom of the Red Light district, but don't let that put you off - this is the heart of the old centre, and the hotel's locality south of the Damstraat bridge which traverses O.Voorburgwal is actually quite peaceful at night. Our room was large and well - appointed with a canal view. The bed, oh the bed. The most comfortable bed I've had the pleasure to sleep in. Hermes toiletries. Spotlessly clean. Service and food are outstanding and what you expect of a hotel of this calibre. Concierge was excellent.In summary, I cannot recommend this hotel highly enough. A hotel which richly deserves it's 5-star rating.",
-    "hotelStars": "5.0",
-    "userId": "000Glenn",
-    "hotelLocation": "Oudezijds Voorburgwal 197, 1012 EX Amsterdam, The Netherlands",
-    "hotelName": " Sofitel Legend The Grand Amsterdam ",
-    "score": 5,
-    "date": null
+    "hotelLocation": "Raadhuis Straat 51, 1016 DD Amsterdam, The Netherlands",
+    "hotelName": " Hotel Nadia",
+    "hotelStars": "2.0",
+    "hotelUrl": "https://www.tripadvisor.com/Hotel_Review-g188590-d232493-Reviews-Hotel_Nadia-Amsterdam_North_Holland_Province.html",
+    "title": "Overnight stay.",
+    "review": "This is a very small hotel. Staff are very friendly.But you have to be quite fit to go up all the stairs with your luggage. I also missed breakfast as I was 5 mins too late.The room was small but clean and the balcony was nice.The hotel is in a very good location.",
+    "url": "https://www.tripadvisor.com/ShowUserReviews-g188590-d232493-r507832414-Hotel_Nadia-Amsterdam_North_Holland_Province.html",
+    "score": 4,
+    "userId": "nigcastle"，
+    "date": "August 1, 2017"
 }
+
+
+
 ```
 * booking.com review data sample  
 ```json

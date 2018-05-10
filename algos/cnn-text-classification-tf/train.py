@@ -14,9 +14,10 @@ import sys
 
 # Data loading params
 tf.flags.DEFINE_float("dev_sample_percentage", .1, "Percentage of the training data to use for validation")
-tf.flags.DEFINE_string("data_file", "/home/yi/sentimentAnalysis/data-preprocess/sentiment_CLF/train_tripadvisor_5cities.csv", "data source file")
+tf.flags.DEFINE_string("data_file", "../../data/csv/train_tripadvisor_5cities.csv", "data source file")
 
 # Model Hyperparameters
+tf.flags.DEFINE_bool("enable_word_embeddings", True, "Enable/disable the word embedding, default: True, using Google word2vec")
 tf.flags.DEFINE_integer("embedding_dim", 128, "Dimensionality of character embedding (default: 128)")
 tf.flags.DEFINE_string("filter_sizes", "3,4,5", "Comma-separated filter sizes (default: '3,4,5')")
 tf.flags.DEFINE_integer("num_filters", 128, "Number of filters per filter size (default: 128)")
@@ -51,12 +52,21 @@ print("Loading data...")
 # x_text, y = data_helpers.load_data_and_labels(FLAGS.positive_data_file, FLAGS.negative_data_file)
 x_text, y = data_helpers.load_data(filePath=FLAGS.data_file)
 
+# default glove word2vec dimension
+# embedding_dimension = 100
+embedding_dimension = 50
+
 
 
 # Build vocabulary
 # 找到一条评论中，单词数量最多的那个
 max_document_length = max([len(x.split(" ")) for x in x_text])
 vocab_processor = learn.preprocessing.VocabularyProcessor(max_document_length)
+#fit the vocab from glove
+# pretrain = vocab_processor.fit(vocab)
+#transform inputs
+x = np.array(list(vocab_processor.transform(x_text)))
+
 # 这里的x变成了一个word index的二维数组
 x = np.array(list(vocab_processor.fit_transform(x_text)))
 
@@ -92,7 +102,7 @@ with tf.Graph().as_default():
             sequence_length=x_train.shape[1],
             num_classes=y_train.shape[1],
             vocab_size=len(vocab_processor.vocabulary_),
-            embedding_size=FLAGS.embedding_dim,
+            embedding_size=embedding_dimension,
             filter_sizes=list(map(int, FLAGS.filter_sizes.split(","))),
             num_filters=FLAGS.num_filters,
             l2_reg_lambda=FLAGS.l2_reg_lambda)
@@ -144,6 +154,18 @@ with tf.Graph().as_default():
 
         # Initialize all variables
         sess.run(tf.global_variables_initializer())
+
+        if FLAGS.enable_word_embeddings:
+            vocabulary = vocab_processor.vocabulary_
+            initW = None
+
+            glove_file = '../glove/glove.6B.50d.txt'
+
+            # load glove pretrain word embedding
+            print("load glove file ......")
+            initW = data_helpers.load_embedding_vectors_glove(vocabulary, glove_file, embedding_dimension)
+            print("glove file has been loaded")
+            sess.run(cnn.W.assign(initW))
 
         def train_step(x_batch, y_batch):
             """

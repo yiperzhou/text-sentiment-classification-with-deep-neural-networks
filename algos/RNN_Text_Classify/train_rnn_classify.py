@@ -196,7 +196,7 @@ def train_step():
         # print("test prediction result: ", test_predict_result)
 
         # load the original test text review
-        text_test_file = "/home/yi/sentimentAnalysis/data-preprocess/sentiment_CLF/test_tripadvisor_5cities.csv"
+        text_test_file = "/home/yi/sentimentAnalysis/data/csv/test_tripadvisor_5cities.csv"
         text_testDF = pd.read_csv(text_test_file)
         
         # open the previous wrong classification csv file

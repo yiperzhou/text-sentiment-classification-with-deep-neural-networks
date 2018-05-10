@@ -1,0 +1,6 @@
+glove 50 dimensions
+
+Total number of test examples: 1796
+Accuracy: 0.971604
+Saving evaluation to ./runs/1525968464/checkpoints/../cnn_prediction.csv
+

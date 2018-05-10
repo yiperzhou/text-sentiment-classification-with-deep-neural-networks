@@ -9,8 +9,8 @@ import _pickle as pkl
 # import cPickle as pickle
 
 #file path
-dataset_path1='/home/yi/sentimentAnalysis/sample-algorithm-code/RNN_Text_Classify/data/tripadvisor_5cities.pickle'
-dataset_path="/home/yi/sentimentAnalysis/sample-algorithm-code/LSTM-Sentiment-Analysis/RNN_Text_Classify/data/subj0.pkl"
+dataset_path1 = '/home/yi/sentimentAnalysis/data/csv/tripadvisor_5cities.pickle'
+dataset_path = "/home/yi/sentimentAnalysis/data/csv/subj0.pkl"
 
 def set_dataset_path(path):
     dataset_path=path

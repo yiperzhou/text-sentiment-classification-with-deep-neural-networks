@@ -10,8 +10,6 @@ class RNN_Model(object):
     def __init__(self,config,is_training=True):
 
         self.keep_prob=config.keep_prob
-        # self.batch_size = tf.placeholder(tf.int32, [])
-        # self.batch_size=tf.Variable(0.0,trainable=False)
 
         num_step=config.num_step
         self.input_data=tf.placeholder(tf.int32,[None,num_step])
@@ -23,11 +21,8 @@ class RNN_Model(object):
         vocabulary_size=config.vocabulary_size
         embed_dim=config.embed_dim
         hidden_layer_num=config.hidden_layer_num
-        # self.new_batch_size = tf.placeholder(tf.float32,shape=[],name="new_batch_size")
-        # self._batch_size_update = tf.assign(self.batch_size,self.new_batch_size)
 
         #build LSTM network
-
         lstm_cell = tf.nn.rnn_cell.BasicLSTMCell(hidden_neural_size,forget_bias=0.0,state_is_tuple=True)
         if self.keep_prob<1:
             lstm_cell =  tf.nn.rnn_cell.DropoutWrapper(
@@ -77,15 +72,10 @@ class RNN_Model(object):
                 print("-------------------------------------", squares)
             except:
                 pass
-            # [self.prediction], self.target, self.
-            # tf.Print(self.prediction, [self.prediction])
-            # sess.run(tf.Print(self.prediction, [self.prediction]))
-            # print(self.prediction)
+
             self.correct_prediction = tf.equal(self.prediction,self.target)
             self.correct_num=tf.reduce_sum(tf.cast(self.correct_prediction,tf.float32))
             self.accuracy = tf.reduce_mean(tf.cast(self.correct_prediction,tf.float32),name="accuracy")
-        # add summary
-        # correct_prediction_summary = tf.summary.histogram("prediction_detail", self.prediction )
         #add summary
         loss_summary = tf.summary.scalar("loss",self.cost)
         #add summary
@@ -114,8 +104,6 @@ class RNN_Model(object):
 
         self.summary =tf.summary.merge([loss_summary,accuracy_summary,self.grad_summaries_merged])
 
-
-
         optimizer = tf.train.GradientDescentOptimizer(self.lr)
         optimizer.apply_gradients(zip(grads, tvars))
         self.train_op=optimizer.apply_gradients(zip(grads, tvars))
@@ -125,8 +113,7 @@ class RNN_Model(object):
 
     def assign_new_lr(self,session,lr_value):
         session.run(self._lr_update,feed_dict={self.new_lr:lr_value})
-    # def assign_new_batch_size(self,session,batch_size_value):
-    #     session.run(self._batch_size_update,feed_dict={self.new_batch_size:batch_size_value})
+
 
 
 

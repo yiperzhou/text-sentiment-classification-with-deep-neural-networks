@@ -5,47 +5,20 @@ date:22/11/2016
 """
 import numpy as np
 import _pickle as pkl
-# import cPickle as pkl
-# import cPickle as pickle
 
 #file path
-dataset_path1 = '/home/yi/sentimentAnalysis/data/csv/tripadvisor_5cities.pickle'
-dataset_path = "/home/yi/sentimentAnalysis/data/csv/subj0.pkl"
+dataset_path = '/home/yi/sentimentAnalysis/data/csv/tripadvisor_5cities.pickle'
 
-def set_dataset_path(path):
-    dataset_path=path
+def load_data(max_len,batch_size,n_words=20000, valid_portion=0.1, sort_by_len=True):
 
-
-
-
-def load_data(max_len,batch_size,n_words=20000,valid_portion=0.1,sort_by_len=True):
-    # f=open(dataset_path,'rb')
-    # print ('load data from %s',dataset_path)
-    # train_set = np.array(pkl.load(f))
-    # test_set = np.array(pkl.load(f))
-    # f.close()
-
-    f = open(dataset_path1, 'rb')
+    f = open(dataset_path, 'rb')
     
-    print ('load data from %s',dataset_path1)
+    print('load data from %s',dataset_path1)
     train_set, test_set = np.array(pkl.load(f))
 
-    # data_size = len(whole_set[0])
-    # train_size = int(0.9 * data_size)
-    
-    # train_set = np.array([whole_set[0][:train_size],whole_set[1][:train_size]])
-    # test_set = np.array([whole_set[0][train_size:],whole_set[1][train_size:]])
-    
     f.close()
 
-
-
-
-
     train_set_x,train_set_y = train_set
-
-
-
 
     #train_set length
     n_samples= len(train_set_x)
@@ -61,8 +34,7 @@ def load_data(max_len,batch_size,n_words=20000,valid_portion=0.1,sort_by_len=Tru
     train_set = (train_set_x, train_set_y)
     valid_set = (valid_set_x, valid_set_y)
 
-
-    #remove unknow words
+    #remove unknown words
     def remove_unk(x):
         return [[1 if w >= n_words else w for w in sen] for sen in x]
 
@@ -74,8 +46,6 @@ def load_data(max_len,batch_size,n_words=20000,valid_portion=0.1,sort_by_len=Tru
     train_set_x = remove_unk(train_set_x)
     valid_set_x = remove_unk(valid_set_x)
     test_set_x = remove_unk(test_set_x)
-
-
 
     def len_argsort(seq):
         return sorted(range(len(seq)), key=lambda x: len(seq[x]))
@@ -97,8 +67,6 @@ def load_data(max_len,batch_size,n_words=20000,valid_portion=0.1,sort_by_len=Tru
     train_set=(train_set_x,train_set_y)
     valid_set=(valid_set_x,valid_set_y)
     test_set=(test_set_x,test_set_y)
-
-
 
 
     new_train_set_x=np.zeros([len(train_set[0]),max_len])
@@ -132,7 +100,7 @@ def load_data(max_len,batch_size,n_words=20000,valid_portion=0.1,sort_by_len=Tru
         del new_x,new_y
         return new_set
 
-    train_set=padding_and_generate_mask(train_set[0],train_set[1],new_train_set_x,new_train_set_y,mask_train_x)
+    train_set=padding_and_generate_mask(train_set[0], train_set[1], new_train_set_x, new_train_set_y, mask_train_x)
     test_set=padding_and_generate_mask(test_set[0],test_set[1],new_test_set_x,new_test_set_y,mask_test_x)
     valid_set=padding_and_generate_mask(valid_set[0],valid_set[1],new_valid_set_x,new_valid_set_y,mask_valid_x)
 
@@ -154,13 +122,7 @@ def batch_iter(data,batch_size):
         return_x = x[start_index:end_index]
         return_y = y[start_index:end_index]
         return_mask_x = mask_x[:,start_index:end_index]
-        # if(len(return_x)<batch_size):
-        #     print(len(return_x))
-        #     print return_x
-        #     print return_y
-        #     print return_mask_x
-        #     import sys
-        #     sys.exit(0)
+
         yield (return_x,return_y,return_mask_x)
 
 

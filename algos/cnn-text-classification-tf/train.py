@@ -14,7 +14,7 @@ import sys
 
 # Data loading params
 tf.flags.DEFINE_float("dev_sample_percentage", .1, "Percentage of the training data to use for validation")
-tf.flags.DEFINE_string("data_file", "../../data/csv/train_tripadvisor_5cities.csv", "data source file")
+tf.flags.DEFINE_string("data_file", "../../data/rev_sent_train_test/tripadvisor/rev_sent_train_tripadvisor.csv", "data source file")
 
 # Model Hyperparameters
 tf.flags.DEFINE_bool("enable_word_embeddings", True, "Enable/disable the word embedding, default: True, using Google word2vec")
@@ -55,7 +55,7 @@ x_text, y = data_helpers.load_data(filePath=FLAGS.data_file)
 # default glove word2vec dimension
 # embedding_dimension = 100
 embedding_dimension = 50
-
+num_filters = 50
 
 
 # Build vocabulary
@@ -65,10 +65,9 @@ vocab_processor = learn.preprocessing.VocabularyProcessor(max_document_length)
 #fit the vocab from glove
 # pretrain = vocab_processor.fit(vocab)
 #transform inputs
-x = np.array(list(vocab_processor.transform(x_text)))
 
 # 这里的x变成了一个word index的二维数组
-x = np.array(list(vocab_processor.fit_transform(x_text)))
+x = np.asarray(list(vocab_processor.fit_transform(x_text)))
 
 # Randomly shuffle data
 np.random.seed(10)
@@ -104,7 +103,7 @@ with tf.Graph().as_default():
             vocab_size=len(vocab_processor.vocabulary_),
             embedding_size=embedding_dimension,
             filter_sizes=list(map(int, FLAGS.filter_sizes.split(","))),
-            num_filters=FLAGS.num_filters,
+            num_filters=num_filters,
             l2_reg_lambda=FLAGS.l2_reg_lambda)
 
         # Define Training procedure

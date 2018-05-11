@@ -180,7 +180,7 @@ def reviews_index(train_reviewsList, test_reviewsList, y_train, y_test, wordsSet
 
             # DF = pd.DataFrame({0:reviews_index, 1:Y})
             # DF.to_pickle("/home/yi/csv-zusammenfuehren.de_r922bdrm_XY.pkl")
-            print("pickle done")
+            print("pickle done_clean")
             return 0
     else:
         print("length error")

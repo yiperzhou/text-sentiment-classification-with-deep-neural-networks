@@ -2,11 +2,11 @@ import tensorflow as tf
 import numpy as np
 import os
 import time
-import datetime
 from rnn_model import RNN_Model
 import data_helper
 import pandas as pd
 from sklearn import metrics
+import csv
 
 flags =tf.app.flags
 FLAGS = flags.FLAGS
@@ -19,7 +19,6 @@ flags.DEFINE_integer('vocabulary_size',20000,'vocabulary_size')
 flags.DEFINE_integer('emdedding_dim',128,'embedding dim')
 flags.DEFINE_integer('hidden_neural_size',128,'LSTM hidden neural size')
 flags.DEFINE_integer('hidden_layer_num',1,'LSTM hidden layer num')
-flags.DEFINE_string('dataset_path','data/subj0.pkl','dataset path')
 flags.DEFINE_integer('max_len',40,'max_len of training sentence')
 flags.DEFINE_integer('valid_num',100,'epoch num of validation')
 flags.DEFINE_integer('checkpoint_num',1000,'epoch num of checkpoint')
@@ -31,6 +30,7 @@ flags.DEFINE_integer('max_decay_epoch',30,'num epoch')
 flags.DEFINE_integer('max_grad_norm',5,'max_grad_norm')
 flags.DEFINE_string('out_dir',os.path.abspath(os.path.join(os.path.curdir,"runs")),'output directory')
 flags.DEFINE_integer('check_point_every',10,'checkpoint every num epoch ')
+
 
 class Config(object):
 
@@ -141,11 +141,9 @@ def train_step():
             test_model = RNN_Model(config=eval_config,is_training=False)
 
         #add summary
-        # train_summary_op = tf.merge_summary([model.loss_summary,model.accuracy])
         train_summary_dir = os.path.join(config.out_dir,"summaries","train")
         train_summary_writer =  tf.summary.FileWriter(train_summary_dir,session.graph)
 
-        # dev_summary_op = tf.merge_summary([valid_model.loss_summary,valid_model.accuracy])
         dev_summary_dir = os.path.join(eval_config.out_dir,"summaries","dev")
         dev_summary_writer =  tf.summary.FileWriter(dev_summary_dir,session.graph)
 
@@ -176,6 +174,23 @@ def train_step():
         print("training takes %d seconds already\n"%(end_time-begin_time))
         test_accuracy, test_predict_result=evaluate(test_model,session,test_data)
         test_predict_result = np.concatenate(test_predict_result).ravel()
+
+        test_file_path = "../../data/csv/test_tripadvisor_5cities.csv"
+        test_df = pd.read_csv(test_file_path)
+        X_test = test_df["review"]
+
+        print("size of predict result: ", len(test_predict_result))
+        print("size of original test result: ", len(X_test))
+
+        # Save the evaluation to a csv
+        predictions_human_readable = np.column_stack((np.array(X_test), test_predict_result))
+
+        result_file_file = "rnn_prediction.csv"
+        with open(result_file_file, 'w') as f:
+            csv.writer(f).writerows(predictions_human_readable)
+
+
+
         print("the test data accuracy is %f"%test_accuracy)
 
         print(len(test_predict_result))
@@ -187,11 +202,6 @@ def train_step():
 
         print("LSTM metrics report: ")
         print(metrics.classification_report(test_data[1][:1792], test_predict_result, target_names=None))
-        
-        
-
-
-
 
         # print("test prediction result: ", test_predict_result)
 

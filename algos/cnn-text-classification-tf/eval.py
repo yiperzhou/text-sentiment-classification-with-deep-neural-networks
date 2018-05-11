@@ -13,7 +13,9 @@ import sys
 # ==================================================
 
 # Data Parameters
-tf.flags.DEFINE_string("data_file", "../../data/csv/test_tripadvisor_5cities.csv", "data source file")
+tf.flags.DEFINE_string("data_file", "../../data/rev_sent_train_test/tripadvisor/rev_sent_test_tripadvisor.csv", "data source file")
+
+
 # Eval Parameters
 tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (default: 64)")
 tf.flags.DEFINE_string("checkpoint_dir", "", "Checkpoint directory from training run")
@@ -87,7 +89,7 @@ if y_test is not None:
 
 # Save the evaluation to a csv
 predictions_human_readable = np.column_stack((np.array(x_raw), all_predictions))
-out_path = os.path.join(FLAGS.checkpoint_dir, "..", "cnn_prediction.csv")
+out_path = os.path.join(FLAGS.checkpoint_dir, "..", "CNN_glove_50dims_prediction.csv")
 print("Saving evaluation to {0}".format(out_path))
 with open(out_path, 'w') as f:
     csv.writer(f).writerows(predictions_human_readable)

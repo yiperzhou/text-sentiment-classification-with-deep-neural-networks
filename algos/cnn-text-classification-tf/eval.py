@@ -13,13 +13,13 @@ import sys
 # ==================================================
 
 # Data Parameters
-tf.flags.DEFINE_string("data_file", "../../data/rev_sent_train_test/tripadvisor/rev_sent_test_tripadvisor.csv", "data source file")
+tf.flags.DEFINE_string("data_file", "/home/yi/sentimentAnalysis/data/rev_sent_5_score_train_test/tripadvisor/5_score_test.csv", "data source file")
 
 
 # Eval Parameters
 tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (default: 64)")
 tf.flags.DEFINE_string("checkpoint_dir", "", "Checkpoint directory from training run")
-tf.flags.DEFINE_boolean("eval_train", False, "Evaluate on all training data")
+tf.flags.DEFINE_boolean("eval_train", True, "Evaluate on all training data")
 
 # Misc Parameters
 tf.flags.DEFINE_boolean("allow_soft_placement", True, "Allow device soft device placement")
@@ -88,8 +88,8 @@ if y_test is not None:
     print("Accuracy: {:g}".format(correct_predictions/float(len(y_test))))
 
 # Save the evaluation to a csv
-predictions_human_readable = np.column_stack((np.array(x_raw), all_predictions))
-out_path = os.path.join(FLAGS.checkpoint_dir, "..", "CNN_glove_50dims_prediction.csv")
+predictions_human_readable = np.column_stack((x_raw, all_predictions))
+out_path = os.path.join(FLAGS.checkpoint_dir, "..", "CNN_word2vec_300dims_prediction.csv")
 print("Saving evaluation to {0}".format(out_path))
 with open(out_path, 'w') as f:
     csv.writer(f).writerows(predictions_human_readable)

@@ -3,6 +3,7 @@ import re
 import itertools
 from collections import Counter
 import sys
+import tensorflow as tf
 
 def clean_str(string):
     """
@@ -51,26 +52,30 @@ def load_data(filePath):
     import pandas as pd
     data = pd.read_csv(filePath)
 
-    train_set_x, train_set_y = data["review"], data["sentiment"]
+    train_set_x, train_set_y = data["review"], data["score"]
     y = list()
-    for yi in train_set_y:
-        if yi == 1:
-            y.append([0, 1])
-        elif yi == 0:
-            y.append([1, 0])
-        else:
-            print("data label preprocessing error.")
-            sys.exit(0)
-    train_set_x = list(train_set_x)
-    y = np.asarray(y)
+    train_set_y = train_set_y -1
+    y = tf.keras.utils.to_categorical(train_set_y, 5)
+    # for yi in train_set_y:
+    #     if yi == 1:
+    #         y.append([0, 1])
+    #     elif yi == 0:
+    #         y.append([1, 0])
+    #     else:
+    #         print("data label preprocessing error.")
+    #         sys.exit(0)
+    # train_set_x = list(train_set_x)
+    # y = np.asarray(y)
     return [train_set_x, y]
 
 
-def batch_iter(data, batch_size, num_epochs, shuffle=True):
+def batch_iter(data, batch_size, num_epochs, shuffle=False):
     """
     Generates a batch iterator for a dataset.
     """
-    data = np.array(data)
+    print(type(data))
+    print(len(data))
+    # data = np.asarray(data)
     data_size = len(data)
     num_batches_per_epoch = int((len(data)-1)/batch_size) + 1
     for epoch in range(num_epochs):
@@ -99,3 +104,19 @@ def load_embedding_vectors_glove(vocabulary, filename, vector_size):
             embedding_vectors[idx] = vector
     f.close()
     return embedding_vectors
+
+def load_embedding_word2vec(vocabulary, filename, vector_size):
+    # load embedding_vectors from the glove
+    # initial matrix with random uniform
+    embedding_vectors = np.random.uniform(-0.25, 0.25, (len(vocabulary), vector_size))
+    f = open(filename)
+    for line in f:
+        values = line.split()
+        word = values[0]
+        vector = np.asarray(values[1:], dtype="float32")
+        idx = vocabulary.get(word)
+        if idx != 0:
+            embedding_vectors[idx] = vector
+    f.close()
+    return embedding_vectors
+

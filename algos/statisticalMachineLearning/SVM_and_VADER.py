@@ -12,7 +12,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import GridSearchCV
 from sklearn import metrics
 from sklearn.pipeline import Pipeline
-from sklearn.svm import LinearSVC
+from sklearn.svm import LinearSVC, SVC
 from sklearn.model_selection import train_test_split
 import nltk
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
@@ -21,6 +21,7 @@ import os
 import pandas as pd
 import csv
 import datetime
+from sklearn.metrics import accuracy_score
 
 def clf_VADER(x_test):
     '''
@@ -59,7 +60,7 @@ def clf_SVM(X_train, y_train, X_test):
     # that are too rare or too frequent
     pipeline = Pipeline([
         ('vect', TfidfVectorizer(min_df=3, max_df=0.95)),
-        ('clf', LinearSVC(C=1000)),
+        ('clf', SVC(decision_function_shape='ovo')),
     ])
 
     # TASK: Build a grid search to find out whether unigrams or bigrams are more useful.
@@ -86,14 +87,14 @@ if __name__ == "__main__":
 
     timestamp = datetime.datetime.now()
     ts_str = timestamp.strftime('%Y-%m-%d-%H-%M-%S')
-    prefix_path = "../../data/classification_result" + os.sep + ts_str
+    prefix_path = "./" + os.sep + ts_str
 
-    train_filePath = "/home/yi/sentimentAnalysis/data/csv/train_tripadvisor_5cities.csv"
-    test_filePath = "/home/yi/sentimentAnalysis/data/csv/test_tripadvisor_5cities.csv"
+    train_filePath = "/home/yi/sentimentAnalysis/data/rev_sent_5_score_train_test/tripadvisor/5_score_train.csv"
+    test_filePath = "/home/yi/sentimentAnalysis/data/rev_sent_5_score_train_test/tripadvisor/5_score_test.csv"
 
     train_data = pd.read_csv(train_filePath)
     X_train = train_data["review"]
-    y_train = train_data["sentiment"]
+    y_train = train_data["score"]
 
     # check the consistent size of reviews and sentiment
     assert len(X_train) == len(y_train)
@@ -101,7 +102,7 @@ if __name__ == "__main__":
 
     test_data = pd.read_csv(test_filePath)
     X_test = test_data["review"]
-    y_test = test_data["sentiment"]
+    y_test = test_data["score"]
 
     assert len(X_test) == len(y_test)
 
@@ -110,25 +111,26 @@ if __name__ == "__main__":
     print("train data size : ", len(y_train), "test data size : ", len(y_test))
 
 
-    # first test on VADER system
-    y_pred_VADER, time_VADER = clf_VADER(X_test)
-    print("VADER elapsed time: ", round(time_VADER, 2), " s")
-
-    os.makedirs(prefix_path)
-
-    # Save the evaluation to a csv
-    VADER_predictions_csv= np.column_stack((np.array(X_test), y_pred_VADER))
-
-    vader_out_path = prefix_path + os.sep + "VADER_prediction.csv"
-    with open(vader_out_path, 'w') as f:
-        csv.writer(f).writerows(VADER_predictions_csv)
-    f.close()
+    # # first test on VADER system
+    # y_pred_VADER, time_VADER = clf_VADER(X_test)
+    # print("VADER elapsed time: ", round(time_VADER, 2), " s")
+    #
+    # os.makedirs(prefix_path)
+    #
+    # # Save the evaluation to a csv
+    # VADER_predictions_csv= np.column_stack((X_test, y_pred_VADER))
+    #
+    # vader_out_path = prefix_path + os.sep + "VADER_prediction.csv"
+    # with open(vader_out_path, 'w') as f:
+    #     csv.writer(f).writerows(VADER_predictions_csv)
+    # f.close()
 
 
 
     # SVM prediction
     y_pred_SVM, time_SVM = clf_SVM(X_train, y_train, X_test)
-    SVM_predictions_csv = np.column_stack((np.array(X_test), y_pred_SVM))
+    print("multiclass SVM: ", accuracy_score(y_test, y_pred_SVM))
+    SVM_predictions_csv = np.column_stack((X_test, y_pred_SVM))
     svm_out_path = prefix_path + os.sep + "SVM_prediction.csv"
     with open(svm_out_path, 'w') as f:
         csv.writer(f).writerows(SVM_predictions_csv)

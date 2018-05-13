@@ -1,0 +1,3 @@
+Total number of test examples: 372354
+Accuracy: 0.713786
+Saving evaluation to runs/1526138945/checkpoints/../CNN_glove_50dims_prediction.csv

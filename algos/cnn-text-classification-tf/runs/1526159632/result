@@ -1,0 +1,5 @@
+<class 'list'>
+372354
+Total number of test examples: 372354
+Accuracy: 0.726921
+Saving evaluation to runs/1526159632/checkpoints/../CNN_word2vec_300dims_prediction.csv

@@ -22,6 +22,8 @@ import pandas as pd
 import csv
 import datetime
 from sklearn.metrics import accuracy_score
+import sys
+import liblinearutil
 
 def clf_VADER(x_test):
     '''
@@ -34,13 +36,22 @@ def clf_VADER(x_test):
     analyzer = SentimentIntensityAnalyzer()
     for i in x_test:
         vs = analyzer.polarity_scores(i)
-        if vs["compound"] > 0:
+        # map [-1,1] to [1,5], mapping rule is below:
+        # [-1, -0.6), [-0.6, -0.2), [-0.2, 0.2), [0.2, 0.6), [0.6, 1)
+        score = vs["compound"]
+        if score >= -1 and score < -0.6:
             y_pred.append(1)
-        if vs["compound"] < 0:
-            y_pred.append(0)
-        # if the predicted review is neutral, then set it as positive since we only deal with two class classification
-        if vs["compound"] == 0:
-             y_pred.append(1)
+        elif score >= -0.6 and score < -0.2:
+            y_pred.append(2)
+        elif score >= -0.2 and score < 0.2:
+            y_pred.append(3)
+        elif score >= 0.2 and score < 0.6:
+            y_pred.append(4)
+        elif score >= 0.6 and score <= 1:
+            y_pred.append(5)
+        else:
+            print("VADER score not in [-1, 1]")
+            sys.exit()
     elapse = time.time() - start
     return y_pred, elapse
 
@@ -83,6 +94,64 @@ def clf_SVM(X_train, y_train, X_test):
     return y_pred, elapse
 
 
+def liblinear_svm(x_train, y_train, x_test, y_test):
+    x_train = x_train[:100]
+    y_train = y_train[:100]
+
+    x_test = x_test[:100]
+    y_test = y_test[:100]
+
+
+    start = time.time()
+    vector = TfidfVectorizer(min_df=3, max_df=0.95)
+    x_train_vectors = vector.fit_transform(x_train)
+    x_test_vectors = vector.fit_transform(x_test)
+
+    print("type : ", type(x_train_vectors))
+    print(x_train_vectors[0])
+    print("liblinear svm")
+
+    elapse = time.time() - start
+
+    p_labs = 0
+
+
+    # model = train(y_train, x_train)
+    # y是list/tuple类型，长度为l的训练标签向量
+    # x是list/tuple类型的训练实例，list中的每一个元素是list/tuple/dictory类型的feature向量
+
+    # examples
+    # y, x = svm_read_problem('../heart_scale')
+    # 读入libsvm格式的数据
+    prob = liblinearutil.problem(list(y_train), x_train_vectors)
+    # 将y,x写作prob
+    param = liblinearutil.parameter('-s 3 -c 5 -q')
+    # 将参数命令写作param
+
+    # m = train(y, x, '-c 5')
+    # m = train(prob, '-w1 5 -c 5')
+    m = liblinearutil.train(prob, param)
+    # 进行训练
+    #
+    # CV_ACC = train(y, x, '-v 3')
+    # # -v 3 是指进行3-fold的交叉验证
+    # # 返回的是交叉验证的准确率
+    #
+    # best_C, best_rate = train(y, x, '-C -s 0')
+    #
+    p_labs, p_acc, p_vals = liblinearutil.predict(list(y_test), x_test_vectors, m)
+    # # y是testing data的真实标签，用于计算准确率
+    # # x是待预测样本
+    # # p_labs: 预测出来的标签
+    # # p_acc: tuple类型，包括准确率，MSE，Squared correlation coefficient(平方相关系数)
+    # # p_vals: list, 直接由模型计算出来的值，没有转化成1，0的值，也可以看做是概率估计值
+    #
+    (ACC, MSE, SCC) = liblinearutil.evaluations(p_labs, list(y_test))
+    # # ty: list, 真实值
+    # # pv: list, 估计值
+    print("finish prediction")
+    return p_labs, elapse
+
 if __name__ == "__main__":
 
     timestamp = datetime.datetime.now()
@@ -111,31 +180,36 @@ if __name__ == "__main__":
     print("train data size : ", len(y_train), "test data size : ", len(y_test))
 
 
-    # # first test on VADER system
-    # y_pred_VADER, time_VADER = clf_VADER(X_test)
-    # print("VADER elapsed time: ", round(time_VADER, 2), " s")
-    #
-    # os.makedirs(prefix_path)
-    #
-    # # Save the evaluation to a csv
-    # VADER_predictions_csv= np.column_stack((X_test, y_pred_VADER))
-    #
-    # vader_out_path = prefix_path + os.sep + "VADER_prediction.csv"
-    # with open(vader_out_path, 'w') as f:
-    #     csv.writer(f).writerows(VADER_predictions_csv)
-    # f.close()
+
 
 
 
     # SVM prediction
-    y_pred_SVM, time_SVM = clf_SVM(X_train, y_train, X_test)
-    print("multiclass SVM: ", accuracy_score(y_test, y_pred_SVM))
-    SVM_predictions_csv = np.column_stack((X_test, y_pred_SVM))
-    svm_out_path = prefix_path + os.sep + "SVM_prediction.csv"
-    with open(svm_out_path, 'w') as f:
-        csv.writer(f).writerows(SVM_predictions_csv)
-    f.close()
+    y_pred_SVM, time_SVM = liblinear_svm(X_train, y_train, X_test,y_test)
 
+    # print("multiclass liblinear SVM: ", accuracy_score(y_test, y_pred_SVM))
+    # SVM_predictions_csv = np.column_stack((X_test, y_pred_SVM))
+    # svm_out_path = prefix_path + os.sep + "liblinear_SVM_prediction.csv"
+    # with open(svm_out_path, 'w') as f:
+    #     csv.writer(f).writerows(SVM_predictions_csv)
+    # f.close()
+
+
+
+
+    # # first test on VADER system
+    # y_pred_VADER, time_VADER = clf_VADER(X_test)
+    # print("VADER elapsed time: ", round(time_VADER, 2), " s")
+    #
+    # # os.makedirs(prefix_path)
+    #
+    # # Save the evaluation to a csv
+    # VADER_predictions_csv= np.column_stack((X_test, y_pred_VADER))
+    #
+    # vader_out_path = "VADER_prediction.csv"
+    # with open(vader_out_path, 'w') as f:
+    #     csv.writer(f).writerows(VADER_predictions_csv)
+    # f.close()
 
 
     # # find these reviews which are wrongly classified

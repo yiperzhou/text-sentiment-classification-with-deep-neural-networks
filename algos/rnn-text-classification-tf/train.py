@@ -28,7 +28,7 @@ tf.flags.DEFINE_float("dropout_keep_prob", 0.5, "Dropout keep probability (Defau
 tf.flags.DEFINE_float("l2_reg_lambda", 3.0, "L2 regularization lambda (Default: 3.0)")
 
 # Training parameters
-tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (Default: 64)")
+tf.flags.DEFINE_integer("batch_size", 128, "Batch Size (Default: 64)")
 tf.flags.DEFINE_integer("num_epochs", 100, "Number of training epochs (Default: 100)")
 tf.flags.DEFINE_integer("display_every", 100, "Number of iterations to display training info.")
 tf.flags.DEFINE_integer("evaluate_every", 100, "Evaluate model on dev set after this many steps")
@@ -145,7 +145,7 @@ def train():
 
                 initW = data_helpers.load_embedding_vectors_glove(vocabulary, glove_file, glove_embedding_dimension)
                 sess.run(rnn.W_text.assign(initW))
-                print("Success to load pre-trained word2vec model!\n")
+                print("Success to load pre-trained glove model!\n")
 
             # Generate batches
             batches = data_helpers.batch_iter(

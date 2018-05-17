@@ -13,7 +13,7 @@ tf.flags.DEFINE_string("pos_dir", "data/rt-polaritydata/rt-polarity.pos", "Path 
 tf.flags.DEFINE_string("neg_dir", "data/rt-polaritydata/rt-polarity.neg", "Path of negative data")
 
 # Eval Parameters
-tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (Default: 64)")
+tf.flags.DEFINE_integer("batch_size", 128, "Batch Size (Default: 64)")
 tf.flags.DEFINE_string("checkpoint_dir", "", "Checkpoint directory from training run")
 
 # Misc Parameters
@@ -79,7 +79,7 @@ def eval():
 
     # Save the evaluation to a csv
     predictions_human_readable = np.column_stack((x_raw, all_predictions))
-    out_path = os.path.join(FLAGS.checkpoint_dir, "..", "rnn_vanilla_word2vec_300dims_prediction.csv")
+    out_path = os.path.join(FLAGS.checkpoint_dir, "..", "rnn_lstm_glove_50dims_prediction.csv")
     print("Saving evaluation to {0}".format(out_path))
     with open(out_path, 'w') as f:
         csv.writer(f).writerows(predictions_human_readable)

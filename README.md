@@ -79,3 +79,8 @@ tensorflow实现基于LSTM的文本分类方法, 博客链接， https://blog.cs
 CNN  
 Implementing a CNN for Text Classification in TensorFlow, http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/  
 code, https://github.com/dennybritz/cnn-text-classification-tf 
+
+## CNN，RNN中实验的具体设置：
+filter的宽度等于词向量的长度,
+flag.number_filters = flag.word_embedding
+

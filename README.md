@@ -80,6 +80,14 @@ CNN
 Implementing a CNN for Text Classification in TensorFlow, http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/  
 code, https://github.com/dennybritz/cnn-text-classification-tf 
 
+
+Recurrent Convolutional Neural Network with text classifier
+https://github.com/airalcorn2/Recurrent-Convolutional-Neural-Network-Text-Classifier
+
+Dynamic-CNN-for-Modelling-Sentences
+https://github.com/hritik25/Dynamic-CNN-for-Modelling-Sentences
+
+
 ## CNN，RNN中实验的具体设置：
 filter的宽度等于词向量的长度,
 flag.number_filters = flag.word_embedding

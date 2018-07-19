@@ -1,12 +1,21 @@
-# sentimentAnalysis
+## Environment
+### TUT ThinkStation
+* Python 3.6.4 (anaconda)  
+* cudatoolkit  9.0  -- install with conda-forge community version  
+* tensorflow-gpu 1.8.0  
+### XPS laptop
+* Python 3.5.5(anaconda)
 
-## data stored in MongoDB command
-* show collection statistics  
-db.Amsterdam2_tripadvisor_hotels_reviews.stats()
-* rename collection name  
-db.Amsterdam3_tripadvisor_hotels_reviews.renameCollection("amsterdamTripadvisor")
+
+
+
+## sentimentAnalysis
+### data folder
+* ./data/  
+
+
  
-## Data Sample
+### Data Sample
 * tripadvisor review data sample  
 ```json
 
@@ -41,41 +50,23 @@ db.Amsterdam3_tripadvisor_hotels_reviews.renameCollection("amsterdamTripadvisor"
     "positive_content": "Amazing hotel full of character, large comfortable room with great facilities, really nice friendly and helpful staff, great location right in the centre of the city, dining hall was spectacular, 24 hour shop across the road"
 }
 ```
-## raw review data statistics
-### Booking.com
+### clean review data statistics
+ 
+ data source                       |       number    
+ ----------------------------------|-----------------
+ booking.com                       |   xxx  
+ tripadvisor.com                   |   xxx
 
-### tripadvisor.com
 
 
-## review data statistics after removing records which contain absent or null value
-### Booking.com
-
-### Tripadvisor.com
-
-# Experiment Environment
-ubuntu 16.10  
-keras version: '2.1.6'  
-(backend) tensorflow version: 1.7.0 with GPU version  
-CUDA version: 9.0.176  
-cudnn version: 7.1  
-python 3.5  
-
-# algos
-## VADER
-VADER Sentiment Analysis. VADER (Valence Aware Dictionary and sEntiment Reasoner) is a lexicon and 
-rule-based sentiment analysis tool that is specifically attuned to sentiments expressed in social media, 
-and works well on texts from other domains.
-https://github.com/cjhutto/vaderSentiment
-
-## SVM, LR
-reference paper: Thumbs up? Sentiment Classification using Machine Learning
-Techniques, link, https://arxiv.org/pdf/cs/0205070.pdf
-
-## RNN with LSTM, CNN
-LSTM  
-tensorflow实现基于LSTM的文本分类方法, 博客链接， https://blog.csdn.net/u010223750/article/details/53334313,
-源码： https://github.com/luchi007/RNN_Text_Classify  
-
-CNN  
-Implementing a CNN for Text Classification in TensorFlow, http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/  
-code, https://github.com/dennybritz/cnn-text-classification-tf 
+## algos
+algorithms               |             details      | link
+-------------------------|--------------------------|------------------- 
+VADER                    |           xxx            | https://github.com/cjhutto/vaderSentiment
+SVM(LR)                  | [1]                      |  xxx
+RNN with LSTM            |  [2]                     |   xxx
+CNN                      |  [3]                     |         []
+  
+[1]Thumbs up? Sentiment Classification using Machine Learning  |https://arxiv.org/pdf/cs/0205070.pdf
+[2]tensorflow实现基于LSTM的文本分类方法, 博客链接， https://blog.csdn.net/u010223750/article/details/53334313; https://github.com/luchi007/RNN_Text_Classify  
+[3]Implementing a CNN for Text Classification in TensorFlow, http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/; https://github.com/dennybritz/cnn-text-classification-tf 

@@ -1,0 +1,9 @@
+param = liblinearutil.parameter('-s 3 -c 5 -q')
+
+
+
+liblinear svm
+Accuracy = 24.3317% (90600/372354) (classification)
+finish prediction, prediction time:  334.408077955246
+time elapse:  334.408077955246
+multiclass liblinear SVM:  0.24331684364878584

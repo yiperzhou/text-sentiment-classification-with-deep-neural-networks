@@ -1,0 +1,29 @@
+param = liblinearutil.parameter('-s 3 -c 1')
+
+
+
+
+
+optimization finished, #iter = 37
+Objective value = -639320.812542
+nSV = 674778
+...*
+optimization finished, #iter = 36
+Objective value = -438577.499171
+nSV = 471087
+...*
+optimization finished, #iter = 36
+Objective value = -935850.213348
+nSV = 976115
+...*
+optimization finished, #iter = 32
+Objective value = -186939.689648
+nSV = 213377
+..*
+optimization finished, #iter = 25
+Objective value = -99958.370786
+nSV = 115143
+Accuracy = 31.8611% (118636/372354) (classification)
+finish prediction, prediction time:  303.2363314628601
+time elapse:  303.2363314628601
+multiclass liblinear SVM:  0.3186107843611187

@@ -60,13 +60,16 @@
 
 
 ## algos
-algorithms               |             details      | link
--------------------------|--------------------------|------------------- 
-VADER                    |           xxx            | https://github.com/cjhutto/vaderSentiment
-SVM(LR)                  | [1]                      |  xxx
-RNN with LSTM            |  [2]                     |   xxx
-CNN                      |  [3]                     |         []
+order | algorithms               |  details      | accuracy
+------| -------------------------|---------------|------------------- 
+1     | VADER                    |  [1]          | 
+2     | SVM(LR)                  |  [2]          |  
+3     | RNN with LSTM            |  [3]          |   
+4     | CNN                      |  [4]          |   
   
-[1]Thumbs up? Sentiment Classification using Machine Learning  |https://arxiv.org/pdf/cs/0205070.pdf
-[2]tensorflow实现基于LSTM的文本分类方法, 博客链接， https://blog.csdn.net/u010223750/article/details/53334313; https://github.com/luchi007/RNN_Text_Classify  
-[3]Implementing a CNN for Text Classification in TensorFlow, http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/; https://github.com/dennybritz/cnn-text-classification-tf 
+  
+  
+[1] https://github.com/cjhutto/vaderSentiment
+[2]Thumbs up? Sentiment Classification using Machine Learning  |https://arxiv.org/pdf/cs/0205070.pdf
+[3]tensorflow实现基于LSTM的文本分类方法, 博客链接， https://blog.csdn.net/u010223750/article/details/53334313; https://github.com/luchi007/RNN_Text_Classify  
+[4]Implementing a CNN for Text Classification in TensorFlow, http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/; https://github.com/dennybritz/cnn-text-classification-tf 

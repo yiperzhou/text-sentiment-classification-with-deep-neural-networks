@@ -1,0 +1,1 @@
+"wiki.en.bin" and "wiki.en.vec" are stored here

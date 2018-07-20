@@ -1,0 +1,93 @@
+yi@yi-ThinkStation-P510:~/sentimentAnalysis/sample-algorithm-code/LSTM-Sentiment-Analysis/RNN_Text_Classify$ python train_rnn_classify.py 
+loading the dataset...
+load data from %s /home/yi/sentimentAnalysis/sample-algorithm-code/LSTM-Sentiment-Analysis/RNN_Text_Classify/data/file.pickle
+begin training
+2018-04-23 19:10:31.948142: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-04-23 19:10:32.197232: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: TITAN Xp major: 6 minor: 1 memoryClockRate(GHz): 1.582
+pciBusID: 0000:01:00.0
+totalMemory: 11.90GiB freeMemory: 10.31GiB
+2018-04-23 19:10:32.197265: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-23 19:10:32.428478: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-23 19:10:32.428515: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-23 19:10:32.428523: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-23 19:10:32.428808: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 9982 MB memory) -> physical GPU (device: 0, name: TITAN Xp, pci bus id: 0000:01:00.0, compute capability: 6.1)
+the 1 epoch training...
+the 100 step, train cost is: 0.408105 and the train accuracy is 0.859375 and the valid accuracy is 0.870050
+Saved model chechpoint to/home/yi/sentimentAnalysis/sample-algorithm-code/LSTM-Sentiment-Analysis/RNN_Text_Classify/runs/checkpoints/model-114
+
+the 2 epoch training...
+the 200 step, train cost is: 0.456954 and the train accuracy is 0.843750 and the valid accuracy is 0.870050
+the 3 epoch training...
+the 300 step, train cost is: 0.312961 and the train accuracy is 0.906250 and the valid accuracy is 0.870050
+the train is finished
+training takes 108 seconds already
+
+the test data accuracy is 0.923163
+program end!
+yi@yi-ThinkStation-P510:~/sentimentAnalysis/sample-algorithm-code/LSTM-Sentiment-Analysis/RNN_Text_Classify$ python train_rnn_classify.py 
+loading the dataset...
+load data from %s /home/yi/sentimentAnalysis/sample-algorithm-code/LSTM-Sentiment-Analysis/RNN_Text_Classify/data/file.pickle
+begin training
+2018-04-23 19:13:02.013131: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-04-23 19:13:02.239540: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1344] Found device 0 with properties: 
+name: TITAN Xp major: 6 minor: 1 memoryClockRate(GHz): 1.582
+pciBusID: 0000:01:00.0
+totalMemory: 11.90GiB freeMemory: 10.32GiB
+2018-04-23 19:13:02.239574: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-23 19:13:02.477230: I tensorflow/core/common_runtime/gpu/gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-23 19:13:02.477263: I tensorflow/core/common_runtime/gpu/gpu_device.cc:917]      0 
+2018-04-23 19:13:02.477272: I tensorflow/core/common_runtime/gpu/gpu_device.cc:930] 0:   N 
+2018-04-23 19:13:02.477566: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 9985 MB memory) -> physical GPU (device: 0, name: TITAN Xp, pci bus id: 0000:01:00.0, compute capability: 6.1)
+the 1 epoch training...
+the 100 step, train cost is: 0.407933 and the train accuracy is 0.859375 and the valid accuracy is 0.889851
+Saved model chechpoint to/home/yi/sentimentAnalysis/sample-algorithm-code/LSTM-Sentiment-Analysis/RNN_Text_Classify/runs/checkpoints/model-114
+
+the 2 epoch training...
+the 200 step, train cost is: 0.419193 and the train accuracy is 0.859375 and the valid accuracy is 0.889851
+the 3 epoch training...
+the 300 step, train cost is: 0.390334 and the train accuracy is 0.875000 and the valid accuracy is 0.889851
+the 4 epoch training...
+the 400 step, train cost is: 0.235835 and the train accuracy is 0.937500 and the valid accuracy is 0.889851
+the 5 epoch training...
+the 500 step, train cost is: 0.159354 and the train accuracy is 0.968750 and the valid accuracy is 0.889851
+the 6 epoch training...
+the 600 step, train cost is: 0.237759 and the train accuracy is 0.937500 and the valid accuracy is 0.889851
+the 7 epoch training...
+the 700 step, train cost is: 0.206260 and the train accuracy is 0.953125 and the valid accuracy is 0.889851
+the 8 epoch training...
+the 800 step, train cost is: 0.189000 and the train accuracy is 0.968750 and the valid accuracy is 0.889851
+the 900 step, train cost is: 0.567803 and the train accuracy is 0.781250 and the valid accuracy is 0.889851
+the 9 epoch training...
+the 1000 step, train cost is: 0.311249 and the train accuracy is 0.906250 and the valid accuracy is 0.889851
+the 10 epoch training...
+the 1100 step, train cost is: 0.611339 and the train accuracy is 0.781250 and the valid accuracy is 0.889851
+the 11 epoch training...
+the 1200 step, train cost is: 0.312450 and the train accuracy is 0.906250 and the valid accuracy is 0.889851
+Saved model chechpoint to/home/yi/sentimentAnalysis/sample-algorithm-code/LSTM-Sentiment-Analysis/RNN_Text_Classify/runs/checkpoints/model-1244
+
+the 12 epoch training...
+the 1300 step, train cost is: 0.312223 and the train accuracy is 0.906250 and the valid accuracy is 0.889851
+the 13 epoch training...
+the 1400 step, train cost is: 0.349377 and the train accuracy is 0.890625 and the valid accuracy is 0.889851
+the 14 epoch training...
+the 1500 step, train cost is: 0.311040 and the train accuracy is 0.906250 and the valid accuracy is 0.889851
+the 15 epoch training...
+the 1600 step, train cost is: 0.276998 and the train accuracy is 0.921875 and the valid accuracy is 0.889851
+the 16 epoch training...
+the 1700 step, train cost is: 0.226529 and the train accuracy is 0.953125 and the valid accuracy is 0.889851
+the 1800 step, train cost is: 0.280190 and the train accuracy is 0.921875 and the valid accuracy is 0.889851
+the 17 epoch training...
+the 1900 step, train cost is: 0.487252 and the train accuracy is 0.828125 and the valid accuracy is 0.889851
+the 18 epoch training...
+the 2000 step, train cost is: 0.237160 and the train accuracy is 0.937500 and the valid accuracy is 0.889851
+the 19 epoch training...
+the 2100 step, train cost is: 0.235065 and the train accuracy is 0.937500 and the valid accuracy is 0.889851
+the 20 epoch training...
+the 2200 step, train cost is: 0.196949 and the train accuracy is 0.953125 and the valid accuracy is 0.889851
+the train is finished
+training takes 911 seconds already
+
+the test data accuracy is 0.923163
+program end!
+

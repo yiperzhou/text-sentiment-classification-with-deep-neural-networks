@@ -1,0 +1,204 @@
+reviews,url,score,location,name
+<GET https://www.booking.com/reviews/fi/hotel/aallonkoti.html>,https://www.booking.com/hotel/fi/aallonkoti.html,"
+9.2
+","
+Alvar Aallon katu 3 B, Eteläinen Suurpiiri, 00100 Helsinki, Finland
+","
+Apartment Hotel Aallonkoti
+"
+<GET https://www.booking.com/reviews/fi/hotel/lilla-roberts.html>,https://www.booking.com/hotel/fi/lilla-roberts.html,"
+9.2
+","
+Pieni Roobertinkatu 1-3, Eteläinen Suurpiiri, 00130 Helsinki, Finland
+","
+Hotel Lilla Roberts
+"
+<GET https://www.booking.com/reviews/fi/hotel/innhelsinki.html>,https://www.booking.com/hotel/fi/innhelsinki.html,"
+7.8
+","
+Messuaukio 1, Keskinen Suurpiiri, 00520 Helsinki, Finland
+","
+Holiday Inn Helsinki Exhibition & Convention Centre - Messukeskus
+"
+<GET https://www.booking.com/reviews/fi/hotel/seurahuone.html>,https://www.booking.com/hotel/fi/seurahuone.html,"
+8
+","
+Kaivokatu 12, Eteläinen Suurpiiri, 00100 Helsinki, Finland
+","
+Hotel Seurahuone Helsinki
+"
+<GET https://www.booking.com/reviews/fi/hotel/glo-hotel-art.html>,https://www.booking.com/hotel/fi/glo-hotel-art.html,"
+8.2
+","
+Lönnrotinkatu 29, Eteläinen Suurpiiri, 00180 Helsinki, Finland
+","
+Glo Hotel Art
+"
+<GET https://www.booking.com/reviews/fi/hotel/hostel-academica.html>,https://www.booking.com/hotel/fi/hostel-academica.html,"
+7.8
+","
+Hietaniemenkatu 14, Eteläinen Suurpiiri, 00100 Helsinki, Finland
+","
+Hostel Domus Academica
+"
+<GET https://www.booking.com/reviews/fi/hotel/glo.html>,https://www.booking.com/hotel/fi/glo.html,"
+8.6
+","
+Kluuvikatu 4, Eteläinen Suurpiiri, 00100 Helsinki, Finland
+","
+Glo Hotel Kluuvi
+"
+<GET https://www.booking.com/reviews/fi/hotel/f6.html>,https://www.booking.com/hotel/fi/f6.html,"
+9.5
+","
+Fabianinkatu 6, Eteläinen Suurpiiri, 00130 Helsinki, Finland
+","
+Hotel F6
+"
+<GET https://www.booking.com/reviews/fi/hotel/cumulus-kaisaniemi.html>,https://www.booking.com/hotel/fi/cumulus-kaisaniemi.html,"
+7.6
+","
+Kaisaniemenkatu 7, Eteläinen Suurpiiri, 00100 Helsinki, Finland
+","
+Cumulus City Kaisaniemi Helsinki
+"
+<GET https://www.booking.com/reviews/fi/hotel/holiday-inn-helsinki-city-centre.html>,https://www.booking.com/hotel/fi/holiday-inn-helsinki-city-centre.html,"
+8.6
+","
+Elielinaukio 5, Eteläinen Suurpiiri, 00100 Helsinki, Finland
+","
+Holiday Inn Helsinki City Centre
+"
+<GET https://www.booking.com/reviews/fi/hotel/haven.html>,https://www.booking.com/hotel/fi/haven.html,"
+9.1
+","
+Unioninkatu 17, Eteläinen Suurpiiri, 00130 Helsinki, Finland
+","
+Hotel Haven
+"
+<GET https://www.booking.com/reviews/fi/hotel/swhotelkamphelsinki.html>,https://www.booking.com/hotel/fi/swhotelkamphelsinki.html,"
+9
+","
+Pohjoisesplanadi 29, Eteläinen Suurpiiri, 00100 Helsinki, Finland
+","
+Hotel Kämp
+"
+<GET https://www.booking.com/reviews/fi/hotel/radisson-sas-plaza.html>,https://www.booking.com/hotel/fi/radisson-sas-plaza.html,"
+8.8
+","
+Mikonkatu 23, Eteläinen Suurpiiri, 00100 Helsinki, Finland
+","
+Radisson Blu Plaza Hotel, Helsinki
+"
+<GET https://www.booking.com/reviews/fi/hotel/clarion-helsinki.html>,https://www.booking.com/hotel/fi/clarion-helsinki.html,"
+8.7
+","
+Tyynenmerenkatu 2, Eteläinen Suurpiiri, 00220 Helsinki, Finland
+","
+Clarion Hotel Helsinki
+"
+<GET https://www.booking.com/reviews/fi/hotel/scandic-continental.html>,https://www.booking.com/hotel/fi/scandic-continental.html,"
+8.2
+","
+Mannerheimintie 46, Eteläinen Suurpiiri, 00260 Helsinki, Finland
+","
+Scandic Park Helsinki
+"
+<GET https://www.booking.com/reviews/fi/hotel/indigo-helsinki-boulevard.html>,https://www.booking.com/hotel/fi/indigo-helsinki-boulevard.html,"
+9.1
+","
+Bulevardi 26, Eteläinen Suurpiiri, 00120 Helsinki, Finland
+","
+Hotel Indigo Helsinki-Boulevard
+"
+<GET https://www.booking.com/reviews/fi/hotel/sato-hotelhome-kristianinkatu.html>,https://www.booking.com/hotel/fi/sato-hotelhome-kristianinkatu.html,"
+8.7
+","
+Kristianinkatu 11-13, Eteläinen Suurpiiri, 00170 Helsinki, Finland
+","
+SATO HotelHome Kristianinkatu
+"
+<GET https://www.booking.com/reviews/fi/hotel/scandic-paasi.html>,https://www.booking.com/hotel/fi/scandic-paasi.html,"
+8.6
+","
+Paasivuorenkatu 5b, Keskinen Suurpiiri, 00530 Helsinki, Finland
+","
+Scandic Paasi
+"
+<GET https://www.booking.com/reviews/fi/hotel/crowne-plaza-helsinki.html>,https://www.booking.com/hotel/fi/crowne-plaza-helsinki.html,"
+8.4
+","
+Mannerheimintie 50, Eteläinen Suurpiiri, 00260 Helsinki, Finland
+","
+Crowne Plaza Helsinki
+"
+<GET https://www.booking.com/reviews/fi/hotel/citykoti-apartments.html>,https://www.booking.com/hotel/fi/citykoti-apartments.html,"
+8
+","
+Office: Malminkatu 38, Eteläinen Suurpiiri, 00100 Helsinki, Finland
+","
+Citykoti Downtown Apartments
+"
+<GET https://www.booking.com/reviews/fi/hotel/central-apartments.html>,https://www.booking.com/hotel/fi/central-apartments.html,"
+7.5
+","
+Various locations in central Helsinki , Eteläinen Suurpiiri, 00100 Helsinki, Finland
+","
+Helsinki Central Apartments
+"
+<GET https://www.booking.com/reviews/fi/hotel/katajanokka.html>,https://www.booking.com/hotel/fi/katajanokka.html,"
+8.9
+","
+Merikasarminkatu 1 A, Eteläinen Suurpiiri, 00160 Helsinki, Finland
+","
+Hotel Katajanokka
+"
+<GET https://www.booking.com/reviews/fi/hotel/hilton-helsinki-strand.html>,https://www.booking.com/hotel/fi/hilton-helsinki-strand.html,"
+8.9
+","
+John Stenbergin ranta 4, Keskinen Suurpiiri, 00530 Helsinki, Finland
+","
+Hilton Helsinki Strand
+"
+<GET https://www.booking.com/reviews/fi/hotel/sato-hotelhome.html>,https://www.booking.com/hotel/fi/sato-hotelhome.html,"
+8.4
+","
+Lapinlahdenkatu 8, Eteläinen Suurpiiri, 00180 Helsinki, Finland
+","
+SATO HotelHome Lapinlahdenkatu
+"
+<GET https://www.booking.com/reviews/fi/hotel/fabian.html>,https://www.booking.com/hotel/fi/fabian.html,"
+9.2
+","
+Fabianinkatu 7, Eteläinen Suurpiiri, 00130 Helsinki, Finland
+","
+Hotel Fabian
+"
+<GET https://www.booking.com/reviews/fi/hotel/cumulus-meilahti.html>,https://www.booking.com/hotel/fi/cumulus-meilahti.html,"
+8.5
+","
+Tukholmankatu 2, Läntinen Suurpiiri, 00250 Helsinki, Finland
+","
+Cumulus City Meilahti Helsinki
+"
+<GET https://www.booking.com/reviews/fi/hotel/hotel-haaga-central-park.html>,https://www.booking.com/hotel/fi/hotel-haaga-central-park.html,"
+8.2
+","
+Nuijamiestentie 10, Läntinen Suurpiiri, 00320 Helsinki, Finland
+","
+Hotel Haaga Central Park
+"
+<GET https://www.booking.com/reviews/fi/hotel/omenahotelli-helsinki-lapnnrotinkatu.html>,https://www.booking.com/hotel/fi/omenahotelli-helsinki-lapnnrotinkatu.html,"
+7.4
+","
+Lönnrotinkatu 13, Eteläinen Suurpiiri, 00120  Helsinki, Finland
+","
+Omena Hotel Helsinki Lönnrotinkatu
+"
+<GET https://www.booking.com/reviews/fi/hotel/cumulus-hakaniemi.html>,https://www.booking.com/hotel/fi/cumulus-hakaniemi.html,"
+8
+","
+Siltasaarenkatu 14, Keskinen Suurpiiri, 00530 Helsinki, Finland
+","
+Cumulus City Hakaniemi Helsinki
+"

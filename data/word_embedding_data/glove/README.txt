@@ -1,0 +1,1 @@
+"glove.6B.50d" and "glove.6B.100d" are stored here

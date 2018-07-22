@@ -68,22 +68,6 @@ order | algorithms               |  details      | accuracy
 3     | RNN with LSTM            |  [3]          |   
 4     | CNN                      |  [4]          |   
   
-
-## template projects
-1. pytorch-sentiment-classification
-    ### sentiment-classification
-    LSTM and CNN sentiment analysis in PyTorch
-    
-    The sentiment model is trained on Stanford Sentiment Treebank (i.e. SST2).
-    
-    #### Requires
-    - torch 
-    - torchtext 
-    - tdqm
-    - torchwordemb  `pip install torchwordemb`
-  
-2. Character-level Convolutional Networks for Text Classification
-    NIPS 2015 paper
     
   
 [1] https://github.com/cjhutto/vaderSentiment

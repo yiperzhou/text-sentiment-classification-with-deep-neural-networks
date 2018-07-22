@@ -1,0 +1,14 @@
+!.gitignore
+venv/
+metastore-db/
+spark-warehouse/
+reviewData/Booking/
+reviewData/SomeAvailableData/
+reviewData/statistics_Booking/
+reviewData/statistics_Tripadvisor/
+reviewData/Tripadvisor/
+!reviewData/Tripadvisor/005_Helsinki_Tripadvisor.json
+reviewData/tripadvisorFromOthers/
+reviewData/twitter-airline-sentiment/
+.vscode/
+.idea/

@@ -13,7 +13,8 @@
 ### data folder
 * ./data/  
 
-
+### other related files are stored in google cloud. below is the link.
+https://drive.google.com/drive/folders/0B9MedSkTfH80ZEtQOVg4YzlSdWs?usp=sharing
  
 ### Data Sample
 * tripadvisor review data sample  
@@ -67,7 +68,23 @@ order | algorithms               |  details      | accuracy
 3     | RNN with LSTM            |  [3]          |   
 4     | CNN                      |  [4]          |   
   
+
+## template projects
+1. pytorch-sentiment-classification
+    ### sentiment-classification
+    LSTM and CNN sentiment analysis in PyTorch
+    
+    The sentiment model is trained on Stanford Sentiment Treebank (i.e. SST2).
+    
+    #### Requires
+    - torch 
+    - torchtext 
+    - tdqm
+    - torchwordemb  `pip install torchwordemb`
   
+2. Character-level Convolutional Networks for Text Classification
+    NIPS 2015 paper
+    
   
 [1] https://github.com/cjhutto/vaderSentiment
 [2]Thumbs up? Sentiment Classification using Machine Learning  |https://arxiv.org/pdf/cs/0205070.pdf

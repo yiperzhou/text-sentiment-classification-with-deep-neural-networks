@@ -1,3 +1,9 @@
+## SVM
+
+## VADER 
+
+
+
 check the consistent size of reviews and sentiment :  review size :  8977 sentiment size:  8977
  X train shape for train data :  (7181,)=================================================================================VADER elapsed time:  2.45  s
 test size length:  1796

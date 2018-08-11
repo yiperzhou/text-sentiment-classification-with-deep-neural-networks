@@ -35,7 +35,7 @@ parser.add_argument('-kernel-num', type=int, default=100, help='number of each k
 parser.add_argument('-kernel-sizes', type=str, default='3,4,5', help='comma-separated kernel size to use for convolution')
 parser.add_argument('-static', action='store_true', default=False, help='fix the embedding')
 # device
-parser.add_argument('-device', type=int, default=-1, help='device to use for iterate data, -1 mean cpu [default: -1]')
+parser.add_argument('-device', type=int, default=0, help='device to use for iterate data, 0 mean gpu [default: 0]')
 parser.add_argument('-no-cuda', action='store_true', default=False, help='disable the gpu')
 # option
 parser.add_argument('-snapshot', type=str, default=None, help='filename of model snapshot [default: None]')
@@ -119,7 +119,7 @@ args.save_dir = os.path.join(args.save_dir, datetime.datetime.now().strftime('%Y
 print("\nParameters:")
 for attr, value in sorted(args.__dict__.items()):
     print("\t{}={}".format(attr.upper(), value))
-
+############这里报的错：/opt/conda/conda-bld/pytorch_1524586445097/work/aten/src/THC/THCTensorIndex.cu:360: void indexSelectLargeIndex(TensorInfo<T, IndexType>, TensorInfo<T, IndexType>, TensorInfo<long, IndexType>, int, int, IndexType, IndexType, long) [with T = float, IndexType = unsigned int, DstDim = 2, SrcDim = 2, IdxDim = -2, IndexIsMajor = true]: block: [239,0,0], thread: [66,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
 
 # model
 cnn = model.CNN_Text(args)

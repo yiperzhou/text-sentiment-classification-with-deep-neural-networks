@@ -88,7 +88,7 @@ def load_tripadvisor(text_filed, label_field, **kargs):
 
 
 
-    
+
 # load data
 print("\nLoading data...")
 text_field = data.Field(lower=True)
@@ -99,6 +99,7 @@ train_iter, dev_iter = mr(text_field, label_field, device=-1, repeat=False)
 
 # update args and print
 args.embed_num = len(text_field.vocab)
+
 args.class_num = len(label_field.vocab) - 1
 args.cuda = (not args.no_cuda) and torch.cuda.is_available(); del args.no_cuda
 args.kernel_sizes = [int(k) for k in args.kernel_sizes.split(',')]

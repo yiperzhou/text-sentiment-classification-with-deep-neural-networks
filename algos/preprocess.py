@@ -110,9 +110,9 @@ def prepare_data_and_model(using_gpu=True):
 
 
 
-if __name__ == "__main__":
-    train_iter, test_iter = prepare_data_and_model()
-    print("done")
+# if __name__ == "__main__":
+#     train_iter, test_iter = prepare_data_and_model()
+#     print("done")
 
 
 

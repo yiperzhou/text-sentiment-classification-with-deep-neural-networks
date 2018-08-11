@@ -9,6 +9,9 @@ import model
 import train
 import mydatasets
 import pandas as pd
+import sys
+from preprocess import prepare_data_and_model
+
 
 
 parser = argparse.ArgumentParser(description='CNN text classificer')
@@ -27,7 +30,7 @@ parser.add_argument('-shuffle', action='store_true', default=False, help='shuffl
 # model
 parser.add_argument('-dropout', type=float, default=0.5, help='the probability for dropout [default: 0.5]')
 parser.add_argument('-max-norm', type=float, default=3.0, help='l2 constraint of parameters [default: 3.0]')
-parser.add_argument('-embed-dim', type=int, default=128, help='number of embedding dimension [default: 128]')
+parser.add_argument('-embed-dim', type=int, default=50, help='number of embedding dimension [default: 128]')
 parser.add_argument('-kernel-num', type=int, default=100, help='number of each kind of kernel')
 parser.add_argument('-kernel-sizes', type=str, default='3,4,5', help='comma-separated kernel size to use for convolution')
 parser.add_argument('-static', action='store_true', default=False, help='fix the embedding')
@@ -69,8 +72,14 @@ def mr(text_field, label_field, **kargs):
 
 def load_tripadvisor(text_filed, label_field, **kargs):
 
-    train_file = "data/text_classification_data/tripadvisor_train_dataset.csv"
-    test_file = "data/text_classification_data/tripadvisor_test_dataset.csv"
+    # train_file = "data/text_classification_data/tripadvisor_train_dataset.csv"
+    # test_file = "data/text_classification_data/tripadvisor_test_dataset.csv"
+
+    # tut thinkstation path
+    train_file = "/home/yi/sentimentAnalysis/data/text_classification_data/tripadvisor_train_dataset.csv"
+    test_file = "/home/yi/sentimentAnalysis/data/text_classification_data/tripadvisor_test_dataset.csv"
+
+
     train_data = pd.read_csv(train_file)
     test_data = pd.read_csv(test_file)
 
@@ -81,7 +90,7 @@ def load_tripadvisor(text_filed, label_field, **kargs):
     label_field.build_vocab(train_data, test_data)
     train_iter, test_iter = data.Iterator.splits(
                                 (train_data, test_data),
-                                batch_sizes=(args.batch_size, len(test_data)),
+                                batch_sizes=(args.batch_size, len(test_data)))
 
 
     return train_iter, test_iter
@@ -93,13 +102,16 @@ def load_tripadvisor(text_filed, label_field, **kargs):
 print("\nLoading data...")
 text_field = data.Field(lower=True)
 label_field = data.Field(sequential=False)
-train_iter, dev_iter = mr(text_field, label_field, device=-1, repeat=False)
+train_iter, dev_iter = prepare_data_and_model()
+
+# train_iter, dev_iter = load_tripadvisor(text_field, label_field, device=-1, repeat=False)
+# train_iter, dev_iter = mr(text_field, label_field, device=-1, repeat=False)
 # train_iter, dev_iter, test_iter = sst(text_field, label_field, device=-1, repeat=False)
 
 
 # update args and print
-args.embed_num = len(text_field.vocab)
-args.class_num = len(label_field.vocab) - 1
+args.embed_num = 50
+args.class_num = 5
 args.cuda = (not args.no_cuda) and torch.cuda.is_available(); del args.no_cuda
 args.kernel_sizes = [int(k) for k in args.kernel_sizes.split(',')]
 args.save_dir = os.path.join(args.save_dir, datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))

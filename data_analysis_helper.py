@@ -4,6 +4,7 @@ import sys
 from datetime import datetime as dt
 from sklearn.decomposition import NMF, LatentDirichletAllocation
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+import pandas as pd
 
 
 
@@ -99,3 +100,31 @@ def topic_model_NMF(textData, n_features=1000, n_components=1, n_top_words=5):
     # future we can also do LDA topic modeling
 
     print_top_words(nmf, tfidf_feature_names, n_top_words)
+
+
+
+def score_distribution(df):
+    '''
+    calculate score distribution on tripadvisor dataset
+    :param df:
+    :return:
+    '''
+    scores_dict = dict()
+    total_count = 0
+    for score, count in df['score'].value_counts().iteritems():
+        scores_dict[score] = count
+        total_count += count
+    assert total_count == df.shape[0]
+
+    return scores_dict
+
+
+if __name__ == "__main__":
+    data_file = "data/text_classification_data/tripadvisor_train_dataset.csv"
+    data = pd.read_csv(data_file)
+
+    # get review score distribution
+    scores_dict = score_distribution(data)
+
+    print("done")
+

@@ -1,24 +1,7 @@
 import os
 import sys
-from pyspark.sql import SQLContext, SparkSession
-from pyspark.sql import Row
-
-import argparse
 import json
 
-
-def getArgsFromCommand():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-i", help="inputfilename.json")
-    parser.add_argument("-o", help="outputfilename.txt")
-    args = parser.parse_args()
-    try:
-        inputfile = args.i
-        outputfile = args.o
-        return inputfile, outputfile
-    except args as identifier:
-        print("input parameter error, input like: python DataStatistics.py -i [inputfilename.json] -o [outputfilename.txt]")
-        return
 
 def DataStatisticsBookingForACity():
 
@@ -179,3 +162,4 @@ def DataStatisticsTripadvisorForACity():
     with open(outputfile, "w") as f:
         json.dump(statistics, f)
         f.close()
+

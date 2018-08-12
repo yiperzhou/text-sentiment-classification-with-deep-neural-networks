@@ -5,19 +5,22 @@ from torch.autograd import Variable
 
 
 class CNN_Text(nn.Module):
-    
+    name = "CNN_Text"
+
     def __init__(self, args):
         super(CNN_Text, self).__init__()
         self.args = args
+        args.kernel_num = 100
+        args.kernel_sizes = [3, 4, 5]
         
-        V = args.embed_num
+        V = args.num_tokens
         D = args.embed_dim
-        C = args.class_num
+        C = args.num_classes
         Ci = 1
         Co = args.kernel_num
         Ks = args.kernel_sizes
 
-        self.embed = nn.Embedding(V, D)
+        self.embedding = nn.Embedding(V, D)
         # self.convs1 = [nn.Conv2d(Ci, Co, (K, D)) for K in Ks]
         self.convs1 = nn.ModuleList([nn.Conv2d(Ci, Co, (K, D)) for K in Ks])
         '''
@@ -34,7 +37,7 @@ class CNN_Text(nn.Module):
         return x
 
     def forward(self, x):
-        x = self.embed(x)  # (N, W, D)
+        x = self.embedding(x)  # (N, W, D)
         
         if self.args.static:
             x = Variable(x)

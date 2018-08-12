@@ -18,10 +18,12 @@ from nets import CNN_Text_Model
 from helper import accuracy, AverageMeter, log_stats
 
 
+def main(**kwargs):
+    global args
 
+    for arg, v in kwargs.items():
+        args.__setattr__(arg, v)
 
-
-if __name__ == '__main__':
 
     program_start_time = time.time()
     instanceName = "Classification_Accuracy"
@@ -35,14 +37,19 @@ if __name__ == '__main__':
 
     if args.model == "BiLSTMConv":
         Model = models.BiLSTMConv
+
     elif args.model == "BiGRU":
         Model = models.BiGRU
+
     elif args.model == "WordCNN":
-        Model = models.BiGRU
+        Model = models.WordCNN
+
     elif args.model == "BiGRUWithTimeDropout":
         Model = models.BiGRUWithTimeDropout
+
     elif args.model == "CNN_Text_Model":
-        Model = CNN_Text_Model
+        Model = CNN_Text_Model.CNN_Text
+
     else:
         NotImplementedError
 
@@ -137,3 +144,9 @@ if __name__ == '__main__':
 
     df = pd.DataFrame(data={"test_label": best_test_results})
     df.to_csv(path + os.sep + "test_classification_result.csv", sep=',', index=True)
+
+
+
+
+if __name__ == '__main__':
+    main()

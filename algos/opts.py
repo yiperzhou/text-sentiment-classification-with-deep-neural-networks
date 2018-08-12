@@ -18,11 +18,12 @@ parser.add_argument('-shuffle', action='store_true', default=False, help='shuffl
 # model
 parser.add_argument('-dropout', type=float, default=0.5, help='the probability for dropout [default: 0.5]')
 parser.add_argument('-max-norm', type=float, default=3.0, help='l2 constraint of parameters [default: 3.0]')
-parser.add_argument('-embed-dim', type=int, default=300, help='number of embedding dimension [default: 128]')
+parser.add_argument('-embed_dim', type=int, default=300, help='number of embedding dimension [default: 300]')
 parser.add_argument('-kernel-num', type=int, default=100, help='number of each kind of kernel')
 parser.add_argument('-kernel-sizes', type=str, default='3,4,5', help='comma-separated kernel size to use for convolution')
 parser.add_argument('-static', action='store_true', default=False, help='fix the embedding')
-parser.add_argument('-model', type=str, help="model folder, like ElasticNN-ResNet50", default="BiLSTMConv")
+
+parser.add_argument('-model', type=str, help="model folder, like ElasticNN-ResNet50", default="CNN_Text_Model")
 # device
 parser.add_argument('-device', type=int, default=0, help='device to use for iterate data, 0 mean gpu [default: 0]')
 parser.add_argument('-no-cuda', action='store_true', default=False, help='disable the gpu')

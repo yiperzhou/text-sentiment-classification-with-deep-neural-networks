@@ -44,9 +44,6 @@ class CustomDataset(data.Dataset):
         label = sample["score"]
         # convert label from float to int
         label = int(label)
-        # if not test:
-        #     label = [v for v in
-        #              map(int, sample[["toxic", "severe_toxic", "obscene", "threat", "insult", "identity_hate"]])]
         return text, label
 
 
@@ -100,7 +97,7 @@ def prepare_data_and_model(Model, args, using_gpu=True):
 
 
 
-    vectors = GloVe(name='6B', dim=300)
+    vectors = GloVe(name='6B', dim=args.embed_dim)
     vectors.unk_init = init.xavier_uniform
     TEXT.build_vocab(train, vectors=vectors, max_size=30000)
 
@@ -116,9 +113,9 @@ def prepare_data_and_model(Model, args, using_gpu=True):
     test_iter = data.Iterator(dataset=test, batch_size=args.batch_size, train=False, sort=False, device=0 if using_gpu else -1)
 
     num_tokens = len(TEXT.vocab.itos)
-    num_classes = args.num_classes
+    args.num_tokens = num_tokens
 
-    net = Model(embedding_size=300, num_tokens=num_tokens, num_classes=num_classes)
+    net = Model(args)
     net.embedding.weight.data.copy_(TEXT.vocab.vectors)
     if using_gpu:
         net.cuda()

@@ -8,22 +8,22 @@ __all__ = ['BiGRU', 'WordCNN', 'BiGRUWithTimeDropout', 'BiLSTMConv']
 class WordCNN(nn.Module):
     name = "WordCNN"
 
-    def __init__(self, embedding_size, num_tokens, num_classes):
+    def __init__(self, args):
         super(WordCNN, self).__init__()
 
-        self.embedding = nn.Embedding(num_embeddings=num_tokens, embedding_dim=embedding_size)
+        self.embedding = nn.Embedding(num_embeddings=args.num_tokens, embedding_dim=args.embed_dim)
 
         self.branch_a_1 = nn.Sequential(
-            nn.Conv2d(in_channels=1, out_channels=100, kernel_size=(3, embedding_size), padding=(1, 0)),
+            nn.Conv2d(in_channels=1, out_channels=100, kernel_size=(3, args.embed_dim), padding=(1, 0)),
             nn.ReLU(inplace=True)
         )
         self.branch_a_2 = nn.Sequential(
-            nn.Conv2d(in_channels=1, out_channels=100, kernel_size=(5, embedding_size), padding=(2, 0)),
+            nn.Conv2d(in_channels=1, out_channels=100, kernel_size=(5, args.embed_dim), padding=(2, 0)),
             nn.ReLU(inplace=True)
         )
 
         self.branch_a_3 = nn.Sequential(
-            nn.Conv2d(in_channels=1, out_channels=100, kernel_size=(7, embedding_size), padding=(3, 0)),
+            nn.Conv2d(in_channels=1, out_channels=100, kernel_size=(7, args.embed_dim), padding=(3, 0)),
             nn.ReLU(inplace=True)
         )
 
@@ -34,7 +34,7 @@ class WordCNN(nn.Module):
             nn.Linear(in_features=300, out_features=100),
             nn.ReLU(inplace=True),
             nn.Dropout(),
-            nn.Linear(in_features=100, out_features=num_classes)
+            nn.Linear(in_features=100, out_features=args.num_classes)
         )
         self.apply(WordCNN.init_param)
 
@@ -62,14 +62,14 @@ class WordCNN(nn.Module):
 class BiGRU(nn.Module):
     name = "BiGRU"
 
-    def __init__(self, embedding_size, num_tokens, num_classes):
+    def __init__(self, args):
         super(BiGRU, self).__init__()
 
-        self.embedding = nn.Embedding(num_embeddings=num_tokens, embedding_dim=embedding_size)
+        self.embedding = nn.Embedding(num_embeddings=args.num_tokens, embedding_dim=args.embed_dim)
         # [batch, len, channel]
         self.spatial_dropout = nn.Dropout2d(p=0.2)
         self.bi_gru = nn.GRU(input_size=300, hidden_size=80, batch_first=True, bidirectional=True)
-        self.fc = nn.Linear(in_features=320, out_features=num_classes)
+        self.fc = nn.Linear(in_features=320, out_features=args.num_classes)
 
         self.apply(BiGRU.init_param)
 
@@ -98,14 +98,14 @@ class BiGRU(nn.Module):
 class BiGRUWithTimeDropout(nn.Module):
     name = "BiGRUWithTimeDropout"
 
-    def __init__(self, embedding_size, num_tokens, num_classes):
+    def __init__(self, args):
         super(BiGRUWithTimeDropout, self).__init__()
 
-        self.embedding = nn.Embedding(num_embeddings=num_tokens, embedding_dim=embedding_size)
+        self.embedding = nn.Embedding(num_embeddings=args.num_tokens, embedding_dim=args.embed_dim)
         # [batch, len, channel]
         self.time_dropout = nn.Dropout2d(p=0.2)
         self.bi_gru = nn.GRU(input_size=300, hidden_size=80, batch_first=True, bidirectional=True)
-        self.fc = nn.Linear(in_features=320, out_features=num_classes)
+        self.fc = nn.Linear(in_features=320, out_features=args.num_classes)
 
         self.apply(BiGRU.init_param)
 
@@ -134,14 +134,14 @@ class BiGRUWithTimeDropout(nn.Module):
 class BiLSTMConv(nn.Module):
     name = "BiLSTMConv"
 
-    def __init__(self, embedding_size, num_tokens, num_classes):
+    def __init__(self, args):
         super(BiLSTMConv, self).__init__()
-        self.embedding = nn.Embedding(num_embeddings=num_tokens, embedding_dim=embedding_size)
+        self.embedding = nn.Embedding(num_embeddings=args.num_tokens, embedding_dim=args.embed_dim)
         # [batch, len, channel]
         self.spatial_dropout = nn.Dropout2d(p=0.2)
         self.bi_lstm = nn.LSTM(input_size=300, hidden_size=128, batch_first=True, bidirectional=True)
         self.conv1 = nn.Conv1d(in_channels=128 * 2, out_channels=64, kernel_size=3)
-        self.fc = nn.Linear(in_features=64 * 2, out_features=num_classes)
+        self.fc = nn.Linear(in_features=64 * 2, out_features=args.num_classes)
 
         self.apply(BiGRU.init_param)
 

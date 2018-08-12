@@ -1,3 +1,18 @@
+# Accuracy in Pytorch  
+
+# classification on **Tripadvisor dataset**
+
+model                                                                     | error (best)     
+--------------------------------------------------------------------------| ------------------- 
+CNN_Text                                                                  | 
+BiGRU                                                                     | 
+
+
+
+
+
+
+
 ## SVM
 
 ## VADER 

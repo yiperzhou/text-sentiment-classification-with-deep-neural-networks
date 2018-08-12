@@ -22,6 +22,8 @@ class CustomDataset(data.Dataset):
         examples = []
 
         csv_data = pd.read_csv(path)
+        csv_data = csv_data.head(1000)
+
         print("preparing examples...")
         for i in tqdm(range(len(csv_data))):
             sample = csv_data.loc[i]
@@ -37,20 +39,33 @@ class CustomDataset(data.Dataset):
             root=root, train=train, test=test, **kwargs)
 
     def process_csv_line(self, sample, test):
-        text = sample["comment_text"]
+        text = sample["review"]
         text = text.replace('\n', ' ')
-        label = None
-        if not test:
-            label = [v for v in
-                     map(int, sample[["toxic", "severe_toxic", "obscene", "threat", "insult", "identity_hate"]])]
+        label = sample["score"]
+        # convert label from float to int
+        label = int(label)
+        # if not test:
+        #     label = [v for v in
+        #              map(int, sample[["toxic", "severe_toxic", "obscene", "threat", "insult", "identity_hate"]])]
         return text, label
 
 
-def prepare_data_and_model(Model, using_gpu=True):
-    
-    # tut thinkstation
-    train_path = "/home/yi/sentimentAnalysis/algos/5_ToxicCommentClassification-pytorch/data/train.csv"
-    test_path = "/home/yi/sentimentAnalysis/algos/5_ToxicCommentClassification-pytorch/data/test.csv"
+def prepare_data_and_model(Model, args, using_gpu=True):
+
+    # original dataset
+
+    # # tut thinkstation
+    # train_path = "/home/yi/sentimentAnalysis/algos/5_ToxicCommentClassification-pytorch/data/train.csv"
+    # test_path = "/home/yi/sentimentAnalysis/algos/5_ToxicCommentClassification-pytorch/data/test.csv"
+
+    # # xps
+    # train_path = "D:/sentimentAnalysis/algos/5_ToxicCommentClassification-pytorch/data/train.csv"
+    # test_path = "D:/sentimentAnalysis/algos/5_ToxicCommentClassification-pytorch/data/test.csv"
+
+    # tripadvisor dataset
+    # xps
+    train_path = "D:/sentimentAnalysis/data/text_classification_data/tripadvisor_train_dataset.csv"
+    test_path = "D:/sentimentAnalysis/data/text_classification_data/tripadvisor_test_dataset.csv"
 
     def tokenize(text):
         fileters = '!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n'
@@ -74,10 +89,10 @@ def prepare_data_and_model(Model, using_gpu=True):
 
     TEXT = data.Field(tokenize=tokenize, lower=True, batch_first=True, fix_length=100, truncate_first=True)
     LABEL = data.Field(sequential=False, use_vocab=False, batch_first=True,
-                       tensor_type=torch.FloatTensor)
+                       tensor_type=torch.LongTensor)
     
 
-    test = CustomDataset(test_path, text_field=TEXT, label_field=None, test=True)
+    test = CustomDataset(test_path, text_field=TEXT, label_field=LABEL, test=True)
     
     train = CustomDataset(train_path, text_field=TEXT, label_field=LABEL)
     # should save the above train, test, these two variables.
@@ -96,12 +111,12 @@ def prepare_data_and_model(Model, using_gpu=True):
 
     # using the training corpus to create the vocabulary
 
-    train_iter = data.Iterator(dataset=train, batch_size=16, train=True, repeat=False,
+    train_iter = data.Iterator(dataset=train, batch_size=args.batch_size, train=True, repeat=False,
                                device=0 if using_gpu else -1)
-    test_iter = data.Iterator(dataset=test, batch_size=16, train=False, sort=False, device=0 if using_gpu else -1)
+    test_iter = data.Iterator(dataset=test, batch_size=args.batch_size, train=False, sort=False, device=0 if using_gpu else -1)
 
     num_tokens = len(TEXT.vocab.itos)
-    num_classes = 6
+    num_classes = args.num_classes
 
     net = Model(embedding_size=300, num_tokens=num_tokens, num_classes=num_classes)
     net.embedding.weight.data.copy_(TEXT.vocab.vectors)

@@ -13,7 +13,7 @@ import datetime
 from opts import args
 
 
-from data import data_preprocess
+import data_preprocess
 from nets import models
 from nets import CNN_Text_Model
 from helper import accuracy, AverageMeter, log_stats
@@ -33,15 +33,6 @@ if __name__ == '__main__':
     path = folder_path + os.sep + instanceName + os.sep + args.model + os.sep + ts_str
 
     os.makedirs(path)
-
-
-    # # tut thinkstation
-    # sample_submission_file = '/home/yi/sentimentAnalysis/algos/5_ToxicCommentClassification-pytorch/data/sample_submission.csv'
-
-    # xps
-    sample_submission_file = "D:/sentimentAnalysis/algos/5_ToxicCommentClassification-pytorch/data/sample_submission.csv"
-    
-    submission = pd.read_csv(sample_submission_file)
 
     if args.model == "BiLSTMConv":
         Model = models.BiLSTMConv

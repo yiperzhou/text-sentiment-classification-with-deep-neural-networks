@@ -1,17 +1,16 @@
+import torch
 from torch import nn
 from torch import optim
-import torch
+import torch.backends.cudnn as cudnn
+
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
-
-import torch.backends.cudnn as cudnn
 
 import os
 import time
 import datetime
 from opts import args
-
 
 import data_preprocess
 from nets import models

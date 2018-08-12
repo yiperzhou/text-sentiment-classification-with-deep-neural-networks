@@ -50,8 +50,10 @@ order | algorithms               |  details      | accuracy
 3     | RNN with LSTM            |  [3]          |   
 4     | CNN                      |  [4]          |   
   
-    
-  
+ 
+# template project   
+ToxicCommentClassification-pytorch, https://github.com/keithyin/ToxicCommentClassification-pytorch
+
 [1] https://github.com/cjhutto/vaderSentiment
 [2]Thumbs up? Sentiment Classification using Machine Learning  |https://arxiv.org/pdf/cs/0205070.pdf
 [3]tensorflow实现基于LSTM的文本分类方法, 博客链接， https://blog.csdn.net/u010223750/article/details/53334313; https://github.com/luchi007/RNN_Text_Classify  

@@ -24,6 +24,7 @@ def main(**kwargs):
     for arg, v in kwargs.items():
         args.__setattr__(arg, v)
 
+    print(args)
 
     program_start_time = time.time()
     instanceName = "Classification_Accuracy"
@@ -53,7 +54,8 @@ def main(**kwargs):
     else:
         NotImplementedError
 
-
+    # process the input data.
+    
 
     train_iter, test_iter, net = data_preprocess.prepare_data_and_model(Model=Model, args=args, using_gpu=True)
 

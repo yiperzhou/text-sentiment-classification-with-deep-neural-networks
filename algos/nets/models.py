@@ -31,7 +31,7 @@ class WordCNN(nn.Module):
             nn.AdaptiveAvgPool2d((1, 1)),
             Flattern(),
             nn.Dropout(),
-            nn.Linear(in_features=300, out_features=100),
+            nn.Linear(in_features=args.num_tokens, out_features=100),
             nn.ReLU(inplace=True),
             nn.Dropout(),
             nn.Linear(in_features=100, out_features=args.num_classes)
@@ -68,7 +68,7 @@ class BiGRU(nn.Module):
         self.embedding = nn.Embedding(num_embeddings=args.num_tokens, embedding_dim=args.embed_dim)
         # [batch, len, channel]
         self.spatial_dropout = nn.Dropout2d(p=0.2)
-        self.bi_gru = nn.GRU(input_size=300, hidden_size=80, batch_first=True, bidirectional=True)
+        self.bi_gru = nn.GRU(input_size=args.embed_dim, hidden_size=80, batch_first=True, bidirectional=True)
         self.fc = nn.Linear(in_features=320, out_features=args.num_classes)
 
         self.apply(BiGRU.init_param)
@@ -136,10 +136,14 @@ class BiLSTMConv(nn.Module):
 
     def __init__(self, args):
         super(BiLSTMConv, self).__init__()
+        # args.num_tokens = 100000 #这里的这个数应该是单词的个数，具体是多少，我应该计算出来
+        self.num_tokens = args.num_tokens
+        self.embed_dim = args.embed_dim
         self.embedding = nn.Embedding(num_embeddings=args.num_tokens, embedding_dim=args.embed_dim)
         # [batch, len, channel]
+        
         self.spatial_dropout = nn.Dropout2d(p=0.2)
-        self.bi_lstm = nn.LSTM(input_size=300, hidden_size=128, batch_first=True, bidirectional=True)
+        self.bi_lstm = nn.LSTM(input_size=self.embed_dim, hidden_size=128, batch_first=True, bidirectional=True)
         self.conv1 = nn.Conv1d(in_channels=128 * 2, out_channels=64, kernel_size=3)
         self.fc = nn.Linear(in_features=64 * 2, out_features=args.num_classes)
 

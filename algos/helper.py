@@ -35,7 +35,7 @@ class AverageMeter(object):
 
 
 def log_stats(path, epochs_acc_train, epochs_loss_train, epochs_acc_test, epochs_loss_test):
-    with open(path + os.sep + "train_errors.txt", "a") as fp:
+    with open(path + os.sep + "train_acc.txt", "a") as fp:
         for a in epochs_acc_train:
             fp.write("%.4f " % a)
         fp.write("\n")
@@ -49,7 +49,7 @@ def log_stats(path, epochs_acc_train, epochs_loss_train, epochs_acc_test, epochs
     #     fp.write("%.7f " % epochs_lr)
     #     fp.write("\n")
 
-    with open(path + os.sep + "test_errors.txt", "a") as fp:
+    with open(path + os.sep + "test_acc.txt", "a") as fp:
         for a in epochs_acc_test:
             fp.write("%.4f " % a)
         fp.write("\n")

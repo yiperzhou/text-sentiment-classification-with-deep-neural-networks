@@ -10,8 +10,9 @@ spacy_en = spacy.load('en')
 
 
 class CustomDataset(data.Dataset):
-    name = 'toxic comment'
-    dirname = ''
+    # 这里是在制作自己的酒店评论数据库
+    name = 'tripadvisor hotel review'
+    
 
     @staticmethod
     def sort_key(ex):
@@ -32,11 +33,11 @@ class CustomDataset(data.Dataset):
 
         super(CustomDataset, self).__init__(examples, fields, **kwargs)
 
-    @classmethod
-    def splits(cls, root='./data',
-               train='train.csv', test='test.csv', **kwargs):
-        return super(CustomDataset, cls).splits(
-            root=root, train=train, test=test, **kwargs)
+    # @classmethod
+    # def splits(cls, root='./data',
+    #            train='train.csv', test='test.csv', **kwargs):
+    #     return super(CustomDataset, cls).splits(
+    #         root=root, train=train, test=test, **kwargs)
 
     def process_csv_line(self, sample, test):
         text = sample["review"]
@@ -84,9 +85,8 @@ def prepare_data_and_model(Model, args, using_gpu=True):
             tokenized_text.append(tmp)
         return tokenized_text
 
-    TEXT = data.Field(tokenize=tokenize, lower=True, batch_first=True, fix_length=100, truncate_first=True)
-    LABEL = data.Field(sequential=False, use_vocab=False, batch_first=True,
-                       tensor_type=torch.LongTensor)
+    TEXT = data.Field(tokenize=tokenize, lower=True, batch_first=True, truncate_first=True)
+    LABEL = data.Field(sequential=False, use_vocab=False, batch_first=True)
     
 
     test = CustomDataset(test_path, text_field=TEXT, label_field=LABEL, test=True)
@@ -99,7 +99,12 @@ def prepare_data_and_model(Model, args, using_gpu=True):
 
     vectors = GloVe(name='6B', dim=args.embed_dim)
     vectors.unk_init = init.xavier_uniform
-    TEXT.build_vocab(train, vectors=vectors, max_size=30000)
+    
+    # 下面这行代码报错
+    # TEXT.build_vocab(train, vectors=vectors, max_size=30000)
+
+    TEXT.build_vocab(train, vectors=vectors, max_size=10000,min_freq=10)
+    LABEL.build_vocab(train)
 
     print('train.fields', train.fields)
     print('train.name', getattr(train, 'text'))
@@ -108,14 +113,16 @@ def prepare_data_and_model(Model, args, using_gpu=True):
 
     # using the training corpus to create the vocabulary
 
-    train_iter = data.Iterator(dataset=train, batch_size=args.batch_size, train=True, repeat=False,
-                               device=0 if using_gpu else -1)
+    train_iter = data.Iterator(dataset=train, batch_size=args.batch_size, train=True, repeat=False, device=0 if using_gpu else -1)
+    
     test_iter = data.Iterator(dataset=test, batch_size=args.batch_size, train=False, sort=False, device=0 if using_gpu else -1)
 
+    # the number of unique words
     num_tokens = len(TEXT.vocab.itos)
     args.num_tokens = num_tokens
 
     net = Model(args)
+    # copy pretrained glove word embedding into the model
     net.embedding.weight.data.copy_(TEXT.vocab.vectors)
     if using_gpu:
         net.cuda()

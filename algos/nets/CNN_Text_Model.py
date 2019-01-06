@@ -20,6 +20,7 @@ class CNN_Text(nn.Module):
         Co = args.kernel_num
         Ks = args.kernel_sizes
 
+        # 这里的embedding 难道不应该是使用 glove 的预训练的词向量吗？
         self.embedding = nn.Embedding(V, D)
         # self.convs1 = [nn.Conv2d(Ci, Co, (K, D)) for K in Ks]
         self.convs1 = nn.ModuleList([nn.Conv2d(Ci, Co, (K, D)) for K in Ks])

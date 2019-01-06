@@ -52,18 +52,24 @@ def prepare_data_and_model(Model, args, using_gpu=True):
 
     # original dataset
 
+    # narvi
+    train_path = "/home/zhouy/thesis/data/text_classification_data/tripadvisor_train_dataset.csv"
+    test_path = "/home/zhouy/thesis/data/text_classification_data/tripadvisor_test_dataset.csv"
+    
+
     # # tut thinkstation
     # train_path = "/home/yi/sentimentAnalysis/algos/5_ToxicCommentClassification-pytorch/data/train.csv"
     # test_path = "/home/yi/sentimentAnalysis/algos/5_ToxicCommentClassification-pytorch/data/test.csv"
+
 
     # # xps
     # train_path = "D:/sentimentAnalysis/algos/5_ToxicCommentClassification-pytorch/data/train.csv"
     # test_path = "D:/sentimentAnalysis/algos/5_ToxicCommentClassification-pytorch/data/test.csv"
 
     # tripadvisor dataset
-    # xps
-    train_path = "D:/sentimentAnalysis/data/text_classification_data/tripadvisor_train_dataset.csv"
-    test_path = "D:/sentimentAnalysis/data/text_classification_data/tripadvisor_test_dataset.csv"
+    ## xps
+    #train_path = "D:/sentimentAnalysis/data/text_classification_data/tripadvisor_train_dataset.csv"
+    #test_path = "D:/sentimentAnalysis/data/text_classification_data/tripadvisor_test_dataset.csv"
 
     def tokenize(text):
         fileters = '!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n'

@@ -27,7 +27,7 @@ def main(**kwargs):
     print(args)
 
     program_start_time = time.time()
-    instanceName = "Classification_Accuracy"
+    instanceName = "test_classification_Accuracy"
     folder_path = os.path.dirname(os.path.abspath(__file__))
 
     timestamp = datetime.datetime.now()

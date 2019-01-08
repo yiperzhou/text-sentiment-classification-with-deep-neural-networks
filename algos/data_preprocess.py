@@ -23,7 +23,7 @@ class CustomDataset(data.Dataset):
         examples = []
 
         csv_data = pd.read_csv(path)
-        csv_data = csv_data.head(10000)
+        csv_data = csv_data.head(1000)
 
         print("preparing examples...")
         for i in tqdm(range(len(csv_data))):

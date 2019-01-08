@@ -125,10 +125,13 @@ def main(**kwargs):
         epoch_train_accs.append(np.mean(train_accs_normal))
         epoch_train_losses.append(np.mean(train_losses))
 
-        torch.save(net.state_dict(), "{}.pkl".format(Model.name))
+        
 
         test_accs = []
         test_losses = []
+
+        best_test_acc = 0
+
         net.eval()
 
         results = []
@@ -150,6 +153,11 @@ def main(**kwargs):
 
         # print("epoch {} :  testing accumulated accuracy {} %".format(epoch, np.mean(test_accs)))
         print("epoch ", epoch, " :  testing accumulated accuracy ", np.mean(test_accs_normal))
+        
+        if best_test_acc < np.mean(test_accs_normal):
+            best_test_acc = np.mean(test_accs_normal)
+            torch.save(net.state_dict(), path+os.sep+ str(Model.name)+".pkl")
+
 
         epoch_test_accs.append(np.mean(test_accs_normal))
         epoch_test_losses.append(np.mean(test_losses))

@@ -3,8 +3,8 @@ import argparse
 parser = argparse.ArgumentParser(description='CNN text classificer')
 # learning
 parser.add_argument('-lr', type=float, default=0.001, help='initial learning rate [default: 0.001]')
-parser.add_argument('-epochs', type=int, default=20, help='number of epochs for train [default: 256]')
-parser.add_argument('-batch_size', type=int, default=16, help='batch size for training [default: 64]')
+parser.add_argument('-epochs', type=int, default=30, help='number of epochs for train [default: 256]')
+parser.add_argument('-batch_size', type=int, default=32, help='batch size for training [default: 64]')
 parser.add_argument('-num_classes', type=int, help="classification number, 10 or 100", default=5)
 
 parser.add_argument('-log-interval',  type=int, default=1,   help='how many steps to wait before logging training status [default: 1]')

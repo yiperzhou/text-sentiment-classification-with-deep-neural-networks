@@ -1,7 +1,5 @@
 ## Environment
-### TUT ThinkStation
-* Python 3.6.4 (anaconda)   
-* PyTorch 0.4 
+
 ### XPS laptop
 * Python 3.5.5(anaconda)
 * PyTorch 0.4 with cuda 9.0

@@ -62,7 +62,6 @@ order | algorithms               |  details      | accuracy
 ToxicCommentClassification-pytorch, https://github.com/keithyin/ToxicCommentClassification-pytorch
 
 [1] https://github.com/cjhutto/vaderSentiment
-<<<<<<< HEAD
 
 [2] Thumbs up? Sentiment Classification using Machine Learning  |https://arxiv.org/pdf/cs/0205070.pdf
 
@@ -71,8 +70,3 @@ ToxicCommentClassification-pytorch, https://github.com/keithyin/ToxicCommentClas
 [4] Implementing a CNN for Text Classification in TensorFlow, http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/; https://github.com/dennybritz/cnn-text-classification-tf 
 
 [5] Johnson, Rie, and Tong Zhang. "Convolutional neural networks for text categorization: Shallow word-level vs. deep character-level." arXiv preprint arXiv:1609.00718 (2016).
-=======
-[2]Thumbs up? Sentiment Classification using Machine Learning  |https://arxiv.org/pdf/cs/0205070.pdf
-[3]tensorflow实现基于LSTM的文本分类方法, 博客链接， https://blog.csdn.net/u010223750/article/details/53334313; https://github.com/luchi007/RNN_Text_Classify  
-[4]Implementing a CNN for Text Classification in TensorFlow, http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/; https://github.com/dennybritz/cnn-text-classification-tf 
->>>>>>> bc3035c3286899ce016862e8c876fa6846ab6fd8

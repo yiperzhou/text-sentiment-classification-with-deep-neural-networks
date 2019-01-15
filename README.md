@@ -53,6 +53,7 @@ order | algorithms               |  details      | accuracy
 3     | Word CNN                 |  [5]          |                         
 4     | CNN_Text_Model           |  [4]           |                         
 5     | BiLSTMConv               |   [3]          |                              
+6     | VDCNN                    |   [6]         |                  
 
 
 
@@ -70,3 +71,5 @@ ToxicCommentClassification-pytorch, https://github.com/keithyin/ToxicCommentClas
 [4] Implementing a CNN for Text Classification in TensorFlow, http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/; https://github.com/dennybritz/cnn-text-classification-tf 
 
 [5] Johnson, Rie, and Tong Zhang. "Convolutional neural networks for text categorization: Shallow word-level vs. deep character-level." arXiv preprint arXiv:1609.00718 (2016).
+[6] Conneau, Alexis, et al. "Very deep convolutional networks for text classification." arXiv preprint arXiv:1606.01781 (2016).
+[7] 

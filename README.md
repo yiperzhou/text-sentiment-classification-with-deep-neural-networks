@@ -72,6 +72,6 @@ ToxicCommentClassification-pytorch, https://github.com/keithyin/ToxicCommentClas
 
 [5] Johnson, Rie, and Tong Zhang. "Convolutional neural networks for text categorization: Shallow word-level vs. deep character-level." arXiv preprint arXiv:1609.00718 (2016).
 
-[6] Conneau, Alexis, et al. "Very deep convolutional networks for text classification." arXiv preprint arXiv:1606.01781 (2016). https://github.com/threelittlemonkeys/vdcnn-pytorch
+[6] Conneau, Alexis, et al. "Very deep convolutional networks for text classification." arXiv preprint arXiv:1606.01781 (2016). https://github.com/threelittlemonkeys/vdcnn-pytorch, https://github.com/zonetrooper32/VDCNN
 
 [7] 

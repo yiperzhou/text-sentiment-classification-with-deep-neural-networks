@@ -23,7 +23,7 @@ class CustomDataset(data.Dataset):
         examples = []
 
         csv_data = pd.read_csv(path)
-        csv_data = csv_data.head(1000)
+        #csv_data = csv_data.head(1000)
 
         print("preparing examples...")
         for i in tqdm(range(len(csv_data))):
@@ -52,14 +52,14 @@ def prepare_data_and_model(Model, args, using_gpu=True):
 
     # original dataset
 
-    # # narvi
-    # train_path = "/home/zhouy/thesis/data/text_classification_data/tripadvisor_train_dataset.csv"
-    # test_path = "/home/zhouy/thesis/data/text_classification_data/tripadvisor_test_dataset.csv"
+    # narvi
+    train_path = "/home/zhouy/thesis/data/text_classification_data/tripadvisor_train_dataset.csv"
+    test_path = "/home/zhouy/thesis/data/text_classification_data/tripadvisor_test_dataset.csv"
     
 
-    # tut thinkstation
-    train_path = "/media/yi/harddrive/codes/thesis_sentimentAnalysis/data/text_classification_data/tripadvisor_train_dataset.csv"
-    test_path = "/media/yi/harddrive/codes/thesis_sentimentAnalysis/data/text_classification_data/tripadvisor_test_dataset.csv"
+    ## tut thinkstation
+    #train_path = "/media/yi/harddrive/codes/thesis_sentimentAnalysis/data/text_classification_data/tripadvisor_train_dataset.csv"
+    #test_path = "/media/yi/harddrive/codes/thesis_sentimentAnalysis/data/text_classification_data/tripadvisor_test_dataset.csv"
 
 
     # # xps

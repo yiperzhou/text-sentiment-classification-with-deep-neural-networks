@@ -82,4 +82,5 @@ Implementing a CNN for Text Classification in TensorFlow, http://www.wildml.com/
 
 [6] Conneau, Alexis, et al. "Very deep convolutional networks for text classification." arXiv preprint arXiv:1606.01781 (2016). https://github.com/threelittlemonkeys/vdcnn-pytorch, https://github.com/ArdalanM/nlp-benchmarks
 
-[7] 
+[7] https://github.com/brightmart/text_classification, all kinds of text classification models and more with deep learning
+

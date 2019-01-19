@@ -13,16 +13,13 @@ import torchtext.datasets as datasets
 spacy_en = spacy.load('en')
 
 # load SST dataset
-def sst(text_field, label_field,  **kargs):
+def sst(text_field, label_field):
     train_data, dev_data, test_data = datasets.SST.splits(text_field, label_field, fine_grained=True)
     text_field.build_vocab(train_data, dev_data, test_data)
     label_field.build_vocab(train_data, dev_data, test_data)
     train_iter, dev_iter, test_iter = data.BucketIterator.splits(
                                         (train_data, dev_data, test_data), 
-                                        batch_sizes=(32, 
-                                                     32, 
-                                                     32),
-                                        **kargs)
+                                        batch_sizes=(32, 32, 32))
     return train_iter, dev_iter, test_iter 
 
 
@@ -181,16 +178,19 @@ def prepare_data_and_model(Model, args, using_gpu=True):
         dev_iter = test_iter
 
     elif args.dataset == 'SST':
-        text_field = data.Field(lower=True)
-        label_field = data.Field(sequential=False)
+        text_field = data.Field(batch_first=True, lower=True)
+        label_field = data.Field(sequential=False, batch_first=True)
 
 
-        train_iter, dev_iter, test_iter = sst(text_field, label_field, device=0 if using_gpu else -1, repeat=False)
+        train_iter, dev_iter, test_iter = sst(text_field, label_field)
         # train_iter, dev_iter, test_iter = SST.iters(batch_size=16, device=0 if using_gpu else -1, vectors="glove.6B.300d")
 
         # config.target_class = train_iter.dataset.NUM_CLASSES
         args.num_tokens = len(text_field.vocab.itos)
+        args.num_classes = len(label_field.vocab) - 1
 
+        print("num_classes: ", args.num_classes)
+        
 
     net = Model(args)
     # # copy pretrained glove word embedding into the model

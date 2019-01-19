@@ -58,6 +58,7 @@ def main(**kwargs):
     
 
     train_iter, test_iter, net = data_preprocess.prepare_data_and_model(Model=Model, args=args, using_gpu=True)
+    print("args: ", args)
 
     global device
     device = 'cuda' if torch.cuda.is_available() else 'cpu'

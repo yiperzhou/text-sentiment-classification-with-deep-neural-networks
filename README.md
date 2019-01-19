@@ -54,12 +54,7 @@ order | algorithms               |  details      | accuracy
 4     | CNN_Text_Model           |  [4]           |                         
 5     | BiLSTMConv               |   [3]          |                              
 
-
-
-  
- 
-# template project   
-ToxicCommentClassification-pytorch, https://github.com/keithyin/ToxicCommentClassification-pytorch
+## reference
 
 [1] https://github.com/cjhutto/vaderSentiment
 
@@ -67,6 +62,19 @@ ToxicCommentClassification-pytorch, https://github.com/keithyin/ToxicCommentClas
 
 [3] tensorflow实现基于LSTM的文本分类方法, 博客链接， https://blog.csdn.net/u010223750/article/details/53334313; https://github.com/luchi007/RNN_Text_Classify,   
 
-[4] Implementing a CNN for Text Classification in TensorFlow, http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/; https://github.com/dennybritz/cnn-text-classification-tf 
+[4] Kim, Yoon. "Convolutional neural networks for sentence classification." arXiv preprint arXiv:1408.5882 (2014). 
+Implementing a CNN for Text Classification in TensorFlow, http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/; https://github.com/dennybritz/cnn-text-classification-tf 
 
 [5] Johnson, Rie, and Tong Zhang. "Convolutional neural networks for text categorization: Shallow word-level vs. deep character-level." arXiv preprint arXiv:1609.00718 (2016).
+
+# template project   
+
+1. ToxicCommentClassification-pytorch, https://github.com/keithyin/ToxicCommentClassification-pytorch
+2. https://github.com/prakashpandey9/Text-Classification-Pytorch
+
+
+
+## 文本情感分类用的模型,paper如下
+1. attention+RNN做文本情感分类《Recurrent Attention Network on Memory for Aspect Sentiment Analysis》
+2. DPCNN做文本分类《Deep Pyramid Convolutional Neural Networks for Text Categorization》
+3. CNN做文本分类《Effective Use of Word Order for Text Categorization with Convolutional Neural Networks》

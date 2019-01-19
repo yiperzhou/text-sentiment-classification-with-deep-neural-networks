@@ -19,7 +19,7 @@ def sst(text_field, label_field):
     label_field.build_vocab(train_data, dev_data, test_data)
     train_iter, dev_iter, test_iter = data.BucketIterator.splits(
                                         (train_data, dev_data, test_data), 
-                                        batch_sizes=(32, 32, 32))
+                                        batch_sizes=(64, 64, 64))
     return train_iter, dev_iter, test_iter 
 
 

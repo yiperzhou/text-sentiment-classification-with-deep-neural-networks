@@ -178,15 +178,27 @@ def prepare_data_and_model(Model, args, using_gpu=True):
         dev_iter = test_iter
 
     elif args.dataset == 'SST':
-        text_field = data.Field(batch_first=True, lower=True)
+        text_field = data.Field(batch_first=True, lower=True, tokenize=tokenize)
         label_field = data.Field(sequential=False, batch_first=True)
+        
+        train_data, dev_data, test_data = datasets.SST.splits(text_field, label_field, fine_grained=True)
 
 
-        train_iter, dev_iter, test_iter = sst(text_field, label_field)
+        text_field.build_vocab(train_data, min_freq=1)
+        label_field.build_vocab(train_data)
+
+        train_iter = data.Iterator(train_data, batch_size=args.batch_size, device= 0 if using_gpu else -1, train=True, repeat=False,
+                                        sort=False, shuffle=True)
+        dev_iter = data.Iterator(dev_data, batch_size=args.batch_size, device= 0 if using_gpu else -1, train=False, repeat=False,
+                                        sort=False, shuffle=False)
+        test_iter = data.Iterator(test_data, batch_size=args.batch_size, device= 0 if using_gpu else -1, train=False, repeat=False,
+                                        sort=False, shuffle=False)
+
+        # train_iter, dev_iter, test_iter = sst(text_field, label_field)
         # train_iter, dev_iter, test_iter = SST.iters(batch_size=16, device=0 if using_gpu else -1, vectors="glove.6B.300d")
 
         # config.target_class = train_iter.dataset.NUM_CLASSES
-        args.num_tokens = len(text_field.vocab.itos)
+        args.num_tokens = len(text_field.vocab)
         args.num_classes = len(label_field.vocab) - 1
 
         print("num_classes: ", args.num_classes)

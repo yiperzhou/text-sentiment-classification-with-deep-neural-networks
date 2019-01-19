@@ -31,7 +31,7 @@ parser.add_argument('-no-cuda', action='store_true', default=False, help='disabl
 parser.add_argument('-snapshot', type=str, default=None, help='filename of model snapshot [default: None]')
 parser.add_argument('-predict', type=str, default=None, help='predict the sentence given')
 parser.add_argument('-test', action='store_true', default=True, help='train or test')
-parser.add_argument('-dataset', type=str, default="tripadvisor", help='dataset, SST-1, tripadvisor')
+parser.add_argument('-dataset', type=str, default="SST", help='dataset, SST, tripadvisor')
 parser.add_argument('--manual-seed', default=0, type=int, metavar='N',
                     help='Manual seed (default: 0)')
 parser.add_argument('--gpu', default="0", help='gpu available')

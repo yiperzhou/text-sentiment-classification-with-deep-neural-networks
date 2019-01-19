@@ -25,7 +25,7 @@ def accuracy(output, target, topk=(1,)):
     res = []
     for k in topk:
         correct_k = correct[:k].view(-1).float().sum(0)
-        res.append(100-correct_k.mul_(100.0 / batch_size))
+        res.append(correct_k.mul_(100.0 / batch_size))
     return res
 
 class AverageMeter(object):
@@ -77,8 +77,8 @@ def plot_figs(epochs_train_accs, epochs_train_losses, test_accs, epochs_test_los
     plot epoch test error after model testing is finished
     """
 
-    all_y_labels = ["train error (%)", "train loss", "test error (%)", "test loss"]
-    save_file_names = ["train_error.png","train_loss.png","test_error.png","test_loss.png"]
+    all_y_labels = ["train acc (%)", "train loss", "test acc (%)", "test loss"]
+    save_file_names = ["train_acc.png","train_loss.png","test_acc.png","test_loss.png"]
     fig_titles = [args.model + " Train Classification error"+captionStrDict["fig_title"], args.model + " Train Loss"+captionStrDict["fig_title"], args.model + " Test Classification error"+captionStrDict["fig_title"], args.model + " Test Loss"+captionStrDict["fig_title"]]
     all_stats = [epochs_train_accs, epochs_train_losses, test_accs, epochs_test_losses]
     for y_label, file_name, fig_title, data in zip(all_y_labels, save_file_names, fig_titles, all_stats):

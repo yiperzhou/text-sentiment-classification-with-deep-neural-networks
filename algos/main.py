@@ -32,7 +32,7 @@ def main(**kwargs):
 
     timestamp = datetime.datetime.now()
     ts_str = timestamp.strftime('%Y-%m-%d-%H-%M-%S')
-    path = folder_path + os.sep + instanceName + os.sep + args.model + os.sep + ts_str
+    path = folder_path + os.sep + instanceName + os.sep + args.model + os.sep + ts_str+"_"+args.dataset
 
     os.makedirs(path)
     
@@ -45,14 +45,14 @@ def main(**kwargs):
         Model = models.BiLSTMConv
         
 
-    elif args.model == "BiGRU":
-        Model = models.BiGRU
+    # elif args.model == "BiGRU":
+    #     Model = models.BiGRU
 
-    elif args.model == "WordCNN":
-        Model = models.WordCNN
+    # elif args.model == "WordCNN":
+    #     Model = models.WordCNN
 
-    elif args.model == "BiGRUWithTimeDropout":
-        Model = models.BiGRUWithTimeDropout
+    # elif args.model == "BiGRUWithTimeDropout":
+    #     Model = models.BiGRUWithTimeDropout
 
     elif args.model == "CNN_Text_Model":
         Model = CNN_Text_Model.CNN_Text

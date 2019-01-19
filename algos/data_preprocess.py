@@ -87,14 +87,14 @@ def prepare_data_and_model(Model, args, using_gpu=True):
         # test_path = "/home/zhouy/thesis/data/text_classification_data/tripadvisor_test_dataset.csv"
         
 
-        # # tut thinkstation
-        # train_path = "/home/yi/sentimentAnalysis/algos/5_ToxicCommentClassification-pytorch/data/train.csv"
-        # test_path = "/home/yi/sentimentAnalysis/algos/5_ToxicCommentClassification-pytorch/data/test.csv"
+        # tut thinkstation
+        train_path = "/media/yi/harddrive/codes/thesis_sentimentAnalysis/data/text_classification_data/train_try.csv"
+        test_path = "/media/yi/harddrive/codes/thesis_sentimentAnalysis/data/text_classification_data/test_try.csv"
 
-        # tripadvisor dataset
-        # xps
-        test_path = "D:\\sentimentAnalysis\\data\\text_classification_data\\test_model_data\\rev_sent_5_score_train_test\\tripadvisor\\test_try.csv"
-        train_path = "D:\\sentimentAnalysis\\data\\text_classification_data\\test_model_data\\rev_sent_5_score_train_test\\tripadvisor\\train_try.csv"
+        # # tripadvisor dataset
+        # # xps
+        # test_path = "D:\\sentimentAnalysis\\data\\text_classification_data\\test_model_data\\rev_sent_5_score_train_test\\tripadvisor\\test_try.csv"
+        # train_path = "D:\\sentimentAnalysis\\data\\text_classification_data\\test_model_data\\rev_sent_5_score_train_test\\tripadvisor\\train_try.csv"
     
     else:
         # original dataset

@@ -53,6 +53,7 @@ order | algorithms               |  details      | accuracy
 3     | Word CNN                 |  [5]          |                         
 4     | CNN_Text_Model           |  [4]           |                         
 5     | BiLSTMConv               |   [3]          |                              
+6     | VDCNN                    |   [6]         |                  
 
 ## reference
 
@@ -78,3 +79,7 @@ Implementing a CNN for Text Classification in TensorFlow, http://www.wildml.com/
 1. attention+RNN做文本情感分类《Recurrent Attention Network on Memory for Aspect Sentiment Analysis》
 2. DPCNN做文本分类《Deep Pyramid Convolutional Neural Networks for Text Categorization》
 3. CNN做文本分类《Effective Use of Word Order for Text Categorization with Convolutional Neural Networks》
+
+[6] Conneau, Alexis, et al. "Very deep convolutional networks for text classification." arXiv preprint arXiv:1606.01781 (2016). https://github.com/threelittlemonkeys/vdcnn-pytorch, https://github.com/ArdalanM/nlp-benchmarks
+
+[7] 

@@ -27,7 +27,7 @@ def main(**kwargs):
     print(args)
 
     program_start_time = time.time()
-    instanceName = "test_classification_Accuracy"
+    instanceName = "classification_Accuracy"
     folder_path = os.path.dirname(os.path.abspath(__file__))
 
     timestamp = datetime.datetime.now()
@@ -58,6 +58,7 @@ def main(**kwargs):
     
 
     train_iter, test_iter, net = data_preprocess.prepare_data_and_model(Model=Model, args=args, using_gpu=True)
+    print("args: ", args)
 
     global device
     device = 'cuda' if torch.cuda.is_available() else 'cpu'

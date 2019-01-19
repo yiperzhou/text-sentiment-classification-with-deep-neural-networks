@@ -1,5 +1,16 @@
 import os
+import datetime
+import matplotlib.pyplot as plt
+import numpy as np
 
+def LOG(message, logFile):
+    ts = datetime.datetime.now().strftime("%d.%m.%Y %H:%M:%S")
+    msg = "[%s] %s" % (ts, message)
+
+    with open(logFile, "a") as fp:
+        fp.write(msg + "\n")
+
+    print(msg)
 
 def accuracy(output, target, topk=(1,)):
     """Computes the precision@k for the specified values of k"""
@@ -59,3 +70,48 @@ def log_stats(path, epochs_acc_train, epochs_loss_train, epochs_acc_test, epochs
             fp.write("%.4f " % loss)
         fp.write("\n")
 
+def plot_figs(epochs_train_accs, epochs_train_losses, test_accs, epochs_test_losses, args, captionStrDict):
+    
+    """
+    plot epoch test error after model testing is finished
+    """
+
+    all_y_labels = ["train error (%)", "train loss", "test error (%)", "test loss"]
+    save_file_names = ["train_error.png","train_loss.png","test_error.png","test_loss.png"]
+    fig_titles = [args.model + " Train Classification error"+captionStrDict["fig_title"], args.model + " Train Loss"+captionStrDict["fig_title"], args.model + " Test Classification error"+captionStrDict["fig_title"], args.model + " Test Loss"+captionStrDict["fig_title"]]
+    all_stats = [epochs_train_accs, epochs_train_losses, test_accs, epochs_test_losses]
+    for y_label, file_name, fig_title, data in zip(all_y_labels, save_file_names, fig_titles, all_stats):
+
+        fig, ax0 = plt.subplots(1, sharex=True)
+        colormap = plt.cm.tab20
+
+        plt.gca().set_color_cycle([colormap(i) for i in np.linspace(0, 1, len(data))])
+
+        # last = len(data[0])-1
+
+        # for k in range(len(data)):
+            # Plots
+        x = np.arange(len(data)) + 1
+        y = np.array(data)
+
+            # if y_label in ["train loss", "test loss"] and len(data) > 1: # means model generates more than one classifier
+        c_label = y_label
+
+            # else:
+                # c_label = "accuracy"
+
+        ax0.plot(x, y, label=c_label)
+        
+        ax0.set_ylabel(y_label)
+        ax0.set_xlabel(captionStrDict["x_label"])
+        ax0.set_title(fig_title)
+
+        ax0.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+
+        fig_size = plt.rcParams["figure.figsize"]
+
+        plt.rcParams["figure.figsize"] = fig_size
+        plt.tight_layout()
+
+        plt.savefig(args.savedir + os.sep + file_name)
+        plt.close("all")  

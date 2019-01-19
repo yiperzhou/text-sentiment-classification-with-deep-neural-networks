@@ -15,7 +15,7 @@ from opts import args
 import data_preprocess
 from nets import models
 from nets import CNN_Text_Model
-from helper import accuracy, AverageMeter, log_stats
+from helper import accuracy, AverageMeter, log_stats, LOG, plot_figs
 
 
 def main(**kwargs):
@@ -35,9 +35,15 @@ def main(**kwargs):
     path = folder_path + os.sep + instanceName + os.sep + args.model + os.sep + ts_str
 
     os.makedirs(path)
+    
+    args.savedir = path
+
+    global logFile
+    logFile = path + os.sep + "log.txt"
 
     if args.model == "BiLSTMConv":
         Model = models.BiLSTMConv
+        
 
     elif args.model == "BiGRU":
         Model = models.BiGRU
@@ -56,9 +62,28 @@ def main(**kwargs):
 
     # process the input data.
     
+    captionStrDict = {
+        "fig_title" : args.dataset,
+        "x_label" : "epoch"
+    }
+
+    
+    # epoch_train_accs = [0.4, 0.5]
+    # epoch_train_losses = [1, 0.9]
+    # epoch_test_accs = [0.3, 0.2]
+    # epoch_test_losses = [2, 1.8]
+
+    # plot_figs(epoch_train_accs, epoch_train_losses, epoch_test_accs, epoch_test_losses, args, captionStrDict)
+
+
+
+
+
 
     train_iter, test_iter, net = data_preprocess.prepare_data_and_model(Model=Model, args=args, using_gpu=True)
     print("args: ", args)
+
+    LOG(str(args), logFile)
 
     global device
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -112,7 +137,7 @@ def main(**kwargs):
 
             logits = net(xs)
             loss = criterion(logits, ys_var)
-            print("loss: ", loss.item())
+            # print("loss: ", loss.item())
 
             optimizer.zero_grad()
             loss.backward()
@@ -122,7 +147,10 @@ def main(**kwargs):
 
         train_accs_normal = [i[0].item() for i in train_accs]
 
-        print("epoch ", epoch, " :  training accumulated accuracy ", np.mean(train_accs_normal))
+        # print("epoch ", epoch, " :  training accumulated accuracy ", np.mean(train_accs_normal))
+        LOG("epoch: "+ str(epoch), logFile)
+        LOG("[TRAIN] accumulated accuracy: " + str(np.mean(train_accs_normal)), logFile)
+
         epoch_train_accs.append(np.mean(train_accs_normal))
         epoch_train_losses.append(np.mean(train_losses))
 
@@ -154,6 +182,9 @@ def main(**kwargs):
 
         # print("epoch {} :  testing accumulated accuracy {} %".format(epoch, np.mean(test_accs)))
         print("epoch ", epoch, " :  testing accumulated accuracy ", np.mean(test_accs_normal))
+
+        # LOG("epoch: "+ str(epoch), logFile)
+        LOG("[TEST] accumulated accuracy: " + str(np.mean(test_accs_normal)), logFile)
         
         if best_test_acc < np.mean(test_accs_normal):
             best_test_acc = np.mean(test_accs_normal)
@@ -175,8 +206,24 @@ def main(**kwargs):
     df = pd.DataFrame(data={"test_label": best_test_results})
     df.to_csv(path + os.sep + "test_classification_result.csv", sep=',', index=True)
 
+    # here plot figures
+
+    plot_figs(epoch_train_accs, epoch_train_losses, epoch_test_accs, epoch_test_losses, args, captionStrDict)
+    LOG("============Finish============", logFile)
+
 
 
 
 if __name__ == '__main__':
     main()
+    # epoch_train_accs = 
+    # epoch_train_losses = 
+    # epoch_test_accs = 
+    # epoch_test_losses = 
+    # args = 
+    # captionStrDict = {
+    #     "fig_title" : "test_dataset",
+    #     "x_label" : "epoch"
+    # }    
+
+    # plot_figs(epoch_train_accs, epoch_train_losses, epoch_test_accs, epoch_test_losses, args, captionStrDict)

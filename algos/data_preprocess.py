@@ -54,7 +54,11 @@ class CustomDataset(data.Dataset):
         examples = []
 
         csv_data = pd.read_csv(path)
+<<<<<<< HEAD
         # csv_data = csv_data.head(10000)
+=======
+        #csv_data = csv_data.head(1000)
+>>>>>>> b15577007db4b492b6476f4203548757e61f2eeb
 
         print("preparing examples...")
         for i in tqdm(range(len(csv_data))):
@@ -75,7 +79,7 @@ class CustomDataset(data.Dataset):
         text = text.replace('\n', ' ')
         label = sample["score"]
         # convert label from float to int
-        label = int(label)
+        label = (int(label)-1)
         return text, label
 
 
@@ -104,9 +108,15 @@ def prepare_data_and_model(Model, args, using_gpu=True):
         # test_path = "/home/zhouy/thesis/data/text_classification_data/tripadvisor_test_dataset.csv"
         
 
+<<<<<<< HEAD
         # # tut thinkstation
         # train_path = "/home/yi/sentimentAnalysis/algos/5_ToxicCommentClassification-pytorch/data/train.csv"
         # test_path = "/home/yi/sentimentAnalysis/algos/5_ToxicCommentClassification-pytorch/data/test.csv"
+=======
+    ## tut thinkstation
+    #train_path = "/media/yi/harddrive/codes/thesis_sentimentAnalysis/data/text_classification_data/tripadvisor_train_dataset.csv"
+    #test_path = "/media/yi/harddrive/codes/thesis_sentimentAnalysis/data/text_classification_data/tripadvisor_test_dataset.csv"
+>>>>>>> b15577007db4b492b6476f4203548757e61f2eeb
 
 
         # # xps

@@ -3,8 +3,8 @@ import argparse
 parser = argparse.ArgumentParser(description='CNN text classificer')
 # learning
 parser.add_argument('-lr', type=float, default=0.001, help='initial learning rate [default: 0.001]')
-parser.add_argument('-epochs', type=int, default=20, help='number of epochs for train [default: 256]')
-parser.add_argument('-batch_size', type=int, default=16, help='batch size for training [default: 64]')
+parser.add_argument('-epochs', type=int, default=50, help='number of epochs for train [default: 256]')
+parser.add_argument('-batch_size', type=int, default=32, help='batch size for training [default: 64]')
 parser.add_argument('-num_classes', type=int, help="classification number, 10 or 100", default=5)
 
 parser.add_argument('-log-interval',  type=int, default=1,   help='how many steps to wait before logging training status [default: 1]')
@@ -30,7 +30,8 @@ parser.add_argument('-no-cuda', action='store_true', default=False, help='disabl
 # option
 parser.add_argument('-snapshot', type=str, default=None, help='filename of model snapshot [default: None]')
 parser.add_argument('-predict', type=str, default=None, help='predict the sentence given')
-parser.add_argument('-test', action='store_true', default=False, help='train or test')
+parser.add_argument('-test', action='store_true', default=True, help='train or test')
+parser.add_argument('-dataset', type=str, default="SST", help='dataset, SST-1, tripadvisor')
 parser.add_argument('--manual-seed', default=0, type=int, metavar='N',
                     help='Manual seed (default: 0)')
 parser.add_argument('--gpu', default="0", help='gpu available')

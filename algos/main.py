@@ -14,7 +14,9 @@ from opts import args
 
 import data_preprocess
 from nets import models
+from nets import vcdnn
 from nets import CNN_Text_Model
+# from vcdnn import VDCNN
 from helper import accuracy, AverageMeter, log_stats, LOG, plot_figs
 
 
@@ -56,7 +58,8 @@ def main(**kwargs):
 
     elif args.model == "CNN_Text_Model":
         Model = CNN_Text_Model.CNN_Text
-
+    elif args.model == "VDCNN":
+        Model = vcdnn.VDCNN
     else:
         NotImplementedError
 
@@ -199,9 +202,13 @@ def main(**kwargs):
             best_test_results = results
 
         # epoch_lrs.append(0.1)
+        try:
+            lr = float(str(optimizer[-1]).split("\n")[-5].split(" ")[-1])
+        except:
+            lr = 100
+        epoch_lrs.append(lr)
 
-
-        log_stats(path, [np.mean(train_accs_normal)], [np.mean(train_losses)], [np.mean(test_accs_normal)], [np.mean(test_losses)])
+        log_stats(path, [np.mean(train_accs_normal)], [np.mean(train_losses)], [np.mean(test_accs_normal)], [np.mean(test_losses)], lr)
 
     df = pd.DataFrame(data={"test_label": best_test_results})
     df.to_csv(path + os.sep + "test_classification_result.csv", sep=',', index=True)

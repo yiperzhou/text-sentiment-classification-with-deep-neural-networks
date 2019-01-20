@@ -46,7 +46,7 @@ class AverageMeter(object):
         self.avg = self.sum / self.count
 
 
-def log_stats(path, epochs_acc_train, epochs_loss_train, epochs_acc_test, epochs_loss_test):
+def log_stats(path, epochs_acc_train, epochs_loss_train, epochs_acc_test, epochs_loss_test, epochs_lr):
     with open(path + os.sep + "train_acc.txt", "a") as fp:
         for a in epochs_acc_train:
             fp.write("%.4f " % a)
@@ -57,10 +57,6 @@ def log_stats(path, epochs_acc_train, epochs_loss_train, epochs_acc_test, epochs
             fp.write("%.4f " % loss)
         fp.write("\n")
 
-    # with open(path + os.sep + "epochs_lr.txt", "a") as fp:
-    #     fp.write("%.7f " % epochs_lr)
-    #     fp.write("\n")
-
     with open(path + os.sep + "test_acc.txt", "a") as fp:
         for a in epochs_acc_test:
             fp.write("%.4f " % a)
@@ -70,6 +66,12 @@ def log_stats(path, epochs_acc_train, epochs_loss_train, epochs_acc_test, epochs
         for loss in epochs_loss_test:
             fp.write("%.4f " % loss)
         fp.write("\n")
+
+    with open(path + os.sep + "epochs_lr.txt", "a") as fp:
+        fp.write("%.7f " % epochs_lr)
+        fp.write("\n")
+
+
 
 def plot_figs(epochs_train_accs, epochs_train_losses, test_accs, epochs_test_losses, args, captionStrDict):
     

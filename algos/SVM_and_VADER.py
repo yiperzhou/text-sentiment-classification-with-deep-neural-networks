@@ -23,7 +23,10 @@ import csv
 import datetime
 from sklearn.metrics import accuracy_score
 import sys
-import liblinearutil
+# import liblinearutil
+from opts import args
+from helper import accuracy, AverageMeter, log_stats, LOG, plot_figs
+from data_preprocess import prepare_data_svm
 
 def clf_VADER(x_test):
     '''
@@ -65,6 +68,7 @@ def clf_SVM(X_train, y_train, X_test):
     :param X_test:
     :return:
     '''
+    global logFile
     start = time.time()
 
     # TASK: Build a vectorizer / classifier pipeline that filters out tokens
@@ -84,121 +88,133 @@ def clf_SVM(X_train, y_train, X_test):
     # settings for all the candidates explored by grid search.
     n_candidates = len(grid_search.cv_results_['params'])
     for i in range(n_candidates):
-        print(i, 'params - %s; mean - %0.2f; std - %0.2f'
-                 % (grid_search.cv_results_['params'][i],
-                    grid_search.cv_results_['mean_test_score'][i],
-                    grid_search.cv_results_['std_test_score'][i]))
+        temp_result = str(i) + "params - " + str(grid_search.cv_results_['params'][i]) + "; mean - " + str(grid_search.cv_results_['mean_test_score'][i]) + "; std - " + str(grid_search.cv_results_['std_test_score'][i])
+        LOG(temp_result, logFile)
+
 
     y_pred = grid_search.predict(X_test)
     elapse = time.time() - start
     return y_pred, elapse
 
 
-def liblinear_svm(x_train, y_train, x_test, y_test):
-    # x_train = x_train[:100]
-    # y_train = y_train[:100]
-    #
-    # x_test = x_test[:100]
-    # y_test = y_test[:100]
+# def liblinear_svm(x_train, y_train, x_test, y_test):
+#     # x_train = x_train[:100]
+#     # y_train = y_train[:100]
+#     #
+#     # x_test = x_test[:100]
+#     # y_test = y_test[:100]
 
 
-    start = time.time()
-    vector = TfidfVectorizer(min_df=3, max_df=0.95)
-    x_train_vectors = vector.fit_transform(x_train)
-    x_test_vectors = vector.fit_transform(x_test)
+#     start = time.time()
+#     vector = TfidfVectorizer(min_df=3, max_df=0.95)
+#     x_train_vectors = vector.fit_transform(x_train)
+#     x_test_vectors = vector.fit_transform(x_test)
 
-    print("type : ", type(x_train_vectors))
-    print(x_train_vectors[0])
-    print("liblinear svm")
-
-
-
-    p_labs = 0
+#     print("type : ", type(x_train_vectors))
+#     print(x_train_vectors[0])
+#     print("liblinear svm")
 
 
-    # model = train(y_train, x_train)
-    # y是list/tuple类型，长度为l的训练标签向量
-    # x是list/tuple类型的训练实例，list中的每一个元素是list/tuple/dictory类型的feature向量
 
-    # examples
-    # y, x = svm_read_problem('../heart_scale')
-    # 读入libsvm格式的数据
-    prob = liblinearutil.problem(list(y_train), x_train_vectors)
-    # 将y,x写作prob
-
-    ss = [3]
-    cs = [1, 2, 3, 4]
-    es = [0.1, 0.2, 0.3]
-    grid_result = []
-    for s in ss:
-        for c in cs:
-            for e in es:
-                parameter = '-s ' + str(s) + ' -c ' + str(c) + ' -e ' + str(e) + ' -v 5'
-                param = liblinearutil.parameter(parameter)
-                m = liblinearutil.train(prob, param)
-                p_labs, p_acc, p_vals = liblinearutil.predict(list(y_test), x_test_vectors, m)
-                (ACC, MSE, SCC) = liblinearutil.evaluations(p_labs, list(y_test))
-                grid_result.append([s, c, e, ACC])
-
-    print(grid_result)
+#     p_labs = 0
 
 
-    p_labs, p_acc, p_vals = liblinearutil.predict(list(y_test), x_test_vectors, m)
-    # # y是testing data的真实标签，用于计算准确率
-    # # x是待预测样本
-    # # p_labs: 预测出来的标签
-    # # p_acc: tuple类型，包括准确率，MSE，Squared correlation coefficient(平方相关系数)
-    # # p_vals: list, 直接由模型计算出来的值，没有转化成1，0的值，也可以看做是概率估计值
-    #
-    (ACC, MSE, SCC) = liblinearutil.evaluations(p_labs, list(y_test))
-    # # ty: list, 真实值
-    # # pv: list, 估计值
-    elapse = time.time() - start
+#     # model = train(y_train, x_train)
+#     # y是list/tuple类型，长度为l的训练标签向量
+#     # x是list/tuple类型的训练实例，list中的每一个元素是list/tuple/dictory类型的feature向量
 
-    print("finish prediction, prediction time: ", elapse)
-    return p_labs, elapse
+#     # examples
+#     # y, x = svm_read_problem('../heart_scale')
+#     # 读入libsvm格式的数据
+#     prob = liblinearutil.problem(list(y_train), x_train_vectors)
+#     # 将y,x写作prob
 
-if __name__ == "__main__":
+#     ss = [3]
+#     cs = [1, 2, 3, 4]
+#     es = [0.1, 0.2, 0.3]
+#     grid_result = []
+#     for s in ss:
+#         for c in cs:
+#             for e in es:
+#                 parameter = '-s ' + str(s) + ' -c ' + str(c) + ' -e ' + str(e) + ' -v 5'
+#                 param = liblinearutil.parameter(parameter)
+#                 m = liblinearutil.train(prob, param)
+#                 p_labs, p_acc, p_vals = liblinearutil.predict(list(y_test), x_test_vectors, m)
+#                 (ACC, MSE, SCC) = liblinearutil.evaluations(p_labs, list(y_test))
+#                 grid_result.append([s, c, e, ACC])
+
+#     print(grid_result)
+
+
+#     p_labs, p_acc, p_vals = liblinearutil.predict(list(y_test), x_test_vectors, m)
+#     # # y是testing data的真实标签，用于计算准确率
+#     # # x是待预测样本
+#     # # p_labs: 预测出来的标签
+#     # # p_acc: tuple类型，包括准确率，MSE，Squared correlation coefficient(平方相关系数)
+#     # # p_vals: list, 直接由模型计算出来的值，没有转化成1，0的值，也可以看做是概率估计值
+#     #
+#     (ACC, MSE, SCC) = liblinearutil.evaluations(p_labs, list(y_test))
+#     # # ty: list, 真实值
+#     # # pv: list, 估计值
+#     elapse = time.time() - start
+
+#     print("finish prediction, prediction time: ", elapse)
+#     return p_labs, elapse
+
+def main(**kwargs):
+    global args
+
+    for arg, v in kwargs.items():
+        args.__setattr__(arg, v)
+
+    print(args)
+    
+    program_start_time = time.time()
+    instanceName = "classification_Accuracy"
+    folder_path = os.path.dirname(os.path.abspath(__file__))
 
     timestamp = datetime.datetime.now()
     ts_str = timestamp.strftime('%Y-%m-%d-%H-%M-%S')
-    prefix_path = "./" + os.sep + ts_str
+    path = folder_path + os.sep + instanceName + os.sep + args.model + os.sep + ts_str+"_"+args.dataset
 
-    train_filePath = "/home/yi/sentimentAnalysis/data/rev_sent_5_score_train_test/tripadvisor/5_score_train.csv"
-    test_filePath = "/home/yi/sentimentAnalysis/data/rev_sent_5_score_train_test/tripadvisor/5_score_test.csv"
+    os.makedirs(path)
+    
+    args.savedir = path
 
-    train_data = pd.read_csv(train_filePath)
-    X_train = train_data["review"]
-    y_train = train_data["score"]
+    global logFile
+    logFile = path + os.sep + "log.txt"
 
-    # check the consistent size of reviews and sentiment
-    assert len(X_train) == len(y_train)
-
-
-    test_data = pd.read_csv(test_filePath)
-    X_test = test_data["review"]
-    y_test = test_data["score"]
-
-    assert len(X_test) == len(y_test)
+    X_train, y_train, X_test, y_test = prepare_data_svm(args)
 
 
+    if args.model == "liblinear_svm":
+        # # liblinear_svm prediction
+        # y_pred_SVM, time_SVM = liblinear_svm(X_train, y_train, X_test, y_test)
+        # LOG("time elapse: " + str(time_SVM), logFile)
+        # LOG("multiclass liblinear SVM: " + str(accuracy_score(y_test, y_pred_SVM)), logFile)
+        # SVM_predictions_csv = np.column_stack((X_test, y_pred_SVM))
 
-    print("train data size : ", len(y_train), "test data size : ", len(y_test))
+        # SVM_predictions_csv.to_csv(path + os.sep + "test_classification_result.csv", sep=',', index=True)
+        pass
 
+    elif args.model == "svm" or args.model == "SVM":
+        # SVM prediction
+        y_pred_SVM, time_SVM = clf_SVM(X_train, y_train, X_test)
+        LOG("time elapse: " + str(time_SVM), logFile)
+        LOG("[SVM] accuracy: " + str(accuracy_score(y_test, y_pred_SVM)), logFile)
+        SVM_predictions_csv = np.column_stack((X_test, y_pred_SVM))
 
+        SVM_predictions_csv.to_csv(path + os.sep + "test_classification_result.csv", sep=',', index=True)
+        pass
+    else:
+        NotImplementedError
 
-
-
-
-    # SVM prediction
-    y_pred_SVM, time_SVM = liblinear_svm(X_train, y_train, X_test, y_test)
-    print("time elapse: ", time_SVM)
-    print("multiclass liblinear SVM: ", accuracy_score(y_test, y_pred_SVM))
-    SVM_predictions_csv = np.column_stack((X_test, y_pred_SVM))
-    svm_out_path ="liblinear_SVM_prediction_4rd_run.csv"
-    with open(svm_out_path, 'w') as f:
-        csv.writer(f).writerows(SVM_predictions_csv)
-    f.close()
+    LOG("============Finish============", logFile)
+    
+    # svm_out_path ="liblinear_SVM_prediction_4rd_run.csv"
+    # with open(svm_out_path, 'w') as f:
+    #     csv.writer(f).writerows(SVM_predictions_csv)
+    # f.close()
 
 
 
@@ -264,3 +280,7 @@ if __name__ == "__main__":
     # wrong_clf_reviews = pd.DataFrame(wrong_clf_reviews_list, columns=["predlabel", "trueLabel", "indexLocat", "review", "classification"])
     #
     # wrong_clf_reviews.to_csv("wrong_clf_reviews.csv")
+
+
+if __name__ == "__main__":
+    main()

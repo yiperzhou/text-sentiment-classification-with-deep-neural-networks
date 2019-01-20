@@ -204,11 +204,75 @@ def prepare_data_and_model(Model, args, using_gpu=True):
 
         print("num_classes: ", args.num_classes)
         
-
-    net = Model(args)
+    if args.model == "VDCNN":
+        net = Model(depth=29, vocabulary_size=args.num_tokens, embed_size=300, n_classes=args.num_classes, k=2, optional_shortcut=True)
+    else:
+        net = Model(args)
     # # copy pretrained glove word embedding into the model
     # net.embedding.weight.data.copy_(TEXT.vocab.vectors)
     if using_gpu:
         net.cuda()
 
     return train_iter, test_iter, net
+
+
+def prepare_data_svm(args):
+
+    if args.test:
+        # # narvi
+        # train_path = "/home/zhouy/thesis/data/text_classification_data/tripadvisor_train_dataset.csv"
+        # test_path = "/home/zhouy/thesis/data/text_classification_data/tripadvisor_test_dataset.csv"
+        
+
+        # # tut thinkstation
+        # train_path = "/media/yi/harddrive/codes/thesis_sentimentAnalysis/data/text_classification_data/train_try.csv"
+        # test_path = "/media/yi/harddrive/codes/thesis_sentimentAnalysis/data/text_classification_data/test_try.csv"
+
+        # tripadvisor dataset
+        # xps
+        test_path = "D:\\sentimentAnalysis\\data\\text_classification_data\\test_model_data\\rev_sent_5_score_train_test\\tripadvisor\\test_try.csv"
+        train_path = "D:\\sentimentAnalysis\\data\\text_classification_data\\test_model_data\\rev_sent_5_score_train_test\\tripadvisor\\train_try.csv"
+    
+    else:
+        # original dataset
+
+        # # narvi
+        # train_path = "/home/zhouy/thesis/data/text_classification_data/tripadvisor_train_dataset.csv"
+        # test_path = "/home/zhouy/thesis/data/text_classification_data/tripadvisor_test_dataset.csv"
+        
+
+        # # tut thinkstation
+        # train_path = "/home/yi/sentimentAnalysis/algos/5_ToxicCommentClassification-pytorch/data/train.csv"
+        # test_path = "/home/yi/sentimentAnalysis/algos/5_ToxicCommentClassification-pytorch/data/test.csv"
+
+
+        # # xps
+        # train_path = "D:/sentimentAnalysis/algos/5_ToxicCommentClassification-pytorch/data/train.csv"
+        # test_path = "D:/sentimentAnalysis/algos/5_ToxicCommentClassification-pytorch/data/test.csv"
+
+        # tripadvisor dataset
+        # xps
+        train_path = "D:/sentimentAnalysis/data/text_classification_data/tripadvisor_train_dataset.csv"
+        test_path = "D:/sentimentAnalysis/data/text_classification_data/tripadvisor_test_dataset.csv"
+        
+
+
+    train_data = pd.read_csv(train_path)
+    X_train = train_data["review"]
+    y_train = train_data["score"]
+
+    # check the consistent size of reviews and sentiment
+    assert len(X_train) == len(y_train)
+
+
+    test_data = pd.read_csv(test_path)
+    X_test = test_data["review"]
+    y_test = test_data["score"]
+
+    assert len(X_test) == len(y_test)
+
+
+
+    print("train data size : ", len(y_train), "test data size : ", len(y_test))
+
+    return X_train, y_train, X_test, y_test

@@ -70,19 +70,6 @@ def main(**kwargs):
         "x_label" : "epoch"
     }
 
-    
-    # epoch_train_accs = [0.4, 0.5]
-    # epoch_train_losses = [1, 0.9]
-    # epoch_test_accs = [0.3, 0.2]
-    # epoch_test_losses = [2, 1.8]
-
-    # plot_figs(epoch_train_accs, epoch_train_losses, epoch_test_accs, epoch_test_losses, args, captionStrDict)
-
-
-
-
-
-
     train_iter, test_iter, net = data_preprocess.prepare_data_and_model(Model=Model, args=args, using_gpu=True)
     print("args: ", args)
 
@@ -110,6 +97,7 @@ def main(**kwargs):
 
     best_test_acc = 0
     best_test_results = []
+    ground_truth = []
 
     epoch_train_accs = []
     epoch_train_losses = []
@@ -161,12 +149,15 @@ def main(**kwargs):
 
         test_accs = []
         test_losses = []
+        test_predict_results = []
 
         best_test_acc = 0
 
         net.eval()
 
-        results = []
+        
+        pred_results = []
+        
         print("running testing.....")
         for batch in tqdm(test_iter):
             xs_test = batch.text
@@ -179,7 +170,10 @@ def main(**kwargs):
             test_losses.append(test_loss.item() / int(args.batch_size))
             test_accs.append(accuracy(logits_test.data, ys_test))
 
-            results = results + logits_test.topk(1, 1, True, True)[1].t().cpu().numpy().tolist()[0]
+            pred_results = pred_results + logits_test.topk(1, 1, True, True)[1].t().cpu().numpy().tolist()[0]
+            
+            if epoch == (args.epochs -1):
+                ground_truth = ground_truth + ys_test.cpu().numpy().tolist()
 
         test_accs_normal = [i[0].item() for i in test_accs]
 
@@ -191,15 +185,14 @@ def main(**kwargs):
         
         if best_test_acc < np.mean(test_accs_normal):
             best_test_acc = np.mean(test_accs_normal)
+            best_test_results = pred_results
             torch.save(net.state_dict(), path+os.sep+ str(Model.name)+".pkl")
 
 
         epoch_test_accs.append(np.mean(test_accs_normal))
         epoch_test_losses.append(np.mean(test_losses))
-
-        if best_test_acc < np.mean(test_accs_normal):
-            best_test_acc = np.mean(test_accs_normal)
-            best_test_results = results
+            
+        
 
         # epoch_lrs.append(0.1)
         try:
@@ -210,7 +203,8 @@ def main(**kwargs):
 
         log_stats(path, [np.mean(train_accs_normal)], [np.mean(train_losses)], [np.mean(test_accs_normal)], [np.mean(test_losses)], lr)
 
-    df = pd.DataFrame(data={"test_label": best_test_results})
+    df = pd.DataFrame(data={"test_label": best_test_results,
+                            "ground truth": ground_truth})
     df.to_csv(path + os.sep + "test_classification_result.csv", sep=',', index=True)
 
     # here plot figures

@@ -167,7 +167,7 @@ def main(**kwargs):
     for arg, v in kwargs.items():
         args.__setattr__(arg, v)
 
-    print(args)
+    
     
     program_start_time = time.time()
     instanceName = "classification_Accuracy"
@@ -184,8 +184,11 @@ def main(**kwargs):
     global logFile
     logFile = path + os.sep + "log.txt"
 
-    X_train, y_train, X_test, y_test = prepare_data_svm(args)
+    LOG(str(args), logFile)
 
+    X_train, y_train, X_test, y_test = prepare_data_svm(args)
+    
+    LOG("train data size : " + str(len(y_train)) + " test data size : " + str(len(y_test)), logFile)
 
     if args.model == "liblinear_svm":
         # # liblinear_svm prediction
@@ -200,11 +203,20 @@ def main(**kwargs):
     elif args.model == "svm" or args.model == "SVM":
         # SVM prediction
         y_pred_SVM, time_SVM = clf_SVM(X_train, y_train, X_test)
-        LOG("time elapse: " + str(time_SVM), logFile)
-        LOG("[SVM] accuracy: " + str(accuracy_score(y_test, y_pred_SVM)), logFile)
-        SVM_predictions_csv = np.column_stack((X_test, y_pred_SVM))
+        accuracy = accuracy_score(y_test, y_pred_SVM)
+        LOG("time elapse: " + str(time_SVM) + " seconds", logFile)
+        LOG("[SVM] accuracy: " + str(accuracy), logFile)
+        # SVM_predictions_csv = np.column_stack((X_test, y_pred_SVM))
 
-        SVM_predictions_csv.to_csv(path + os.sep + "test_classification_result.csv", sep=',', index=True)
+        # SVM_predictions_csv.to_csv(path + os.sep + "test_classification_result.csv", sep=',', index=True)
+
+        df = pd.DataFrame(data={"test review": X_test,
+                                "test_label": y_pred_SVM,
+                                "ground truth": y_test})
+
+        df.to_csv(path + os.sep + "test_classification_result.csv", sep=',', index=True)
+
+
         pass
     else:
         NotImplementedError

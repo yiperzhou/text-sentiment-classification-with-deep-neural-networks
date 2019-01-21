@@ -1,8 +1,8 @@
-
 import os
 import datetime
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
 def LOG(message, logFile):
     ts = datetime.datetime.now().strftime("%d.%m.%Y %H:%M:%S")
@@ -118,3 +118,17 @@ def plot_figs(epochs_train_accs, epochs_train_losses, test_accs, epochs_test_los
 
         plt.savefig(args.savedir + os.sep + file_name)
         plt.close("all")  
+
+
+def save_misclassified_reviews(X_test, pred_result, y_test, model_type):
+    wrong_clf_reviews = []
+
+    for i in range(len(pred_result)):
+        if pred_result[i] != y_test[i]:
+            wrong_clf_reviews.append([pred_result[i], y_test[i], i, X_test[i], model_type])
+        else:
+            pass
+    
+    wrong_clf_reviews = pd.DataFrame(wrong_clf_reviews, columns=["predlabel", "trueLabel", "indexLocat", "review", "algo"])
+
+    return wrong_clf_reviews

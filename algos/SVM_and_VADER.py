@@ -1,12 +1,15 @@
-# coding: utf-8
-
-import pandas as pd
 import numpy as np
-
+import pandas as pd
 import matplotlib.pyplot as plt
+
 import time
 from random import randint
 import re
+import json
+import os
+import csv
+import datetime
+import sys
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import GridSearchCV
@@ -14,18 +17,13 @@ from sklearn import metrics
 from sklearn.pipeline import Pipeline
 from sklearn.svm import LinearSVC, SVC
 from sklearn.model_selection import train_test_split
-import nltk
-from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-import json
-import os
-import pandas as pd
-import csv
-import datetime
 from sklearn.metrics import accuracy_score
-import sys
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+
+import nltk
 # import liblinearutil
 from opts import args
-from helper import accuracy, AverageMeter, log_stats, LOG, plot_figs
+from helper import accuracy, AverageMeter, log_stats, LOG, plot_figs, save_misclassified_reviews
 from data_preprocess import prepare_data_svm
 
 def clf_VADER(x_test):
@@ -161,15 +159,25 @@ def clf_SVM(X_train, y_train, X_test):
 #     print("finish prediction, prediction time: ", elapse)
 #     return p_labs, elapse
 
+def confusion_matrix(pred_result, ground_truth):
+    global logFile
+    cm = metrics.confusion_matrix(ground_truth, pred_result)
+
+    LOG("metrics report: \n", logFile)
+    report = metrics.classification_report(ground_truth, pred_result, target_names=None)
+    LOG("\n"+ str(report), logFile)
+    LOG("\n" + str(cm), logFile)
+    return 0
+
+
+
 def main(**kwargs):
     global args
 
     for arg, v in kwargs.items():
         args.__setattr__(arg, v)
 
-    
-    
-    program_start_time = time.time()
+    # program_start_time = time.time()
     instanceName = "classification_Accuracy"
     folder_path = os.path.dirname(os.path.abspath(__file__))
 
@@ -202,22 +210,16 @@ def main(**kwargs):
 
     elif args.model == "svm" or args.model == "SVM":
         # SVM prediction
-        y_pred_SVM, time_SVM = clf_SVM(X_train, y_train, X_test)
-        accuracy = accuracy_score(y_test, y_pred_SVM)
-        LOG("time elapse: " + str(time_SVM) + " seconds", logFile)
+        y_pred, time = clf_SVM(X_train, y_train, X_test)
+        accuracy = accuracy_score(y_test, y_pred)
+        LOG("time elapse: " + str(time) + " seconds", logFile)
         LOG("[SVM] accuracy: " + str(accuracy), logFile)
-        # SVM_predictions_csv = np.column_stack((X_test, y_pred_SVM))
-
-        # SVM_predictions_csv.to_csv(path + os.sep + "test_classification_result.csv", sep=',', index=True)
 
         df = pd.DataFrame(data={"test review": X_test,
-                                "test_label": y_pred_SVM,
+                                "test_label": y_pred,
                                 "ground truth": y_test})
-
         df.to_csv(path + os.sep + "test_classification_result.csv", sep=',', index=True)
 
-
-        pass
     else:
         NotImplementedError
 
@@ -262,18 +264,21 @@ def main(**kwargs):
     #     else:
     #         pass
     #
-    # # Print and plot the confusion matrix
-    # cm_VADER = metrics.confusion_matrix(y_test, y_pred_VADER)
-    #
-    # print("VADER metrics report: ")
-    # print(metrics.classification_report(y_test, y_pred_VADER, target_names=None))
-    # print("VADER confusion matrix: ")
-    # print(cm_VADER)
-    #
+
+    #calculate confusion matrix 
+    confusion_matrix(y_pred, y_test)
+    
+    # save misclassified reviews
+    wrong_clf_reviews = save_misclassified_reviews(X_test, y_pred, y_test, args.model)
+
+    wrong_clf_reviews.to_csv(path + os.sep + "wrong_clf_reviews.csv", sep=',', index=True)
+
+
+
     # # second test on SVM
     # y_pred_SVM, time_SVM = clf_SVM()
     # print("SVM elapsed time : ", round(time_SVM, 2), " s")
-    #
+    
     # assert len(y_pred_SVM) == len(y_test)
     # # wrong_clf_reviews_SVM = dict()
     # for i in range(len(y_pred_SVM)):
@@ -281,17 +286,17 @@ def main(**kwargs):
     #         wrong_clf_reviews_list.append([y_pred_SVM[i], y_test[i], i, X_test[i], "SVM"])
     #     else:
     #         pass
-    #
-    # # Print and plot the confusion matrix
-    # cm_SVM = metrics.confusion_matrix(y_test, y_pred_SVM)
-    # print("SVM metrics report: ")
-    # print(metrics.classification_report(y_test, y_pred_SVM, target_names=None))
-    # print("SVM confusion matrix: ")
-    # print(cm_SVM)
-    #
-    # wrong_clf_reviews = pd.DataFrame(wrong_clf_reviews_list, columns=["predlabel", "trueLabel", "indexLocat", "review", "classification"])
-    #
-    # wrong_clf_reviews.to_csv("wrong_clf_reviews.csv")
+    # #
+    # # # Print and plot the confusion matrix
+    # # cm_SVM = metrics.confusion_matrix(y_test, y_pred_SVM)
+    # # print("SVM metrics report: ")
+    # # print(metrics.classification_report(y_test, y_pred_SVM, target_names=None))
+    # # print("SVM confusion matrix: ")
+    # # print(cm_SVM)
+    # #
+    # # wrong_clf_reviews = pd.DataFrame(wrong_clf_reviews_list, columns=["predlabel", "trueLabel", "indexLocat", "review", "classification"])
+    # #
+    # # wrong_clf_reviews.to_csv("wrong_clf_reviews.csv")
 
 
 if __name__ == "__main__":

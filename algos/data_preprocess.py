@@ -258,16 +258,20 @@ def prepare_data_svm(args):
 
 
     train_data = pd.read_csv(train_path)
-    X_train = train_data["review"][:5000]
-    y_train = train_data["score"][:5000]
+    # X_train = train_data["review"][:10000]
+    # y_train = train_data["score"][:10000]
+    X_train = train_data["review"]
+    y_train = train_data["score"]
 
     # check the consistent size of reviews and sentiment
     assert len(X_train) == len(y_train)
 
 
     test_data = pd.read_csv(test_path)
-    X_test = test_data["review"][:1000]
-    y_test = test_data["score"][:1000]
+    # X_test = test_data["review"][:2000]
+    # y_test = test_data["score"][:2000]
+    X_test = test_data["review"]
+    y_test = test_data["score"]
 
     assert len(X_test) == len(y_test)
 

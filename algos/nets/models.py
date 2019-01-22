@@ -142,7 +142,7 @@ class BiLSTMConv(nn.Module):
         self.embedding = nn.Embedding(num_embeddings=args.num_tokens, embedding_dim=args.embed_dim)
         # [batch, len, channel]
         
-        self.spatial_dropout = nn.Dropout2d(p=0.2)
+        self.spatial_dropout = nn.Dropout2d(p=0.5)
         self.bi_lstm = nn.LSTM(input_size=self.embed_dim, hidden_size=128, batch_first=True, bidirectional=True)
         self.conv1 = nn.Conv1d(in_channels=128 * 2, out_channels=64, kernel_size=3)
         self.fc = nn.Linear(in_features=64 * 2, out_features=args.num_classes)

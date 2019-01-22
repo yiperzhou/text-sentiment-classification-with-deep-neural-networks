@@ -209,6 +209,14 @@ def main(**kwargs):
 
     # here plot figures
 
+    # import pandas as pd
+    
+    # epoch_test_accs = list(pd.read_csv("algos\\Classification_Accuracy\\VDCNN\\2019-01-21-14-33-42_tripadvisor\\test_acc.txt", header=None).iloc[:,0])
+    # epoch_train_accs = list(pd.read_csv("algos\\Classification_Accuracy\\VDCNN\\2019-01-21-14-33-42_tripadvisor\\train_acc.txt", header=None).iloc[:,0])
+    # epoch_train_losses = list(pd.read_csv("algos\\Classification_Accuracy\\VDCNN\\2019-01-21-14-33-42_tripadvisor\\train_losses.txt", header=None).iloc[:,0])
+    # epoch_test_losses = list(pd.read_csv("algos\\Classification_Accuracy\\VDCNN\\2019-01-21-14-33-42_tripadvisor\\test_losses.txt", header=None).iloc[:,0])
+
+
     plot_figs(epoch_train_accs, epoch_train_losses, epoch_test_accs, epoch_test_losses, args, captionStrDict)
     LOG("============Finish============", logFile)
 

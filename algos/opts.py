@@ -24,6 +24,7 @@ parser.add_argument('-kernel-sizes', type=str, default='3,4,5', help='comma-sepa
 parser.add_argument('-static', action='store_true', default=False, help='fix the embedding')
 
 parser.add_argument('-model', type=str, help="model, VDCNN, CNN_Text_Model, SVM", default="SVM")
+parser.add_argument('-wordembedding', type=str, help="word embedding method", default="glove-6b")
 # device
 parser.add_argument('-device', type=int, default=0, help='device to use for iterate data, 0 mean gpu [default: 0]')
 parser.add_argument('-no-cuda', action='store_true', default=False, help='disable the gpu')

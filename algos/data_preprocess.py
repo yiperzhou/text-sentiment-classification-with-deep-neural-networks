@@ -186,6 +186,7 @@ def prepare_data_and_model(Model, args, using_gpu=True):
         
         train_data, dev_data, test_data = datasets.SST.splits(text_field, label_field, fine_grained=True)
 
+
         vectors = GloVe(name='6B', dim=args.embed_dim)
 
         text_field.build_vocab(train_data, vectors=vectors, min_freq=1)

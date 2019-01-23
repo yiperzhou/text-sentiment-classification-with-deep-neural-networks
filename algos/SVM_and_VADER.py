@@ -23,7 +23,7 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import nltk
 # import liblinearutil
 from opts import args
-from helper import accuracy, AverageMeter, log_stats, LOG, plot_figs, save_misclassified_reviews
+from helper import accuracy, AverageMeter, log_stats, LOG, plot_figs, save_misclassified_reviews, confusion_matrix
 from data_preprocess import prepare_data_svm
 
 def clf_VADER(x_test):
@@ -159,15 +159,7 @@ def clf_SVM(X_train, y_train, X_test):
 #     print("finish prediction, prediction time: ", elapse)
 #     return p_labs, elapse
 
-def confusion_matrix(pred_result, ground_truth):
-    global logFile
-    cm = metrics.confusion_matrix(ground_truth, pred_result)
 
-    LOG("metrics report: \n", logFile)
-    report = metrics.classification_report(ground_truth, pred_result, target_names=None)
-    LOG("\n"+ str(report), logFile)
-    LOG("\n" + str(cm), logFile)
-    return 0
 
 
 
@@ -266,7 +258,7 @@ def main(**kwargs):
     #
 
     #calculate confusion matrix 
-    confusion_matrix(y_pred, y_test)
+    logFile = confusion_matrix(y_pred, y_test, logFile)
     
     # save misclassified reviews
     wrong_clf_reviews = save_misclassified_reviews(X_test, y_pred, y_test, args.model)
@@ -300,4 +292,9 @@ def main(**kwargs):
 
 
 if __name__ == "__main__":
+    # call SVM text classification algorithm
     main()
+
+    # calcualte confusion matrix
+    # vdcnn_text_clf_result_csv = pd.read_csv("D:\sentimentAnalysis\algos\Classification_Accuracy\VDCNN\2019-01-21-14-33-42_tripadvisor\test_classification_result.csv")
+    # confusion_matrix(y_pred, y_test, logFile)

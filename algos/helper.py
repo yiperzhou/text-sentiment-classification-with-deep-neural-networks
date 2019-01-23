@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+from sklearn import metrics
+
 def LOG(message, logFile):
     ts = datetime.datetime.now().strftime("%d.%m.%Y %H:%M:%S")
     msg = "[%s] %s" % (ts, message)
@@ -85,7 +87,7 @@ def plot_figs(epochs_train_accs, epochs_train_losses, test_accs, epochs_test_los
     all_stats = [epochs_train_accs, epochs_train_losses, test_accs, epochs_test_losses]
     for y_label, file_name, fig_title, data in zip(all_y_labels, save_file_names, fig_titles, all_stats):
 
-        fig, ax0 = plt.subplots(1, sharex=True)
+        fig, ax0 = plt.subplots()
         colormap = plt.cm.tab20
 
         plt.gca().set_color_cycle([colormap(i) for i in np.linspace(0, 1, len(data))])
@@ -132,3 +134,13 @@ def save_misclassified_reviews(X_test, pred_result, y_test, model_type):
     wrong_clf_reviews = pd.DataFrame(wrong_clf_reviews, columns=["predlabel", "trueLabel", "indexLocat", "review", "algo"])
 
     return wrong_clf_reviews
+
+
+def confusion_matrix(pred_result, ground_truth, logFile):
+    cm = metrics.confusion_matrix(ground_truth, pred_result)
+
+    LOG("metrics report: \n", logFile)
+    report = metrics.classification_report(ground_truth, pred_result, target_names=None)
+    LOG("\n"+ str(report), logFile)
+    LOG("\n" + str(cm), logFile)
+    return logFile

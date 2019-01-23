@@ -17,7 +17,7 @@ from nets import models
 from nets import vcdnn
 from nets import CNN_Text_Model
 # from vcdnn import VDCNN
-from helper import accuracy, AverageMeter, log_stats, LOG, plot_figs
+from helper import accuracy, AverageMeter, log_stats, LOG, plot_figs, confusion_matrix
 
 
 def main(**kwargs):
@@ -207,14 +207,17 @@ def main(**kwargs):
                             "ground truth": ground_truth})
     df.to_csv(path + os.sep + "test_classification_result.csv", sep=',', index=True)
 
+    # save the metrics report
+    logFile = confusion_matrix(df["test_label"], df["ground truth"], logFile)
+
     # here plot figures
 
     # import pandas as pd
-    
-    # epoch_test_accs = list(pd.read_csv("algos\\Classification_Accuracy\\VDCNN\\2019-01-21-14-33-42_tripadvisor\\test_acc.txt", header=None).iloc[:,0])
-    # epoch_train_accs = list(pd.read_csv("algos\\Classification_Accuracy\\VDCNN\\2019-01-21-14-33-42_tripadvisor\\train_acc.txt", header=None).iloc[:,0])
-    # epoch_train_losses = list(pd.read_csv("algos\\Classification_Accuracy\\VDCNN\\2019-01-21-14-33-42_tripadvisor\\train_losses.txt", header=None).iloc[:,0])
-    # epoch_test_losses = list(pd.read_csv("algos\\Classification_Accuracy\\VDCNN\\2019-01-21-14-33-42_tripadvisor\\test_losses.txt", header=None).iloc[:,0])
+    # # algos\Classification_Accuracy\BiLSTMConv\\2019-01-22-10-29-54_tripadvisor\test_acc.txt
+    # epoch_test_accs = list(pd.read_csv("algos\\Classification_Accuracy\\BiLSTMConv\\2019-01-22-10-29-54_tripadvisor\\test_acc.txt", header=None).iloc[:,0])
+    # epoch_train_accs = list(pd.read_csv("algos\\Classification_Accuracy\\BiLSTMConv\\2019-01-22-10-29-54_tripadvisor\\train_acc.txt", header=None).iloc[:,0])
+    # epoch_train_losses = list(pd.read_csv("algos\\Classification_Accuracy\\BiLSTMConv\\2019-01-22-10-29-54_tripadvisor\\train_losses.txt", header=None).iloc[:,0])
+    # epoch_test_losses = list(pd.read_csv("algos\\Classification_Accuracy\\BiLSTMConv\\2019-01-22-10-29-54_tripadvisor\\test_losses.txt", header=None).iloc[:,0])
 
 
     plot_figs(epoch_train_accs, epoch_train_losses, epoch_test_accs, epoch_test_losses, args, captionStrDict)

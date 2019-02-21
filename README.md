@@ -72,7 +72,7 @@ Implementing a CNN for Text Classification in TensorFlow, http://www.wildml.com/
 
 1. ToxicCommentClassification-pytorch, https://github.com/keithyin/ToxicCommentClassification-pytorch
 2. https://github.com/prakashpandey9/Text-Classification-Pytorch
-
+3. 中国人工智能学会通讯, 优秀博士论文精华版, 文本情感分析中的卷积方法, https://book.yunzhan365.com/poui/iart/mobile/index.html?from=timeline&isappinstalled=0
 
 
 ## 文本情感分类用的模型,paper如下

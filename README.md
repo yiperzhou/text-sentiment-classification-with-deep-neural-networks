@@ -12,7 +12,7 @@
 https://drive.google.com/drive/folders/0B9MedSkTfH80ZEtQOVg4YzlSdWs?usp=sharing
 
 ### Thesis in overleaf
-https://v1.overleaf.com/15464915nsfzbmsffzzs#/75103087/
+https://www.overleaf.com/read/jvxcyzsmgvxp
 
 ### Data Sample
 * tripadvisor review data sample  

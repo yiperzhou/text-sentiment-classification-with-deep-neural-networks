@@ -10,8 +10,8 @@ from tqdm import tqdm
 
 class_names = ['toxic', 'severe_toxic', 'obscene', 'threat', 'insult', 'identity_hate']
 
-train = pd.read_csv('./data/train.csv').fillna(' ')
-test = pd.read_csv('./data/test.csv').fillna(' ')
+train = pd.read_csv('data\\text_classification_data\\test_model_data\\rev_sent_5_score_train_test\\tripadvisor\\train_try.csv').fillna(' ')
+test = pd.read_csv('data\\text_classification_data\\test_model_data\\rev_sent_5_score_train_test\\tripadvisor\\test_try.csv').fillna(' ')
 
 train_text = train['comment_text']
 test_text = test['comment_text']
@@ -57,5 +57,5 @@ for class_name in tqdm(class_names):
 
 print('Total CV score is {}'.format(np.mean(losses)))
 
-submission = pd.DataFrame.from_dict(predictions)
-submission.to_csv('submission_tf_idf_chars_words.csv', index=False)
+# submission = pd.DataFrame.from_dict(predictions)
+# submission.to_csv('submission_tf_idf_chars_words.csv', index=False)

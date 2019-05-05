@@ -1,0 +1,32 @@
+
+---------------------------------------------------------------
+Text_CNN model
+
+pytorch_total_params = sum(p.numel() for p in net.parameters())
+    3362405
+---------------------------------------------------------------
+
+
+---------------------------------------------------------------
+VD-CNN model
+
+pytorch_total_params = sum(p.numel() for p in net.parameters())
+null
+pytorch_total_params
+17318629
+
+
+---------------------------------------------------------------
+
+
+
+---------------------------------------------------------------
+BiLSTM
+
+pytorch_total_params = sum(p.numel() for p in net.parameters())
+null
+pytorch_total_params
+
+3490781
+
+---------------------------------------------------------------

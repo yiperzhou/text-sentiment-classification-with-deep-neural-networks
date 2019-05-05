@@ -73,7 +73,8 @@ def clf_SVM(X_train, y_train, X_test):
     # that are too rare or too frequent
     pipeline = Pipeline([
         ('vect', TfidfVectorizer(min_df=3, max_df=0.95)),
-        ('clf', SVC(decision_function_shape='ovo')),
+        # ('clf', SVC(decision_function_shape='ovo')),
+        ('clf', SVC(decision_function_shape='ovo'))
     ])
 
     # TASK: Build a grid search to find out whether unigrams or bigrams are more useful.

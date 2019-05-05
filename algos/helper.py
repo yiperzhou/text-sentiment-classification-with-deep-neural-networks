@@ -144,3 +144,41 @@ def confusion_matrix(pred_result, ground_truth, logFile):
     LOG("\n"+ str(report), logFile)
     LOG("\n" + str(cm), logFile)
     return logFile
+
+
+def calculate_deviation(pred_1_df, pred_2_df, pred_3_df, df_test):
+    pred_cnn_text_model = list(pred_1_df["test_label"])
+    pred_cnn_text_model = [i+1 for i in pred_cnn_text_model]
+    # ground_cnn_text = list(df_cnn_text["ground truth"])
+
+    pred_bilstm = list(pred_2_df["test_label"]) 
+    pred_bilstm = [i+1 for i in pred_bilstm]
+
+    # add 1 back since the test label is subtracted by 1 when we train the model
+    
+    # ground_bilstm_text = list(df_bilstm["ground truth"])
+
+    pred_vcdnn = list(pred_3_df["test_label"])
+    pred_vcdnn = [i+1 for i in pred_vcdnn]
+    # ground_vcdnn_text = list(df_vcdnn["ground truth"])
+
+    distance_list = []
+    for pred_1, pred_2, pred_3, pred_ground in zip(pred_cnn_text_model, pred_bilstm, pred_vcdnn, df_test["score"]):
+        # dev = np.std([row["CNN_glove_50dims"], row["CNN_word2vec_300dims"], row["liblinear_SVM"], row["rnn_word2vec_300dims"], row["VADER"]])
+        distance = np.abs(pred_1-pred_ground) + np.abs(pred_2-pred_ground) + np.abs(pred_3-pred_ground)
+
+        distance_list.append(distance)
+
+    result_df = pd.DataFrame({
+        "review": df_test["review"],
+        "ground truth": df_test["score"],
+        "cnn_text_model": pred_cnn_text_model,
+        "bilstm_model": pred_bilstm,
+        "vcdnn_model": pred_vcdnn,
+        "distance": distance_list
+    })
+
+
+    result_df.sort_values(by=["distance"], ascending=False, inplace=True)
+
+    return result_df

@@ -34,7 +34,14 @@ def main(**kwargs):
 
     timestamp = datetime.datetime.now()
     ts_str = timestamp.strftime('%Y-%m-%d-%H-%M-%S')
-    path = folder_path + os.sep + instanceName + os.sep + args.model + os.sep + ts_str+"_"+args.dataset
+    path = folder_path + os.sep + instanceName + os.sep + args.model + os.sep + ts_str+"_"+args.dataset+"_" + args.wordembedding
+
+    if args.debug:
+        print("[Debug mode]")
+        path = folder_path + os.sep + instanceName + os.sep + "Debug-" + args.model + os.sep + ts_str+"_"+args.dataset+"_" + args.wordembedding
+    else:
+        path = folder_path + os.sep + instanceName + os.sep + args.model + os.sep + ts_str+"_"+args.dataset+"_" + args.wordembedding
+
 
     os.makedirs(path)
     
@@ -106,6 +113,8 @@ def main(**kwargs):
     epoch_lrs = []
 
     for epoch in range(args.epochs):
+        
+        epoch_start_time = time.time()
 
         train_accs = []
         train_losses = []
@@ -203,6 +212,10 @@ def main(**kwargs):
 
         log_stats(path, [np.mean(train_accs_normal)], [np.mean(train_losses)], [np.mean(test_accs_normal)], [np.mean(test_losses)], lr)
 
+        one_epoch_last_time = time.time() - epoch_start_time
+
+        LOG("last time: " + str(one_epoch_last_time), logFile)
+
     df = pd.DataFrame(data={"test_label": best_test_results,
                             "ground truth": ground_truth})
     df.to_csv(path + os.sep + "test_classification_result.csv", sep=',', index=True)
@@ -210,14 +223,14 @@ def main(**kwargs):
     # save the metrics report
     logFile = confusion_matrix(df["test_label"], df["ground truth"], logFile)
 
-    # here plot figures
-
-    # import pandas as pd
-    # # algos\Classification_Accuracy\BiLSTMConv\\2019-01-22-10-29-54_tripadvisor\test_acc.txt
-    # epoch_test_accs = list(pd.read_csv("algos\\Classification_Accuracy\\BiLSTMConv\\2019-01-22-10-29-54_tripadvisor\\test_acc.txt", header=None).iloc[:,0])
-    # epoch_train_accs = list(pd.read_csv("algos\\Classification_Accuracy\\BiLSTMConv\\2019-01-22-10-29-54_tripadvisor\\train_acc.txt", header=None).iloc[:,0])
-    # epoch_train_losses = list(pd.read_csv("algos\\Classification_Accuracy\\BiLSTMConv\\2019-01-22-10-29-54_tripadvisor\\train_losses.txt", header=None).iloc[:,0])
-    # epoch_test_losses = list(pd.read_csv("algos\\Classification_Accuracy\\BiLSTMConv\\2019-01-22-10-29-54_tripadvisor\\test_losses.txt", header=None).iloc[:,0])
+# #     # here plot figures
+# # algos\Classification_Accuracy\CNN_Text_Model\2019-01-23-14-58-01_tripadvisor\test_acc.txt
+#     import pandas as pd
+#     # algos\Classification_Accuracy\BiLSTMConv\\2019-01-22-10-29-54_tripadvisor\test_acc.txt
+#     epoch_test_accs = list(pd.read_csv("algos\\Classification_Accuracy\\CNN_Text_Model\\2019-01-23-14-58-01_tripadvisor\\test_acc.txt", header=None).iloc[:,0])
+#     epoch_train_accs = list(pd.read_csv("algos\\Classification_Accuracy\\CNN_Text_Model\\2019-01-23-14-58-01_tripadvisor\\train_acc.txt", header=None).iloc[:,0])
+#     epoch_train_losses = list(pd.read_csv("algos\\Classification_Accuracy\\CNN_Text_Model\\2019-01-23-14-58-01_tripadvisor\\train_losses.txt", header=None).iloc[:,0])
+#     epoch_test_losses = list(pd.read_csv("algos\\Classification_Accuracy\\CNN_Text_Model\\2019-01-23-14-58-01_tripadvisor\\test_losses.txt", header=None).iloc[:,0])
 
 
     plot_figs(epoch_train_accs, epoch_train_losses, epoch_test_accs, epoch_test_losses, args, captionStrDict)

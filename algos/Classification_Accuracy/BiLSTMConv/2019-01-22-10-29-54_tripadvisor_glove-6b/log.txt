@@ -1,0 +1,195 @@
+[22.01.2019 10:31:21] Namespace(batch_size=64, dataset='tripadvisor', device=0, dropout=0.5, early_stop=1000, embed_dim=300, epochs=60, gpu='0', kernel_num=100, kernel_sizes='3,4,5', log_interval=1, lr=0.01, manual_seed=0, max_norm=3.0, model='BiLSTMConv', no_cuda=False, num_classes=5, num_tokens=10002, predict=None, save_best=True, save_dir='snapshot', save_interval=500, savedir='/home/zhouy/thesis/algos/classification_Accuracy/BiLSTMConv/2019-01-22-10-29-54_tripadvisor', shuffle=False, snapshot=None, static=False, test=True, test_interval=100, wordembedding='glove-6b')
+[22.01.2019 10:34:34] epoch: 0
+[22.01.2019 10:34:34] [TRAIN] accumulated accuracy: 57.07173704414587
+[22.01.2019 10:34:39] [TEST] accumulated accuracy: 69.56608280254777
+[22.01.2019 10:37:24] epoch: 1
+[22.01.2019 10:37:24] [TRAIN] accumulated accuracy: 63.98552463211772
+[22.01.2019 10:37:28] [TEST] accumulated accuracy: 72.40246815286625
+[22.01.2019 10:40:11] epoch: 2
+[22.01.2019 10:40:11] [TRAIN] accumulated accuracy: 65.84692898272553
+[22.01.2019 10:40:16] [TEST] accumulated accuracy: 71.27786624203821
+[22.01.2019 10:42:59] epoch: 3
+[22.01.2019 10:42:59] [TRAIN] accumulated accuracy: 66.8855966090851
+[22.01.2019 10:43:03] [TEST] accumulated accuracy: 72.93988853503184
+[22.01.2019 10:45:51] epoch: 4
+[22.01.2019 10:45:51] [TRAIN] accumulated accuracy: 67.51139635316699
+[22.01.2019 10:45:55] [TEST] accumulated accuracy: 73.21855095541402
+[22.01.2019 10:48:38] epoch: 5
+[22.01.2019 10:48:38] [TRAIN] accumulated accuracy: 68.04922424824056
+[22.01.2019 10:48:42] [TEST] accumulated accuracy: 73.36783439490446
+[22.01.2019 10:51:24] epoch: 6
+[22.01.2019 10:51:24] [TRAIN] accumulated accuracy: 68.47908669225848
+[22.01.2019 10:51:28] [TEST] accumulated accuracy: 73.42754777070064
+[22.01.2019 10:54:11] epoch: 7
+[22.01.2019 10:54:11] [TRAIN] accumulated accuracy: 69.11488323736404
+[22.01.2019 10:54:16] [TEST] accumulated accuracy: 73.17874203821655
+[22.01.2019 10:56:58] epoch: 8
+[22.01.2019 10:56:58] [TRAIN] accumulated accuracy: 69.4427783109405
+[22.01.2019 10:57:02] [TEST] accumulated accuracy: 73.72611464968153
+[22.01.2019 10:59:45] epoch: 9
+[22.01.2019 10:59:45] [TRAIN] accumulated accuracy: 69.86164427383237
+[22.01.2019 10:59:49] [TEST] accumulated accuracy: 73.34792993630573
+[22.01.2019 11:02:29] epoch: 10
+[22.01.2019 11:02:29] [TRAIN] accumulated accuracy: 70.33849168266156
+[22.01.2019 11:02:33] [TEST] accumulated accuracy: 73.01950636942675
+[22.01.2019 11:05:16] epoch: 11
+[22.01.2019 11:05:16] [TRAIN] accumulated accuracy: 70.8193378119002
+[22.01.2019 11:05:20] [TEST] accumulated accuracy: 72.49203821656052
+[22.01.2019 11:08:03] epoch: 12
+[22.01.2019 11:08:03] [TRAIN] accumulated accuracy: 71.19921625079975
+[22.01.2019 11:08:07] [TEST] accumulated accuracy: 73.83558917197452
+[22.01.2019 11:10:53] epoch: 13
+[22.01.2019 11:10:53] [TRAIN] accumulated accuracy: 71.79702495201535
+[22.01.2019 11:10:57] [TEST] accumulated accuracy: 72.58160828025478
+[22.01.2019 11:13:42] epoch: 14
+[22.01.2019 11:13:42] [TRAIN] accumulated accuracy: 72.3418506078055
+[22.01.2019 11:13:46] [TEST] accumulated accuracy: 73.17874203821655
+[22.01.2019 11:16:28] epoch: 15
+[22.01.2019 11:16:28] [TRAIN] accumulated accuracy: 72.80970089571338
+[22.01.2019 11:16:33] [TEST] accumulated accuracy: 72.5218949044586
+[22.01.2019 11:19:15] epoch: 16
+[22.01.2019 11:19:15] [TRAIN] accumulated accuracy: 73.35252719129879
+[22.01.2019 11:19:19] [TEST] accumulated accuracy: 72.28304140127389
+[22.01.2019 11:22:02] epoch: 17
+[22.01.2019 11:22:02] [TRAIN] accumulated accuracy: 73.96033269353806
+[22.01.2019 11:22:06] [TEST] accumulated accuracy: 72.29299363057325
+[22.01.2019 11:24:49] epoch: 18
+[22.01.2019 11:24:49] [TRAIN] accumulated accuracy: 74.63411708253359
+[22.01.2019 11:24:54] [TEST] accumulated accuracy: 72.47213375796179
+[22.01.2019 11:27:37] epoch: 19
+[22.01.2019 11:27:37] [TRAIN] accumulated accuracy: 75.08597248880358
+[22.01.2019 11:27:41] [TEST] accumulated accuracy: 72.51194267515923
+[22.01.2019 11:30:27] epoch: 20
+[22.01.2019 11:30:27] [TRAIN] accumulated accuracy: 75.70877319257838
+[22.01.2019 11:30:31] [TEST] accumulated accuracy: 71.875
+[22.01.2019 11:33:12] epoch: 21
+[22.01.2019 11:33:12] [TRAIN] accumulated accuracy: 76.19161868202175
+[22.01.2019 11:33:17] [TEST] accumulated accuracy: 71.04896496815287
+[22.01.2019 11:36:01] epoch: 22
+[22.01.2019 11:36:01] [TRAIN] accumulated accuracy: 76.82441618682022
+[22.01.2019 11:36:06] [TEST] accumulated accuracy: 69.75517515923566
+[22.01.2019 11:38:47] epoch: 23
+[22.01.2019 11:38:47] [TRAIN] accumulated accuracy: 77.60716570697377
+[22.01.2019 11:38:51] [TEST] accumulated accuracy: 70.60111464968153
+[22.01.2019 11:41:33] epoch: 24
+[22.01.2019 11:41:33] [TRAIN] accumulated accuracy: 78.40191138835573
+[22.01.2019 11:41:37] [TEST] accumulated accuracy: 70.22292993630573
+[22.01.2019 11:44:20] epoch: 25
+[22.01.2019 11:44:20] [TRAIN] accumulated accuracy: 79.0527031349968
+[22.01.2019 11:44:24] [TEST] accumulated accuracy: 70.14331210191082
+[22.01.2019 11:47:06] epoch: 26
+[22.01.2019 11:47:06] [TRAIN] accumulated accuracy: 79.5255518234165
+[22.01.2019 11:47:11] [TEST] accumulated accuracy: 69.7750796178344
+[22.01.2019 11:49:52] epoch: 27
+[22.01.2019 11:49:52] [TRAIN] accumulated accuracy: 80.18534069097889
+[22.01.2019 11:49:57] [TEST] accumulated accuracy: 70.21297770700637
+[22.01.2019 11:52:39] epoch: 28
+[22.01.2019 11:52:39] [TRAIN] accumulated accuracy: 80.86712252079334
+[22.01.2019 11:52:43] [TEST] accumulated accuracy: 69.38694267515923
+[22.01.2019 11:55:27] epoch: 29
+[22.01.2019 11:55:27] [TRAIN] accumulated accuracy: 81.22000959692899
+[22.01.2019 11:55:31] [TEST] accumulated accuracy: 69.53622611464968
+[22.01.2019 11:58:13] epoch: 30
+[22.01.2019 11:58:13] [TRAIN] accumulated accuracy: 81.95277511196417
+[22.01.2019 11:58:18] [TEST] accumulated accuracy: 68.20262738853503
+[22.01.2019 12:00:58] epoch: 31
+[22.01.2019 12:00:58] [TRAIN] accumulated accuracy: 82.41762635956493
+[22.01.2019 12:01:03] [TEST] accumulated accuracy: 69.35708598726114
+[22.01.2019 12:03:45] epoch: 32
+[22.01.2019 12:03:45] [TRAIN] accumulated accuracy: 82.99144273832374
+[22.01.2019 12:03:49] [TEST] accumulated accuracy: 68.50119426751593
+[22.01.2019 12:06:31] epoch: 33
+[22.01.2019 12:06:31] [TRAIN] accumulated accuracy: 83.42730326295586
+[22.01.2019 12:06:35] [TEST] accumulated accuracy: 68.61066878980891
+[22.01.2019 12:09:17] epoch: 34
+[22.01.2019 12:09:17] [TRAIN] accumulated accuracy: 83.90015195137556
+[22.01.2019 12:09:21] [TEST] accumulated accuracy: 67.19745222929936
+[22.01.2019 12:12:04] epoch: 35
+[22.01.2019 12:12:04] [TRAIN] accumulated accuracy: 84.22704734484965
+[22.01.2019 12:12:08] [TEST] accumulated accuracy: 69.91441082802548
+[22.01.2019 12:14:51] epoch: 36
+[22.01.2019 12:14:51] [TRAIN] accumulated accuracy: 84.7928662827895
+[22.01.2019 12:14:55] [TEST] accumulated accuracy: 69.06847133757962
+[22.01.2019 12:17:39] epoch: 37
+[22.01.2019 12:17:39] [TRAIN] accumulated accuracy: 85.13275751759437
+[22.01.2019 12:17:44] [TEST] accumulated accuracy: 69.91441082802548
+[22.01.2019 12:20:27] epoch: 38
+[22.01.2019 12:20:27] [TRAIN] accumulated accuracy: 85.54762476007677
+[22.01.2019 12:20:31] [TEST] accumulated accuracy: 69.25756369426752
+[22.01.2019 12:23:14] epoch: 39
+[22.01.2019 12:23:14] [TRAIN] accumulated accuracy: 85.83653230966091
+[22.01.2019 12:23:18] [TEST] accumulated accuracy: 68.34195859872611
+[22.01.2019 12:26:01] epoch: 40
+[22.01.2019 12:26:01] [TRAIN] accumulated accuracy: 86.16842610364684
+[22.01.2019 12:26:06] [TEST] accumulated accuracy: 68.70023885350318
+[22.01.2019 12:28:48] epoch: 41
+[22.01.2019 12:28:48] [TRAIN] accumulated accuracy: 86.61428342930262
+[22.01.2019 12:28:52] [TEST] accumulated accuracy: 68.26234076433121
+[22.01.2019 12:31:35] epoch: 42
+[22.01.2019 12:31:35] [TRAIN] accumulated accuracy: 86.96717050543826
+[22.01.2019 12:31:39] [TEST] accumulated accuracy: 67.94386942675159
+[22.01.2019 12:34:23] epoch: 43
+[22.01.2019 12:34:23] [TRAIN] accumulated accuracy: 87.19309820857326
+[22.01.2019 12:34:27] [TEST] accumulated accuracy: 68.25238853503184
+[22.01.2019 12:37:07] epoch: 44
+[22.01.2019 12:37:07] [TRAIN] accumulated accuracy: 87.57297664747281
+[22.01.2019 12:37:11] [TEST] accumulated accuracy: 67.90406050955414
+[22.01.2019 12:39:53] epoch: 45
+[22.01.2019 12:39:53] [TRAIN] accumulated accuracy: 87.66594689699296
+[22.01.2019 12:39:57] [TEST] accumulated accuracy: 68.55095541401273
+[22.01.2019 12:42:37] epoch: 46
+[22.01.2019 12:42:37] [TRAIN] accumulated accuracy: 88.04882437619962
+[22.01.2019 12:42:42] [TEST] accumulated accuracy: 67.92396496815287
+[22.01.2019 12:45:23] epoch: 47
+[22.01.2019 12:45:23] [TRAIN] accumulated accuracy: 88.3577255278311
+[22.01.2019 12:45:27] [TEST] accumulated accuracy: 67.84434713375796
+[22.01.2019 12:48:09] epoch: 48
+[22.01.2019 12:48:09] [TRAIN] accumulated accuracy: 88.5376679462572
+[22.01.2019 12:48:14] [TEST] accumulated accuracy: 68.4812898089172
+[22.01.2019 12:50:55] epoch: 49
+[22.01.2019 12:50:55] [TRAIN] accumulated accuracy: 88.71261196417146
+[22.01.2019 12:50:59] [TEST] accumulated accuracy: 68.00358280254777
+[22.01.2019 12:53:41] epoch: 50
+[22.01.2019 12:53:41] [TRAIN] accumulated accuracy: 88.9525351887396
+[22.01.2019 12:53:46] [TEST] accumulated accuracy: 68.16281847133757
+[22.01.2019 12:56:27] epoch: 51
+[22.01.2019 12:56:27] [TRAIN] accumulated accuracy: 89.22244881637876
+[22.01.2019 12:56:32] [TEST] accumulated accuracy: 67.40644904458598
+[22.01.2019 12:59:14] epoch: 52
+[22.01.2019 12:59:14] [TRAIN] accumulated accuracy: 89.46936980166346
+[22.01.2019 12:59:18] [TEST] accumulated accuracy: 67.11783439490446
+[22.01.2019 13:02:00] epoch: 53
+[22.01.2019 13:02:00] [TRAIN] accumulated accuracy: 89.75927703134997
+[22.01.2019 13:02:04] [TEST] accumulated accuracy: 67.078025477707
+[22.01.2019 13:04:45] epoch: 54
+[22.01.2019 13:04:45] [TRAIN] accumulated accuracy: 89.77927063339732
+[22.01.2019 13:04:50] [TEST] accumulated accuracy: 68.33200636942675
+[22.01.2019 13:07:32] epoch: 55
+[22.01.2019 13:07:32] [TRAIN] accumulated accuracy: 90.01619481765835
+[22.01.2019 13:07:36] [TEST] accumulated accuracy: 68.1827229299363
+[22.01.2019 13:10:19] epoch: 56
+[22.01.2019 13:10:19] [TRAIN] accumulated accuracy: 90.222128918746
+[22.01.2019 13:10:23] [TEST] accumulated accuracy: 68.41162420382166
+[22.01.2019 13:13:06] epoch: 57
+[22.01.2019 13:13:06] [TRAIN] accumulated accuracy: 90.33009436980166
+[22.01.2019 13:13:10] [TEST] accumulated accuracy: 67.77468152866243
+[22.01.2019 13:15:53] epoch: 58
+[22.01.2019 13:15:53] [TRAIN] accumulated accuracy: 90.77595169545745
+[22.01.2019 13:15:57] [TEST] accumulated accuracy: 67.53582802547771
+[22.01.2019 13:18:39] epoch: 59
+[22.01.2019 13:18:39] [TRAIN] accumulated accuracy: 90.70897312859884
+[22.01.2019 13:18:43] [TEST] accumulated accuracy: 67.27707006369427
+
+
+
+
+print(report)
+             precision    recall  f1-score   support
+
+          0       0.43      0.55      0.48       152
+          1       0.38      0.41      0.39       281
+          2       0.46      0.46      0.46       835
+          3       0.49      0.56      0.53      2721
+          4       0.83      0.77      0.80      6011
+
+avg / total       0.69      0.67      0.68     10000

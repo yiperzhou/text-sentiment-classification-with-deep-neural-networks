@@ -82,9 +82,9 @@ class CustomDataset(data.Dataset):
 def prepare_data_and_model(Model, args, using_gpu=True):
 
     if args.test:
-        # # narvi
-        train_path = "/home/zhouy/thesis/data/text_classification_data/train_try.csv"
-        test_path = "/home/zhouy/thesis/data/text_classification_data/test_try.csv"
+        ## # narvi
+        #train_path = "/home/zhouy/thesis/data/text_classification_data/train_try.csv"
+        #test_path = "/home/zhouy/thesis/data/text_classification_data/test_try.csv"
         
 
         # tut thinkstation
@@ -93,15 +93,15 @@ def prepare_data_and_model(Model, args, using_gpu=True):
 
         # # tripadvisor dataset
         # # xps
-        # test_path = "D:\\sentimentAnalysis\\data\\text_classification_data\\test_model_data\\rev_sent_5_score_train_test\\tripadvisor\\test_try.csv"
-        # train_path = "D:\\sentimentAnalysis\\data\\text_classification_data\\test_model_data\\rev_sent_5_score_train_test\\tripadvisor\\train_try.csv"
+        test_path = "D:\\sentimentAnalysis\\data\\text_classification_data\\test_model_data\\rev_sent_5_score_train_test\\tripadvisor\\test_try.csv"
+        train_path = "D:\\sentimentAnalysis\\data\\text_classification_data\\test_model_data\\rev_sent_5_score_train_test\\tripadvisor\\train_try.csv"
     
     else:
         # original dataset
 
         # # narvi
-        train_path = "/home/zhouy/thesis/data/text_classification_data/tripadvisor_train_dataset.csv"
-        test_path = "/home/zhouy/thesis/data/text_classification_data/tripadvisor_test_dataset.csv"
+        #train_path = "/home/zhouy/thesis/data/text_classification_data/tripadvisor_train_dataset.csv"
+        #test_path = "/home/zhouy/thesis/data/text_classification_data/tripadvisor_test_dataset.csv"
         
 
         # # tut thinkstation
@@ -115,8 +115,8 @@ def prepare_data_and_model(Model, args, using_gpu=True):
 
         # tripadvisor dataset
         # xps
-        # train_path = "D:/sentimentAnalysis/data/text_classification_data/tripadvisor_train_dataset.csv"
-        # test_path = "D:/sentimentAnalysis/data/text_classification_data/tripadvisor_test_dataset.csv"
+        train_path = "D:/sentimentAnalysis/data/text_classification_data/tripadvisor_train_dataset.csv"
+        test_path = "D:/sentimentAnalysis/data/text_classification_data/tripadvisor_test_dataset.csv"
         
 
     def tokenize(text):
@@ -151,6 +151,9 @@ def prepare_data_and_model(Model, args, using_gpu=True):
 
         if args.wordembedding == "glove-6b":
             vectors = GloVe(name='6B', dim=args.embed_dim)
+        elif args.wordembedding  == "FastText":
+            vectors = FastText(language='en')
+            
         else:
             NotImplementedError
 

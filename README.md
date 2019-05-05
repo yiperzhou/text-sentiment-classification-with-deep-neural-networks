@@ -1,41 +1,48 @@
-## Environment
-
-### XPS laptop
-* Python 3.5.5(anaconda)
-* PyTorch 0.4 with cuda 9.0
+# Deep-neural-network-based-algorithms-Performance-Comparison-for-Sentiment-Classification 
 
 
+## Experiment
 
-## sentimentAnalysis
-
-### other related files are stored in google cloud. below is the link.
-https://drive.google.com/drive/folders/0B9MedSkTfH80ZEtQOVg4YzlSdWs?usp=sharing
-
-### Thesis in overleaf
-https://v1.overleaf.com/15464915nsfzbmsffzzs#/75103087/
-
-### Data Sample
-* tripadvisor review data sample  
-```json
-
-{
-    "hotelLocation": "Raadhuis Straat 51, 1016 DD Amsterdam, The Netherlands",
-    "hotelName": " Hotel Nadia",
-    "hotelStars": "2.0",
-    "hotelUrl": "https://www.tripadvisor.com/Hotel_Review-g188590-d232493-Reviews-Hotel_Nadia-Amsterdam_North_Holland_Province.html",
-    "title": "Overnight stay.",
-    "review": "This is a very small hotel. Staff are very friendly.But you have to be quite fit to go up all the stairs with your luggage. I also missed breakfast as I was 5 mins too late.The room was small but clean and the balcony was nice.The hotel is in a very good location.",
-    "url": "https://www.tripadvisor.com/ShowUserReviews-g188590-d232493-r507832414-Hotel_Nadia-Amsterdam_North_Holland_Province.html",
-    "score": 4,
-    "userId": "nigcastle"，
-    "date": "August 1, 2017"
-}
+### dataset 
+1. Stanford Sentiment treebank dataset
+2. the own-made TripAdvisor dataset, download link, https://drive.google.com/drive/folders/0B9MedSkTfH80ZEtQOVg4YzlSdWs?usp=sharing
 
 
+#### data sample in the TripAdvisor dataset
 
-```
+* the raw data on the TripAdvisor website
 
-### clean review data statistics
+![](readme_resources\tripadvisor_raw_data_on_website.png)
+
+* JSON data collected from the web page
+![](readme_resources\tripadvisor_data_sample.PNG)
+
+
+### experiment environment
+
+![](readme_resources\experiment-env.PNG)
+
+
+### experiment result
+
+![](readme_resources\experiment-result.PNG)
+
+
+### the report in pdf version
+
+* Deep_neural_network_based_algorithms_Performance_Comparison_for_Sentiment_Classification_Task_on_the_Hotel_Reviews_Dataset.pdf
+
+### algorithms used in the experiment
+
+[1] Conneau, Alexis, et al. "Very deep convolutional networks for text classification." arXiv preprint arXiv:1606.01781 (2016).
+[2] Kim, Yoon. "Convolutional neural networks for sentence classification." arXiv preprint arXiv:1408.5882 (2014).
+[3] Wang, Jiang, et al. "Cnn-rnn: A unified framework for multi-label image classification." Proceedings of the IEEE conference on computer vision and pattern recognition. 2016.
+
+
+
+
+
+<!-- ### clean review data statistics
  
  data source                       |       number    
  ----------------------------------|-----------------
@@ -85,4 +92,4 @@ Implementing a CNN for Text Classification in TensorFlow, http://www.wildml.com/
 [7] https://github.com/brightmart/text_classification, all kinds of text classification models and more with deep learning
 
 [8] Zhou, Chunting et al. “A C-LSTM Neural Network for Text Classification.” CoRR abs/1511.08630 (2015): n. pag., https://www.semanticscholar.org/paper/A-C-LSTM-Neural-Network-for-Text-Classification-Zhou-Sun/10f62af29c3fc5e2572baddca559ffbfd6be8787
-
+ -->

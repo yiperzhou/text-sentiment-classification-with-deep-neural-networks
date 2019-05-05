@@ -10,12 +10,7 @@
 
 #### data sample in the TripAdvisor dataset
 
-<<<<<<< HEAD
 * the raw data on the TripAdvisor website
-=======
-### Thesis in overleaf
-https://www.overleaf.com/read/jvxcyzsmgvxp
->>>>>>> 69bd7fa98a7dd6c0c92d83d0be41b104f14e3060
 
 ![](readme_resources\tripadvisor_raw_data_on_website.png)
 

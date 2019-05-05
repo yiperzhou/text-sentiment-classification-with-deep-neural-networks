@@ -12,20 +12,20 @@
 
 * the raw data on the TripAdvisor website
 
-![](readme_resources\tripadvisor_raw_data_on_website.png)
+![](readme_resources/tripadvisor_raw_data_on_website.png)
 
 * JSON data collected from the web page
-![](readme_resources\tripadvisor_data_sample.PNG)
+![](readme_resources/tripadvisor_data_sample.PNG)
 
 
 ### experiment environment
 
-![](readme_resources\experiment-env.PNG)
+![](readme_resources/experiment-env.PNG)
 
 
 ### experiment result
 
-![](readme_resources\experiment-result.PNG)
+![](readme_resources/experiment-result.PNG)
 
 
 ### the report in pdf version
@@ -34,9 +34,9 @@
 
 ### algorithms used in the experiment
 
-[1] Conneau, Alexis, et al. "Very deep convolutional networks for text classification." arXiv preprint arXiv:1606.01781 (2016).
-[2] Kim, Yoon. "Convolutional neural networks for sentence classification." arXiv preprint arXiv:1408.5882 (2014).
-[3] Wang, Jiang, et al. "Cnn-rnn: A unified framework for multi-label image classification." Proceedings of the IEEE conference on computer vision and pattern recognition. 2016.
+[1] Conneau, Alexis, et al. "Very deep convolutional networks for text classification." arXiv preprint arXiv:1606.01781 (2016).  
+[2] Kim, Yoon. "Convolutional neural networks for sentence classification." arXiv preprint arXiv:1408.5882 (2014).  
+[3] Wang, Jiang, et al. "Cnn-rnn: A unified framework for multi-label image classification." Proceedings of the IEEE conference on computer vision and pattern recognition. 2016.  
 
 
 

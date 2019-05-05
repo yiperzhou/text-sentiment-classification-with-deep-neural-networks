@@ -5,7 +5,7 @@
 
 ### dataset 
 1. Stanford Sentiment treebank dataset
-2. the own-made TripAdvisor dataset, download link, https://drive.google.com/drive/folders/0B9MedSkTfH80ZEtQOVg4YzlSdWs?usp=sharing
+2. the own-made TripAdvisor dataset, download link, https://drive.google.com/drive/folders/19TdLOrqjAQ11lpYRx1r2GcYo79fZXloE?usp=sharing 
 
 
 #### data sample in the TripAdvisor dataset

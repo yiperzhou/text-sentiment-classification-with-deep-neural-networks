@@ -1,4 +1,4 @@
-# Deep-neural-network-based-algorithms-Performance-Comparison-for-Sentiment-Classification 
+# the thesis, sentiment classification with deep neural networks
 
 
 ## Experiment
@@ -28,9 +28,9 @@
 ![](readme_resources/experiment-result.PNG)
 
 
-### the report in pdf version
+### the pdf report
 
-* Deep_neural_network_based_algorithms_Performance_Comparison_for_Sentiment_Classification_Task_on_the_Hotel_Reviews_Dataset.pdf
+* Yi_ZHOU_master_thesis_sentiment_classification_with_deep_neural_networks_2019.pdf
 
 ### algorithms used in the experiment
 

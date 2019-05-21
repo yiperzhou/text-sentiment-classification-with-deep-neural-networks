@@ -12,7 +12,11 @@
 
 * the raw data on the TripAdvisor website
 
+<!--
 ![](readme_resources/tripadvisor_raw_data_on_website.png)
+--!>
+
+<img src="readme_resources/tripadvisor_raw_data_on_website.png" alt="data_sample" width="500"/>
 
 * JSON data collected from the web page
 ![](readme_resources/tripadvisor_data_sample.PNG)

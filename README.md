@@ -21,12 +21,12 @@
 
 ### experiment environment
 
-![](readme_resources/experiment-env.PNG)
+<img src="readme_resources/experiment-env.PNG" alt="env" width="400"/>
 
 
 ### experiment result
 
-![](readme_resources/experiment-result.PNG)
+<img src="readme_resources/experiment-result.PNG" alt="env" width="700"/>
 
 
 ### the pdf report

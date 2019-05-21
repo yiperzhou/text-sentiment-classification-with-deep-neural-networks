@@ -1,4 +1,4 @@
-# the thesis, sentiment classification with deep neural networks
+# Thesis - sentiment classification with deep neural networks
 
 
 ## Experiment

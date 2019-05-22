@@ -136,8 +136,7 @@ class BiLSTMConv(nn.Module):
 
     def __init__(self, args):
         super(BiLSTMConv, self).__init__()
-        # args.num_tokens = 100000 #这里的这个数应该是单词的个数，具体是多少，我应该计算出来
-        self.num_tokens = args.num_tokens
+        self.num_tokens = args.num_tokens # the size of vocabulary, it is calculated aleady. 
         self.embed_dim = args.embed_dim
         self.embedding = nn.Embedding(num_embeddings=args.num_tokens, embedding_dim=args.embed_dim)
         # [batch, len, channel]

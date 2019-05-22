@@ -16,7 +16,8 @@ def get_clean_file_names():
     csv_booking_save_folder = "data/remove_null_review_score_data/BookingHotelReviewData"
     csv_tripadvisor_save_folder = "data/remove_null_review_score_data/TripadvisorHotelReivewData"
 
-    # 因为booking的文件格式是negative content 和 positive content 分开的，所以我就不用了
+    # Since the format of the review in the booking dataset contains two seperated parts,
+    # the negative content and the positive content; the booking dataset is not going to use in this experiments.
     # for raw_file in booking_files:
     #     raw_json_df = pd.read_json(booking_path + os.sep + raw_file, lines=True)
     #     df = remove_null_sentiment_review(raw_json_df)

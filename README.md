@@ -12,7 +12,7 @@
 
 * the raw data on the TripAdvisor website
 
-<img src="readme_resources/tripadvisor_raw_data_on_website.png" alt="data_sample" width="700"/>
+<center><img src="readme_resources/tripadvisor_raw_data_on_website.png" alt="data_sample" width="700"/></center>
 
 * JSON data collected from the web page
 
@@ -21,12 +21,12 @@
 
 ### experiment environment
 
-<img src="readme_resources/experiment-env.PNG" alt="env" width="400"/>
+<center><img src="readme_resources/experiment-env.PNG" alt="env" width="400"/></center>
 
 
 ### experiment result
 
-<img src="readme_resources/experiment-result.PNG" alt="env" width="700"/>
+<center><img src="readme_resources/experiment-result.PNG" alt="env" width="700"/></center>
 
 
 ### the pdf report

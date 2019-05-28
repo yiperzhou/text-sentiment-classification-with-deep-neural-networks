@@ -16,7 +16,7 @@
 
 * JSON data collected from the web page
 
-<img src="readme_resources/tripadvisor_data_sample.PNG" alt="data_sample" width="400"/>
+<center><img src="readme_resources/tripadvisor_data_sample.PNG" alt="data_sample" width="400"/></center>
 
 
 ### experiment environment

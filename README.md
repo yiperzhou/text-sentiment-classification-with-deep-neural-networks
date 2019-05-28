@@ -12,7 +12,9 @@
 
 * the raw data on the TripAdvisor website
 
-<img align="center" src="readme_resources/tripadvisor_raw_data_on_website.png" alt="data_sample" width="700"/>
+<p align="center">
+<img src="readme_resources/tripadvisor_raw_data_on_website.png" alt="data_sample" width="700"/>
+</p>
 
 * JSON data collected from the web page
 
@@ -21,17 +23,19 @@
 
 ### experiment environment
 
-<img src="readme_resources/experiment-env.PNG" alt="env" width="400" align="center"/>
-
+<p align="center">
+<img src="readme_resources/experiment-env.PNG" alt="env" width="400"/>
+</p>
 
 ### experiment result
 
-<img align="center" src="readme_resources/experiment-result.PNG" alt="env" width="700"/>
-
+<p align="center">
+<img src="readme_resources/experiment-result.PNG" alt="env" width="700"/>
+</p>
 
 ### the pdf report
 
-* Yi_ZHOU_master_thesis_sentiment_classification_with_deep_neural_networks_2019.pdf
+* [Yi_ZHOU_master_thesis_sentiment_classification_with_deep_neural_networks_2019.pdf](https://github.com/yipersevere/Deep-neural-network-based-algorithms-Performance-Comparison-for-Sentiment-Classification/blob/master/Yi_ZHOU_master_thesis_sentiment_classification_with_deep_neural_networks_2019.pdf)
 
 ### algorithms used in the experiment
 

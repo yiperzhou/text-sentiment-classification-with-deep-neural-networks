@@ -28,6 +28,13 @@
 <img src="readme_resources/experiment-env.PNG" alt="env" width="400"/>
 </p>
 
+### run experiments
+```
+cd algos
+python main.py
+```
+
+
 ### experiment result
 
 <p align="center">

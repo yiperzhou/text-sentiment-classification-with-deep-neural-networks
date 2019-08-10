@@ -43,7 +43,7 @@ python main.py
 
 ### the pdf report
 
-* [Yi_ZHOU_master_thesis_sentiment_classification_with_deep_neural_networks_2019.pdf](https://github.com/yipersevere/Deep-neural-network-based-algorithms-Performance-Comparison-for-Sentiment-Classification/blob/master/Yi_ZHOU_master_thesis_sentiment_classification_with_deep_neural_networks_2019.pdf)
+* [Yi_ZHOU_master_thesis_sentiment_classification_with_deep_neural_networks_2019.pdf](https://trepo.tuni.fi//handle/10024/116148)
 
 ### algorithms used in the experiment
 

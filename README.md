@@ -5,7 +5,7 @@
 
 ### dataset 
 1. Stanford Sentiment treebank dataset
-2. the own-made TripAdvisor dataset, download link, https://drive.google.com/drive/folders/19TdLOrqjAQ11lpYRx1r2GcYo79fZXloE?usp=sharing 
+2. the own-made TripAdvisor dataset, [download link](https://drive.google.com/drive/folders/19TdLOrqjAQ11lpYRx1r2GcYo79fZXloE?usp=sharing)   
 
 
 #### data sample in the TripAdvisor dataset
@@ -47,9 +47,9 @@ python main.py
 
 ### algorithms used in the experiment
 
-[1] Conneau, Alexis, et al. "Very deep convolutional networks for text classification." arXiv preprint arXiv:1606.01781 (2016), [link](https://arxiv.org/abs/1606.01781)  
-[2] Kim, Yoon. "Convolutional neural networks for sentence classification." arXiv preprint arXiv:1408.5882 (2014), [link](https://www.aclweb.org/anthology/D14-1181)   
-[3] Wang, Xingyou, Weijie Jiang, and Zhiyong Luo. "Combination of convolutional and recurrent neural network for sentiment analysis of short texts." Proceedings of COLING 2016, the 26th International Conference on Computational Linguistics: Technical Papers. 2016, [link](https://www.aclweb.org/anthology/C16-1229)    
+[1] [Conneau, Alexis, et al. "Very deep convolutional networks for text classification." arXiv preprint arXiv:1606.01781 (2016)](https://arxiv.org/abs/1606.01781)  
+[2] [Kim, Yoon. "Convolutional neural networks for sentence classification." arXiv preprint arXiv:1408.5882 (2014)](https://www.aclweb.org/anthology/D14-1181)   
+[3] [Wang, Xingyou, Weijie Jiang, and Zhiyong Luo. "Combination of convolutional and recurrent neural network for sentiment analysis of short texts." Proceedings of COLING 2016, the 26th International Conference on Computational Linguistics: Technical Papers. 2016](https://www.aclweb.org/anthology/C16-1229)    
 
 
 

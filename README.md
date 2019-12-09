@@ -1,5 +1,6 @@
 # Thesis - sentiment classification with deep neural networks
 
+visit [the project page](https://yipersevere.github.io/text-sentiment-classification-with-deep-neural-networks/)  
 
 ## Experiment
 
